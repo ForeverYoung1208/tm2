@@ -1,0 +1,24 @@
+<h1>Listing actions</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Type</th>
+    <th>Первое событие</th>
+    <th>Последняя проверка</th>
+  </tr>
+
+<% @actions.each do |action| %>
+  <tr>
+    <td><%= action.user.name %></td>
+    <td><%= action.kind %></td>
+    <td><%= action.created_at %></td>
+    <td><%= action.updated_at %></td>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Action', new_action_path %>

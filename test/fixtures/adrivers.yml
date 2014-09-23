@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  autodesc: MyString
+  autonumber: MyString
+
+two:
+  name: MyString
+  autodesc: MyString
+  autonumber: MyString

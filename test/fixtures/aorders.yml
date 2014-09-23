@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ondate: 2011-05-05
+  onname: MyString
+  ftime: 2011-05-05 12:49:33
+  totime: 2011-05-05 12:49:33
+  driver_id: 1
+
+two:
+  ondate: 2011-05-05
+  onname: MyString
+  ftime: 2011-05-05 12:49:33
+  totime: 2011-05-05 12:49:33
+  driver_id: 1

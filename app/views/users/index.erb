@@ -1,0 +1,30 @@
+
+<table class="allorderlist">
+  <tr>
+    <th> ID </th>
+    <th> Имя </th>
+    <th> e-mail </th>
+    <th> компания </th>
+    <th> уровень доступа </th>
+    <th> Сброс пароля на <%= ::DEF_PWD %> </th>
+    <th> Редактировать</th>
+
+  </tr>
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.company.name if user.company%></td>
+    <td><%= user.userlevel.name %></td>
+    <td><%= button_to 'сбросить пароль', password_reset_path(:id=>user.id) %></td>
+    <td><%= link_to 'Редактировать', edit_user_path(:id=>user.id) %></td>
+  </tr>
+<%end%>
+
+</table>
+
+
+<%=  link_to 'Создать нового пользователя', sign_up_path %>
+<br />
+<%= link_to 'Вернуться в список заказов (на главную)', aorders_path   %>

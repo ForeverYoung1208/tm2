@@ -1,0 +1,29 @@
+<h1>Список водителей</h1>
+
+<table class="allorderlist">
+  <tr>
+    <th>ФИО</th>
+    <th>Описание авто</th>
+    <th>Номер авто</th>
+    <th>Контакт</th>
+    <th colspan="3">Управление</th>
+  </tr>
+
+<% @adrivers.each do |adriver| %>
+  <tr>
+    <td><%= adriver.name %></td>
+    <td><%= adriver.autodesc %></td>
+    <td><%= adriver.autonumber %></td>
+    <td><%= adriver.contact %></td>
+    <td><%= link_to 'Показать', adriver %></td>
+    <td><%= link_to 'Изменить', edit_adriver_path(adriver) if is_admin? %></td>
+    <td><%= link_to 'Удалить', adriver, :confirm => 'Вы уверены? Трижды подумайте! Удалится из всех заказов! Безвозвратно!', :method => :delete if is_admin? %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новый водитель', new_adriver_path if is_admin?%>
+<br />
+<%= link_to 'Вернуться в список заказов (на главную)', aorders_path   %>

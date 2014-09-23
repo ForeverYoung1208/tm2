@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Водитель:</b>
+  <%= @adriver.name %>
+</p>
+
+<p>
+  <b>Автомобиль:</b>
+  <%= @adriver.autodesc %>
+</p>
+
+<p>
+  <b>Госномер:</b>
+  <%= @adriver.autonumber %>
+</p>
+
+<p>
+  <b>Контактный тел. водителя:</b>
+  <%= @adriver.contact %>
+</p>
+
+
+<%= link_to 'Изменить', edit_adriver_path(@adriver) if is_admin?%> |
+<%= link_to 'Список водителей', adrivers_path %>
+<br />
+<%= link_to 'Список заказов', aorders_path %>

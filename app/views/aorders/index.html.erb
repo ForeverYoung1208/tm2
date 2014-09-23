@@ -1,0 +1,85 @@
+<div id="top_all">
+  <div id="top_msg">
+    Заказы автомобиля на день:
+      <%= @odate.thedate %>
+      (<%= @odate.showstatus %>)
+  </div>
+  <div id="top_btns">
+<%  if is_admin?  %>
+    <%=
+      button_to( 'Закрыть день',
+      set_day_status_path(:id=>@odate.id , :day_closed=>'true'),
+      {:id=>:one_btn, :disabled=>@odate.isclosed})
+    %>
+    <%=
+      button_to( 'Открыть день',
+      set_day_status_path(:id=>@odate.id , :day_closed=>'false'),
+      {:id=>:one_btn, :disabled=>!@odate.isclosed})
+    %>
+<%end%>
+    
+<%  if check_tabel_rights?  %>
+    <%=
+      link_to 'Табель сотрудников', tabel_path
+    %>
+
+
+<%end%>
+  </div>
+
+  <div id="status_wrapper">
+
+      <% if session[:user]  %>
+      Вы работаете как:
+          <%= session[:user].name %> (ID=<%=session[:user].id %>)<br/>
+      Со статусом:
+          <%= session[:user].userlevel.name %> <br />
+      Компания:
+          <%= session[:user].company.name if session[:user].company %> <br/>
+      <%= link_to 'Выйти из системы', log_out_path %><br/>
+      <%= 
+      # link_to 'Обновить список заказов', uporderstable_path, :remote=>true    решили что лишнее
+      %>
+      <%end%>
+  </div>
+
+</div>
+
+<%=  image_tag('pic2.gif', :size=>"180x80",  :id=>:pic1) %>
+
+<div id="date_change">
+  <div id="date_msg">Изменение даты</div>
+  <div id="date_field">
+
+    <%= form_tag(setdate_path) do%>
+       <%= text_field_tag :tek_date, @odate.thedate, :size=>8 %>
+       <%= submit_tag 'установить (обновить инф.)' %>
+    <% end %>
+
+  </div>
+</div>
+
+<div id="olist_wrapper">
+  <div id="olist_div">
+      <%= render 'olist' %>
+  </div>
+
+  <div id="new_order">
+      Добавление нового заказа:
+      <%= render 'form' unless @odate.isclosed%>
+  </div>
+
+  <div id="onlinedrivers">
+    <%= render 'onlinedrivers' %>
+  </div>
+
+  <div id="links">
+      <br />  <%= link_to 'Справочник всех водителей', adrivers_path %>
+      <br/>
+      <br />  <%= link_to 'Список пользователей', users_path %>
+      <br/>
+      <br /> <%= link_to 'Список компаний', companies_path if is_admin? %>
+  </div>
+
+</div>
+

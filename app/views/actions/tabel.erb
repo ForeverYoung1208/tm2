@@ -1,0 +1,79 @@
+<h1>Компания: <%= @company.name %>, месяц: <%= ::MONTHNAMES_RUS[@month] %></h1>
+  <div id="tabel_company">
+    <%= form_tag(tabel_path) do%>
+       <%= label_tag 'Изменить компанию на:' %>
+       <%= collection_select(nil, :company_id, @companies, :id, :name, {:selected => @company.id})%>
+
+       <%= label_tag 'Изменить дату на:' %>
+       <%= text_field_tag :tek_date, @odate.thedate, :size=>8 %>
+       <%= submit_tag 'ОК' %>
+    <% end %>
+  </div>
+
+<table class="allorderlist" id="tabel">
+  <tr>
+    <th class="id"> ID </th>
+    <th class="name"> Имя </th>
+    <%  @days_in_month.times do |day| %>
+      <th> <%= day+1 %> </th>
+    <% end %>
+
+
+
+  </tr>
+<% @users.each do |user|
+     @first_login=Array.new
+     @last_login=Array.new
+ %>
+  <tr>
+    <td class="id""><%= user.id %></td>
+    <td class="name"><%= user.name+", вход:" %></td>
+    <%  @days_in_month.times do |day| %>
+      <td>
+            <%=
+              @first_login[day]=get_first_login(user.id,day+1,@month,@year)
+              @first_login[day] ? @first_login[day].strftime("%H: %M") : "-"
+            %>
+      </td>
+    <% end %>
+</tr>
+
+
+  <tr>
+    <td></td>
+    <td>Выход:</td>
+    <%  @days_in_month.times do |day| %>
+      <td> <%=
+              @last_login[day] = get_last_login(user.id,day+1,@month,@year)
+              @last_login[day] ? @last_login[day].strftime("%H: %M") : "-"
+           %>
+      </td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td class="bottom"></td>
+    <td class="bottom">Отработано:</td>
+    <%  @days_in_month.times do |day|
+          if @last_login[day] and @first_login[day]
+            worked_time = Time.at(@last_login[day] - @first_login[day])
+            worked_hours = worked_time.to_f/60/60
+            worked_time_s = worked_time.utc.strftime("%H: %M")
+          else
+            worked_hours = 0
+            worked_time_s = "-"
+          end
+      %>
+      <td <%= worked_hours>9 ? 'class=bottom' : 'class=bad_day' %> >
+          <%= worked_time_s %>
+      </td>
+
+    <% end %>
+  </tr>
+
+
+<%end%>
+
+</table>
+
+<%=  link_to 'Назад в список заказов', aorders_path %>

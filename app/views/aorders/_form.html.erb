@@ -1,0 +1,100 @@
+
+
+
+<% if @aorder.errors.any? %>
+
+  <td colspan="8">
+    <div id="error_explanation">
+      <h2><%= pluralize(@aorder.errors.count, "ошибки! ") %> - ошибки  делают сохранение невозможным.:</h2>
+      <ul>
+      <% @aorder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  </td>
+  <br/>
+<% end %>
+
+<%= form_for(@aorder) do |f| %>
+  <table class="allorderlist"
+      <%= "id=table_inactive" if @odate.isclosed%>
+      <%= "id=table_active" if not @odate.isclosed%>>
+
+    <%=render 'head'%>
+    <tr>
+
+      <%=
+        f.hidden_field :ttmid
+      %>
+
+      <%=
+        f.hidden_field :iscanceled
+      %>
+
+      <%=
+        f.hidden_field :odate_id
+      %>
+
+
+      <td>
+        <%= @aorder.id %>
+      </td>
+
+      <td>
+        <%= f.text_field :onname, :size=>10 %>
+      </td>
+
+      <td>
+        <%= f.text_field :ondepartment, :size=>5 %>
+      </td>
+
+      <td>
+        <%= f.text_field :contact, :size=>5 %>
+      </td>
+
+      <td>
+        <%= f.text_field :adestination, :size=>10 %>
+      </td>
+
+      <td>
+        <%= f.time_select :ftime, :minute_step=>10 %>
+      </td>
+
+      <td>
+        <%= f.time_select :totime, :minute_step=>10 %>
+      </td>
+
+      <td>
+        <% if is_admin? %>
+          <%= f.collection_select(:adriver_id, Adriver.all, :id, :name, :prompt => 'Не назначен', :size=>'5')  %>
+        <%end%>
+      </td>
+
+      <td>
+        <%= f.text_field :comment, :size=>10 %>
+      </td>
+
+      <td colspan="2" align="center">
+        <%= f.submit "сохранить", {:class=>"widthed"}%>
+      </td>
+
+      <% if is_admin? %>
+
+        <td>
+          <%= f.collection_select(:user_id, User.all, :id, :name, :prompt => 'Не назначен', :size=>'5')  %>
+        </td>
+
+      <%else%>
+
+          <%=
+            f.hidden_field :user_id
+          %>
+
+      <%end%>
+
+    </tr>
+  </table>
+<% end %>
+
+

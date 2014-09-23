@@ -1,0 +1,9 @@
+    Список существующих на данный момент заказов:
+    <table class="allorderlist"
+      <%= "id=table_inactive" if @odate.isclosed%>
+      <%= "id=table_active" if not @odate.isclosed%> >
+      
+      <%= render 'head' %>
+      <%= render 'body' %>
+
+    </table>

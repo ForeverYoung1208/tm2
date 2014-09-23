@@ -1,0 +1,103 @@
+<% if @onlinedriver.errors.any? %>
+  <td colspan="8">
+    <div id="error_explanation">
+      <h2><%= pluralize(@aonlinedrivers.errors.count, "ошибки! ") %> - ошибки  делают сохранение невозможным.:</h2>
+      <ul>
+      <% @aorder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  </td>
+  <br/>
+  <%end%>
+Справочник доступных водителей:
+
+<%= button_to 'Заполнить из предыдущего дня', filldrivers_path if is_admin?%>
+<table class="onlinedriverlist">
+  <tr>
+    <th class="name">ФИО</th>
+    <th class="autodesc">Описание авто</th>
+    <th class="autonumber">Номер авто</th>
+    <th class="contact">Тел. водителя</th>
+    <th class="onduty">Примечание</th>
+    <th class="todel"> </th>
+    <th class="toduty"> </th>
+
+    <%
+      t=9.hours
+      while t <= 23.hours do %>
+        <%  if  t.gcd(1.hour.to_i)==1.hour%>
+          <% if t/3600>=18 or (t/3600>=13 and t/3600<14) %>
+            <th colspan="6" class="notworkingtime"><%=t/3600%>-<%=t/3600+1%></th>
+          <%else%>
+            <th colspan="6" class="workingtime"><%=t/3600%>-<%=t/3600+1%></th>
+          <%end%>
+        <%end%>
+
+      <%
+        t+=10.minutes
+        end
+      %>
+
+  </tr>
+
+
+<% @onlinedrivers.each do |onld| %>
+  <tr>
+    <td><%= onld.adriver.name if onld.adriver %></td>
+    <td><%= onld.adriver.autodesc if onld.adriver %></td>
+    <td><%= onld.adriver.autonumber if onld.adriver %></td>
+    <td><%= onld.adriver.contact if onld.adriver %></td>
+    <td><%= 'Дежурный' if onld.onduty %></td>
+    <td><%= link_to 'Удалить', onld, :method => :delete if is_admin? %></td>
+    <td><%= link_to '(Не-)Дежурить', setonduty_path(:id=>onld.id) if is_admin? %></td>
+
+    <%
+    # ОСТОРОЖНО, ГОВНОКОД!!!! Но переделывать лень.
+      t=9.hours
+      while t < 24.hours do 
+        busytime=0
+          @aorders.each do |o|
+            if o.is_d_busy(onld.adriver.id, t.seconds)
+                busytime+=1
+            end
+          end
+          if busytime==0 %>
+            <td class="time">&nbsp;</td>
+          <%end%>
+          <% if busytime==1 %>
+            <td class="timebusy">|</td>
+          <%end%>
+          <% if busytime>1 %>
+            <td class="timeverybusy">
+              <%= busytime.times{"|<br/>"}%>
+            </td>
+          <%end%>
+      <%
+      t+=10.minutes
+      end%>
+
+  </tr>
+<% end %>
+
+<% if is_admin? %>
+  <tr class="ruler">
+    <td colspan="97"></td>
+  </tr>
+
+  <tr>
+
+      
+        <td colspan="97">
+          <%= form_for(@onlinedriver) do |f| %>
+          <%= f.hidden_field :odate_id %>
+          <%= f.collection_select(:adriver_id, Adriver.all, :id, :name, :prompt => 'Не назначен', :size=>'5')  %>
+          <%= f.submit 'Добавить' %>
+          <%end%>
+        </td>
+  </tr>
+<%end%>
+
+
+</table>

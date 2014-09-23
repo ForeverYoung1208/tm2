@@ -1,0 +1,267 @@
+#top_all{
+    display: block;
+    float: left;
+    height: 80px;
+    width: 1000px;
+}
+
+#top_msg{
+    position: relative;
+    display: block;
+    font-size: large;
+    top: 10px;
+    float: left;
+
+}
+
+#top_btns{
+    position: relative;
+    display: block;
+    float: left;
+    margin-left: 2em;
+    width: 150px;
+}
+
+#one_btn{
+    float:left;
+}
+
+#status_wrapper{
+    position: relative;
+    display: block;
+    width: 300px;
+    float: left;
+    margin-left: 2em;
+}
+
+
+#date_change{
+    display: block;
+    position: absolute;
+    float: left;
+    left:10px;
+    top: 50px;
+    height: 40px;
+}
+
+#date_msg{
+
+}
+
+#date_field{
+
+}
+
+#pic1{
+    display: block;
+    float: right;
+    margin-right: 0em;
+
+}
+
+#olist_wrapper{
+    position: absolute;
+    display: block;
+    top: 100px;
+    float: left;
+    margin-right: 1em;
+}
+
+#new_order{
+    margin-top: 1em;
+}
+
+#onlinedrivers{
+    position: relative;
+    display: block;
+    float: left;
+    margin-top: 1em;
+    width: 100%;
+/*    margin-right: 100%;*/
+}
+
+#links{
+    width :600px;
+    position: relative;
+    display: block;
+    float: left;
+    margin-top: 1em;
+}
+
+
+
+table.allorderlist{
+    margin-top: 0em;
+    border-spacing: 0px;
+    border-color: black;
+    border-width: 0px 0px 1px 1px;
+    border-style: solid;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+table.allorderlist th{
+/*    border-color: black; */
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    background-color: #B9EFFF;
+    font-size: small;
+}
+
+table.allorderlist td{
+/*    border-color: black; */
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    background-color: #FFFFFF;
+}
+
+table.allorderlist th.nomer{ width: 3em}
+table.allorderlist th.fio{ }
+table.allorderlist th.depart{ }
+table.allorderlist th.contact{}
+table.allorderlist th.destination{}
+table.allorderlist th.time{ width: 110px;}
+table.allorderlist th.driver{ width: 100px; }
+table.allorderlist th.comment{ }
+table.allorderlist th.management{ width: 100px}
+
+
+#table_inactive {
+    color: gray;
+    border-color: gray;
+}
+
+#table_active {
+    color: black;
+    border-color: black;
+}
+
+
+table.onlinedriverlist{
+    table-layout: fixed;
+    margin-top: 0px;
+    border-spacing: 0px;
+    border-color: black;
+    border-width: 0px 0px 1px 1px;
+    border-style: solid;
+}
+
+table.onlinedriverlist th{
+/*    border-color: black; */
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    background-color: #B9EFFF;
+    font-size: small;
+}
+
+table.onlinedriverlist th.name{ width: 50px;}
+table.onlinedriverlist th.autodesc{ width: 10px;}
+table.onlinedriverlist th.autonumber{ width: 10px;}
+table.onlinedriverlist th.contact{ width: 10px;}
+table.onlinedriverlist th.onduty{ width: 10px;}
+table.onlinedriverlist th.todel{ width: 10px;}
+table.onlinedriverlist th.toduty{ width: 10px;}
+table.onlinedriverlist th.workingtime{
+    color: black;
+    width: 10px;
+}
+table.onlinedriverlist th.notworkingtime{
+    color: gray;
+}
+
+
+table.onlinedriverlist td{
+/*    border-color: black; */
+    padding: 0px;
+    margin: 0px;
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    background-color: #FFFFFF;
+}
+
+table.onlinedriverlist td.time{
+    width: 3px;
+}
+
+table.onlinedriverlist td.timebusy{
+    background-color: wheat;
+    width: 3px;
+}
+table.onlinedriverlist td.timeverybusy{
+    background-color: lightcoral;
+    width: 3px;
+}
+
+
+table.onlinedriverlist tr{ height: 3em;}
+table.onlinedriverlist tr.ruler{ height: 2px;}
+
+
+#aorder_adriver_id{
+    width: 100px;
+    display: block;
+}
+
+#onlinedriver_adriver_id{
+    width: 150px;
+    display: inline;
+}
+
+#tek_date{
+    width: 100px;
+}
+
+#tabel {
+    margin-top: 40px;
+}
+
+#tabel td {
+    font-size:smaller;
+}
+
+#tabel th.id{
+    width: 12px;
+
+}
+
+#tabel th.name{
+    width: 8em;
+}
+
+#tabel td.name{
+    background-color: wheat;
+    width: 10em;
+}
+
+#tabel td.bottom{
+    border-width: 1px 1px 2px 0px;
+    border-style: solid;
+}
+
+#tabel td.bad_day{
+    font-weight: bold;
+    color:#cc0033;
+    background-color:#cccccc !important;
+    border-width: 2px 2px 2px 0px;
+    border-style:solid;
+}
+
+#tabel_company{
+    display: block;
+    position: absolute;
+    float: left;
+    left:10px;
+    top: 45px;
+    height: 40px;
+}
+
+#tabel_date{
+    display: block;
+    position: absolute;
+    float: left;
+    left:300px;
+    top: 50px;
+    height: 40px;
+}
+

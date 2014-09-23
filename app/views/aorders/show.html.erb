@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+<h2> Заявка на использование автомобиля</h2>
+
+<p>
+  <b>На дату:</b>
+  <%= @aorder.odate.thedate %>
+</p>
+
+<p>
+  <b>Кто едет:</b>
+  <%= @aorder.onname %>
+</p>
+<p>
+<b>Отдел:</b>
+  <%= @aorder.ondepartment %>
+</p>
+
+<b>Контактный телефон:</b>
+  <%= @aorder.contact %>
+</p>
+
+<p>
+  <b>Куда:</b>
+  <%= @aorder.adestination %>
+</p>
+
+<p>
+  <b>с:</b>
+  <%= @aorder.ftime.strftime("%H:%M") %>
+</p>
+
+<p>
+  <b>по:</b>
+  <%= @aorder.totime.strftime("%H:%M") %>
+</p>
+
+<p>
+  <b>Назначен водитель:</b>
+  <%= @aorder.adriver.name if @aorder.adriver %>
+</p>
+
+<p>
+  <b>Кто подал заявку (хозяин заявки):</b>
+  <%= @aorder.user.name %>
+  (ID=<%=  @aorder.user_id %>)
+</p>
+
+
+<%= link_to 'Редактировать', edit_aorder_path(@aorder) if is_admin? %> |
+<%= link_to 'Назад в список заказов', aorders_path %>

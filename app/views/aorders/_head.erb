@@ -1,0 +1,15 @@
+<tr>
+    <th class="nomer"> <%= link_to('№', setosort_path(:sorton=>'aorders.id'))%> </th>
+    <th class="fio"> <%= link_to('Кто едет', setosort_path(:sorton=>'aorders.onname'))%> </th>
+    <th class="depart"><%= link_to('Отдел', setosort_path(:sorton=>'aorders.ondepartment'))%></th>
+    <th class="contact"><%= link_to('Тел.', setosort_path(:sorton=>'aorders.contact'))%></th>
+    <th class="destination"><%= link_to('Куда', setosort_path(:sorton=>'aorders.adestination'))%></th>
+    <th class="time"><%= link_to('"с"', setosort_path(:sorton=>'aorders.ftime'))%></th>
+    <th class="time"><%= link_to('"по"', setosort_path(:sorton=>'aorders.totime'))%></th>
+    <th class="driver"><%= link_to('Водитель', setosort_path(:sorton=>'adrivers.name'))%></th>
+    <th class="comment"><%= link_to('Коммент.', setosort_path(:sorton=>'aorders.comment'))%></th>
+    <th class="management" colspan="2">Управление заказом</th>
+    <% if is_admin? %>
+      <th class="owner">Заявитель</th>
+    <%end%>
+</tr>
