@@ -15,7 +15,7 @@ $.ajaxSetup({
 //  $('form.remote').attach(Remote.Form);
 //});
 
-// конфигурируем календарь
+// конфигурируем календари
 $(function() {
   $( "#tek_date" ).datepicker({dateFormat: 'yy-mm-dd'});
   $( "#tek_date" ).datepicker( "option", "firstDay", 1 );
@@ -25,6 +25,21 @@ $(function() {
       onSelect:function(){ $.get('/orders') }
   })
 });
+
+$(function() {
+  $( "#first_date" ).datepicker({dateFormat: 'yy-mm-dd'});
+  $( "#first_date" ).datepicker( "option", "firstDay", 1 );
+  $( "#first_date" ).datepicker( "option", "monthNames", ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'] );
+  $( "#first_date" ).datepicker( "option", "dayNamesMin", ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'] );
+});
+
+$(function() {
+  $( "#last_date" ).datepicker({dateFormat: 'yy-mm-dd'});
+  $( "#last_date" ).datepicker( "option", "firstDay", 1 );
+  $( "#last_date" ).datepicker( "option", "monthNames", ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'] );
+  $( "#last_date" ).datepicker( "option", "dayNamesMin", ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'] );
+});
+
 
 //$(document).ready(
 //      function(){

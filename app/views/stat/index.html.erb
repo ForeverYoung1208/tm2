@@ -1,0 +1,8 @@
+<h1>Статистика</h1>
+<h2> Показать заказы автомобилей за период </h2>
+
+    <%= form_tag(setstatdates_path) do%>
+       <%= text_field_tag :first_date, @date_begin, :size=>8 %>
+       <%= text_field_tag :last_date, @date_end, :size=>8 %>
+       <%= submit_tag 'установить (обновить инф.)' %>
+    <% end %>

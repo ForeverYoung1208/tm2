@@ -16,6 +16,10 @@ Tm2::Application.routes.draw do
   match "tabel" => "actions#tabel", :as =>"tabel"
   post "password_reset" => "users#password_reset", :as => "password_reset"
 
+  match "stat" => "stat#index", :as =>"stat"
+  match "setstatdates" => "stat#setstatdates", :as =>"setstatdates"
+
+
 #  get "onlinedrivers/:action/:id" => "onlinedrivers#index", :as=>"onlinedrivers"
 
   resources :users
