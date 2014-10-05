@@ -6,3 +6,10 @@
        <%= text_field_tag :last_date, @date_end, :size=>8 %>
        <%= submit_tag 'установить (обновить инф.)' %>
     <% end %>
+
+	<table class="allorderlist" "id=table_active" >
+      
+      <%= render 'head' %>
+      <%= render 'body' %>
+
+    </table>
