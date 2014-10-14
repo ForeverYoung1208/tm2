@@ -7410,3 +7410,1255 @@ Processing by StatController#setstatdates as HTML
   Rendered stat/_body.erb (33.9ms)
   Rendered stat/index.html.erb within layouts/application (44.4ms)
 Completed 200 OK in 72ms (Views: 55.2ms | ActiveRecord: 11.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-14 22:04:26 +0300
+Processing by SessionsController#new as HTML
+  [1m[36mOdate Load (11.4ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`thedate` = '2014-10-14' LIMIT 1[0m
+  [1m[35m (2.5ms)[0m  BEGIN
+  [1m[36mOdate Exists (1.0ms)[0m  [1mSELECT 1 FROM `odates` WHERE `odates`.`thedate` = BINARY '2014-10-14' LIMIT 1[0m
+  [1m[35mSQL (2.1ms)[0m  INSERT INTO `odates` (`created_at`, `isclosed`, `thedate`, `updated_at`) VALUES ('2014-10-14 22:04:27', 0, '2014-10-14', '2014-10-14 22:04:27')
+  [1m[36m (13.8ms)[0m  [1mCOMMIT[0m
+  Rendered sessions/new.html.erb within layouts/application (94.1ms)
+Completed 200 OK in 740ms (Views: 174.1ms | ActiveRecord: 94.5ms)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-10-14 22:04:33 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "name"=>"igor", "password"=>"[FILTERED]", "commit"=>"Войти"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`name` = 'igor' LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (4.9ms)[0m  INSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-14 22:04:34', 'login', '2014-10-14 22:04:34', 1)
+  [1m[36m (14.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (1.4ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-14 22:04:34', 'stay_in', '2014-10-14 22:04:34', 1)[0m
+  [1m[35m (1.4ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/aorders
+Completed 302 Found in 625ms (ActiveRecord: 40.5ms)
+
+
+Started GET "/aorders" for 127.0.0.1 at 2014-10-14 22:04:34 +0300
+Processing by AordersController#index as HTML
+  [1m[36mOnlinedriver Load (0.3ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  [1m[35mUserlevel Load (0.4ms)[0m  SELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 2 LIMIT 1[0m
+  Rendered aorders/_head.erb (8.0ms)
+  [1m[35mAorder Load (3.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false) ORDER BY id
+  Rendered aorders/_body.erb (6.5ms)
+  Rendered aorders/_olist.erb (22.0ms)
+  Rendered aorders/_head.erb (6.0ms)
+  [1m[36mAdriver Load (2.5ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  [1m[35mUser Load (3.4ms)[0m  SELECT `users`.* FROM `users` 
+  Rendered aorders/_form.html.erb (150.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (15.0ms)
+  Rendered aorders/index.html.erb within layouts/application (281.6ms)
+Completed 200 OK in 474ms (Views: 268.4ms | ActiveRecord: 35.6ms)
+
+
+Started GET "/stat" for 127.0.0.1 at 2014-10-14 22:04:40 +0300
+Processing by StatController#index as HTML
+  Rendered stat/_head.erb (8.5ms)
+  [1m[35mAorder Load (3.2ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= 2014-10-13 AND thedate <= AND iscanceled=false) ORDER BY thedate
+Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND iscanceled=false) ORDER BY thedate' at line 1: SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= 2014-10-13 AND thedate <=  AND iscanceled=false) ORDER BY thedate
+  Rendered stat/_body.erb (110.6ms)
+  Rendered stat/index.html.erb within layouts/application (135.6ms)
+Completed 500 Internal Server Error in 145ms
+
+ActionView::Template::Error (Mysql2::Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'AND iscanceled=false) ORDER BY thedate' at line 1: SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= 2014-10-13 AND thedate <=  AND iscanceled=false) ORDER BY thedate):
+    1: <% @aorders.each do |aorder| %>
+    2:   <tr>
+    3:     <td><%= aorder.id %></td>
+    4:     <td><%= aorder.onname %></td>
+  app/views/stat/_body.erb:1:in `_app_views_stat__body_erb__519074259_80968820'
+  app/views/stat/index.html.erb:13:in `_app_views_stat_index_html_erb__602247121_81274640'
+  app/controllers/stat_controller.rb:9:in `index'
+
+
+  Rendered /home/fy/.rvm/gems/ruby-1.9.3-p429@tm2/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (17.8ms)
+  Rendered /home/fy/.rvm/gems/ruby-1.9.3-p429@tm2/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.5ms)
+  Rendered /home/fy/.rvm/gems/ruby-1.9.3-p429@tm2/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (44.6ms)
+
+
+Started GET "/stat" for 127.0.0.1 at 2014-10-14 22:06:42 +0300
+Processing by StatController#index as HTML
+  Rendered stat/_head.erb (7.0ms)
+  [1m[36mAorder Load (1.1ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= 2014-10-13 AND thedate <= 2014-10-14 AND iscanceled=false) ORDER BY thedate[0m
+  Rendered stat/_body.erb (11.6ms)
+  Rendered stat/index.html.erb within layouts/application (36.1ms)
+Completed 200 OK in 71ms (Views: 38.4ms | ActiveRecord: 7.6ms)
+
+
+Started POST "/setstatdates" for 127.0.0.1 at 2014-10-14 22:06:49 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "first_date"=>"2014-10-01", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (4.5ms)
+  [1m[35mAorder Load (0.6ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= 2014-10-01 AND thedate <= 2014-10-14 AND iscanceled=false) ORDER BY thedate
+  Rendered stat/_body.erb (1.5ms)
+  Rendered stat/index.html.erb within layouts/application (16.5ms)
+Completed 200 OK in 33ms (Views: 31.9ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/setstatdates" for 127.0.0.1 at 2014-10-14 22:06:55 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "first_date"=>"2014-09-01", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (6.1ms)
+  [1m[36mAorder Load (7.3ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= 2014-09-01 AND thedate <= 2014-10-14 AND iscanceled=false) ORDER BY thedate[0m
+  Rendered stat/_body.erb (9.5ms)
+  Rendered stat/index.html.erb within layouts/application (25.1ms)
+Completed 200 OK in 38ms (Views: 30.0ms | ActiveRecord: 7.3ms)
+
+
+Started GET "/uporderstable?_=1413313646114" for 127.0.0.1 at 2014-10-14 22:07:26 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313646114"}
+  [1m[35mAction Load (0.7ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.8ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:07:26' WHERE `actions`.`id` = 26
+  [1m[36m (24.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.7ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (4.8ms)
+  [1m[36mAorder Load (0.9ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (2.7ms)
+  Rendered aorders/_olist.erb (10.2ms)
+  [1m[35mAdriver Load (0.9ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (37.9ms)
+  Rendered aorders/uporderstable.js.erb (52.1ms)
+Completed 200 OK in 176ms (Views: 52.6ms | ActiveRecord: 33.8ms)
+
+
+Started GET "/uporderstable?_=1413313676097" for 127.0.0.1 at 2014-10-14 22:07:56 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313676097"}
+  [1m[36mAction Load (1.1ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:07:56' WHERE `actions`.`id` = 26[0m
+  [1m[35m (8.1ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.4ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (3.0ms)
+  [1m[35mAorder Load (0.4ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (1.1ms)
+  Rendered aorders/_olist.erb (5.9ms)
+  [1m[36mAdriver Load (0.5ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (5.2ms)
+  Rendered aorders/uporderstable.js.erb (13.1ms)
+Completed 200 OK in 33ms (Views: 16.8ms | ActiveRecord: 11.2ms)
+
+
+Started GET "/uporderstable?_=1413313706098" for 127.0.0.1 at 2014-10-14 22:08:26 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313706098"}
+  [1m[35mAction Load (0.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (3.7ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:08:26' WHERE `actions`.`id` = 26
+  [1m[36m (18.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.6ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (2.4ms)
+  [1m[36mAorder Load (0.9ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (3.4ms)
+  Rendered aorders/_olist.erb (13.3ms)
+  [1m[35mAdriver Load (1.1ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (9.7ms)
+  Rendered aorders/uporderstable.js.erb (30.9ms)
+Completed 200 OK in 67ms (Views: 35.1ms | ActiveRecord: 25.4ms)
+
+
+Started GET "/uporderstable?_=1413313736136" for 127.0.0.1 at 2014-10-14 22:08:56 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313736136"}
+  [1m[36mAction Load (0.2ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:08:56' WHERE `actions`.`id` = 26[0m
+  [1m[35m (2.1ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.4ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (2.3ms)
+  [1m[35mAorder Load (2.7ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (3.7ms)
+  Rendered aorders/_olist.erb (7.7ms)
+  [1m[36mAdriver Load (5.9ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (13.0ms)
+  Rendered aorders/uporderstable.js.erb (22.7ms)
+Completed 200 OK in 42ms (Views: 24.4ms | ActiveRecord: 12.5ms)
+
+
+Started GET "/uporderstable?_=1413313766100" for 127.0.0.1 at 2014-10-14 22:09:26 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313766100"}
+  [1m[35mAction Load (1.1ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.8ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:09:26' WHERE `actions`.`id` = 26
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.7ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (3.0ms)
+  [1m[36mAorder Load (1.4ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (2.8ms)
+  Rendered aorders/_olist.erb (7.2ms)
+  [1m[35mAdriver Load (5.3ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (12.0ms)
+  Rendered aorders/uporderstable.js.erb (21.6ms)
+Completed 200 OK in 52ms (Views: 30.4ms | ActiveRecord: 12.9ms)
+
+
+Started GET "/uporderstable?_=1413313796100" for 127.0.0.1 at 2014-10-14 22:09:56 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313796100"}
+  [1m[36mAction Load (0.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:09:56' WHERE `actions`.`id` = 26[0m
+  [1m[35m (4.1ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.4ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (2.6ms)
+  [1m[35mAorder Load (0.6ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (1.3ms)
+  Rendered aorders/_olist.erb (5.6ms)
+  [1m[36mAdriver Load (0.7ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (5.0ms)
+  Rendered aorders/uporderstable.js.erb (13.3ms)
+Completed 200 OK in 28ms (Views: 15.7ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/uporderstable?_=1413313826098" for 127.0.0.1 at 2014-10-14 22:10:26 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313826098"}
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.6ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:10:26' WHERE `actions`.`id` = 26
+  [1m[36m (11.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.6ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (2.6ms)
+  [1m[36mAorder Load (0.4ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (1.5ms)
+  Rendered aorders/_olist.erb (5.5ms)
+  [1m[35mAdriver Load (0.3ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (57.7ms)
+  Rendered aorders/uporderstable.js.erb (69.4ms)
+Completed 200 OK in 292ms (Views: 70.2ms | ActiveRecord: 34.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-14 22:10:36 +0300
+Processing by SessionsController#new as HTML
+  [1m[36mOdate Load (0.3ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`thedate` = '2014-10-14' LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 25ms (Views: 9.4ms | ActiveRecord: 3.1ms)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-10-14 22:10:40 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "name"=>"igor", "password"=>"[FILTERED]", "commit"=>"Войти"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`name` = 'igor' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-14 22:10:40', 'login', '2014-10-14 22:10:40', 1)
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-14 22:10:40', 'stay_in', '2014-10-14 22:10:40', 1)[0m
+  [1m[35m (1.1ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/aorders
+Completed 302 Found in 169ms (ActiveRecord: 4.2ms)
+
+
+Started GET "/aorders" for 127.0.0.1 at 2014-10-14 22:10:40 +0300
+Processing by AordersController#index as HTML
+  [1m[36mOnlinedriver Load (0.3ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  [1m[35mUserlevel Load (0.8ms)[0m  SELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1
+  [1m[36mCompany Load (0.6ms)[0m  [1mSELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 2 LIMIT 1[0m
+  Rendered aorders/_head.erb (2.3ms)
+  [1m[35mAorder Load (0.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false) ORDER BY id
+  Rendered aorders/_body.erb (1.2ms)
+  Rendered aorders/_olist.erb (5.0ms)
+  Rendered aorders/_head.erb (3.4ms)
+  [1m[36mAdriver Load (0.2ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT `users`.* FROM `users` 
+  Rendered aorders/_form.html.erb (113.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (5.4ms)
+  Rendered aorders/index.html.erb within layouts/application (160.5ms)
+Completed 200 OK in 256ms (Views: 163.6ms | ActiveRecord: 17.5ms)
+
+
+Started GET "/stat" for 127.0.0.1 at 2014-10-14 22:10:42 +0300
+Processing by StatController#index as HTML
+  Rendered stat/_head.erb (14.8ms)
+  [1m[35mAorder Load (4.1ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= 2014-10-13 AND thedate <= 2014-10-14 AND iscanceled=false) ORDER BY thedate
+  Rendered stat/_body.erb (6.4ms)
+  Rendered stat/index.html.erb within layouts/application (35.0ms)
+Completed 200 OK in 56697ms (Views: 51.6ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/uporderstable?_=1413313871186" for 127.0.0.1 at 2014-10-14 22:11:39 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313871186"}
+  [1m[36mAction Load (0.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.9ms)[0m  BEGIN
+  [1m[36m (7.1ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:11:39' WHERE `actions`.`id` = 28[0m
+  [1m[35m (2.1ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (3.8ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (14.5ms)
+  [1m[35mAorder Load (2.0ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (3.6ms)
+  Rendered aorders/_olist.erb (23.2ms)
+  [1m[36mAdriver Load (5.3ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (27.0ms)
+  Rendered aorders/uporderstable.js.erb (58.8ms)
+Completed 200 OK in 110ms (Views: 69.1ms | ActiveRecord: 21.7ms)
+
+
+Started POST "/setstatdates" for 127.0.0.1 at 2014-10-14 22:11:45 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "first_date"=>"2014-10-01", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (11.1ms)
+  [1m[35mAorder Load (3.3ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= 2014-10-01 AND thedate <= 2014-10-14 AND iscanceled=false) ORDER BY thedate
+  Rendered stat/_body.erb (5.7ms)
+  Rendered stat/index.html.erb within layouts/application (33.3ms)
+Completed 200 OK in 43704ms (Views: 48.7ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/uporderstable?_=1413313929920" for 127.0.0.1 at 2014-10-14 22:12:29 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313929920"}
+  [1m[36mAction Load (0.6ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (1.6ms)[0m  BEGIN
+  [1m[36m (2.4ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:12:29' WHERE `actions`.`id` = 28[0m
+  [1m[35m (2.2ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.3ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (14.0ms)
+  [1m[35mAorder Load (0.7ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (8.3ms)
+  Rendered aorders/_olist.erb (27.5ms)
+  [1m[36mAdriver Load (0.2ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (202.7ms)
+  Rendered aorders/uporderstable.js.erb (240.0ms)
+Completed 200 OK in 524ms (Views: 249.3ms | ActiveRecord: 53.3ms)
+
+
+Started POST "/setstatdates" for 127.0.0.1 at 2014-10-14 22:12:37 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "first_date"=>"2014-10-01", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (15.4ms)
+  [1m[35mAorder Load (2.3ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= 2014-10-01 AND thedate <= 2014-10-14 AND iscanceled=false) ORDER BY thedate
+  Rendered stat/_body.erb (4.1ms)
+  Rendered stat/index.html.erb within layouts/application (29.7ms)
+Completed 200 OK in 519467ms (Views: 112.4ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/uporderstable?_=1413314070243" for 127.0.0.1 at 2014-10-14 22:21:16 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314070243"}
+  [1m[36mAction Load (0.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:21:17' WHERE `actions`.`id` = 28[0m
+  [1m[35m (1.8ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (1.5ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (6.8ms)
+  [1m[35mAorder Load (0.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (3.4ms)
+  Rendered aorders/_olist.erb (12.7ms)
+  [1m[36mAdriver Load (0.3ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (57.8ms)
+  Rendered aorders/uporderstable.js.erb (74.1ms)
+Completed 200 OK in 249ms (Views: 80.0ms | ActiveRecord: 18.3ms)
+
+
+Started GET "/uporderstable?_=1413314040241" for 127.0.0.1 at 2014-10-14 22:21:17 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314040241"}
+  [1m[35mAction Load (16.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.8ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:21:17' WHERE `actions`.`id` = 28
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.4ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (63.8ms)
+  [1m[36mAorder Load (0.6ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (2.2ms)
+  Rendered aorders/_olist.erb (70.2ms)
+  [1m[35mAdriver Load (0.4ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (14.0ms)
+  Rendered aorders/uporderstable.js.erb (90.0ms)
+Completed 200 OK in 136ms (Views: 94.5ms | ActiveRecord: 21.2ms)
+
+
+Started GET "/uporderstable?_=1413314100244" for 127.0.0.1 at 2014-10-14 22:21:17 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314100244"}
+  [1m[36mAction Load (3.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:21:17' WHERE `actions`.`id` = 28[0m
+  [1m[35m (1.4ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.6ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (14.4ms)
+  [1m[35mAorder Load (0.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (2.2ms)
+  Rendered aorders/_olist.erb (22.7ms)
+  [1m[36mAdriver Load (0.6ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (18.5ms)
+  Rendered aorders/uporderstable.js.erb (45.0ms)
+Completed 200 OK in 78ms (Views: 56.2ms | ActiveRecord: 7.4ms)
+
+
+Started GET "/uporderstable?_=1413313980247" for 127.0.0.1 at 2014-10-14 22:21:17 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413313980247"}
+  [1m[35mAction Load (2.2ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (1.9ms)[0m  [1mBEGIN[0m
+  [1m[35m (3.9ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:21:17' WHERE `actions`.`id` = 28
+  [1m[36m (3.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.8ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (23.6ms)
+  [1m[36mAorder Load (0.8ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (3.4ms)
+  Rendered aorders/_olist.erb (35.5ms)
+  [1m[35mAdriver Load (1.3ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (31.1ms)
+  Rendered aorders/uporderstable.js.erb (75.6ms)
+Completed 200 OK in 133ms (Views: 82.9ms | ActiveRecord: 13.9ms)
+
+
+Started GET "/uporderstable?_=1413314010242" for 127.0.0.1 at 2014-10-14 22:21:17 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314010242"}
+  [1m[36mAction Load (3.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (2.5ms)[0m  BEGIN
+  [1m[36m (4.2ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:21:17' WHERE `actions`.`id` = 28[0m
+  [1m[35m (2.1ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (1.7ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (26.1ms)
+  [1m[35mAorder Load (1.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (8.2ms)
+  Rendered aorders/_olist.erb (45.5ms)
+  [1m[36mAdriver Load (0.4ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (31.5ms)
+  Rendered aorders/uporderstable.js.erb (85.1ms)
+Completed 200 OK in 130ms (Views: 98.6ms | ActiveRecord: 15.9ms)
+
+
+Started GET "/uporderstable?_=1413314130242" for 127.0.0.1 at 2014-10-14 22:21:18 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314130242"}
+  [1m[35mAction Load (3.4ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (2.6ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:21:18' WHERE `actions`.`id` = 28
+  [1m[36m (1.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (4.3ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (18.6ms)
+  [1m[36mAorder Load (1.4ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (14.2ms)
+  Rendered aorders/_olist.erb (40.4ms)
+  [1m[35mAdriver Load (0.9ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (38.9ms)
+  Rendered aorders/uporderstable.js.erb (89.2ms)
+Completed 200 OK in 141ms (Views: 105.9ms | ActiveRecord: 15.0ms)
+
+
+Started GET "/uporderstable?_=1413314160242" for 127.0.0.1 at 2014-10-14 22:21:18 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314160242"}
+  [1m[36mAction Load (1.1ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (15.6ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:21:18' WHERE `actions`.`id` = 28[0m
+  [1m[35m (3.9ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (1.7ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (18.3ms)
+  [1m[35mAorder Load (3.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (7.4ms)
+  Rendered aorders/_olist.erb (30.1ms)
+  [1m[36mAdriver Load (4.7ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (42.5ms)
+  Rendered aorders/uporderstable.js.erb (87.5ms)
+Completed 200 OK in 160ms (Views: 93.8ms | ActiveRecord: 30.7ms)
+
+
+Started GET "/uporderstable?_=1413314190242" for 127.0.0.1 at 2014-10-14 22:21:18 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314190242"}
+  [1m[35mAction Load (3.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (2.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (2.6ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:21:18' WHERE `actions`.`id` = 28
+  [1m[36m (2.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (128.8ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (10.4ms)
+  [1m[36mAorder Load (0.6ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (3.3ms)
+  Rendered aorders/_olist.erb (17.0ms)
+  [1m[35mAdriver Load (0.5ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (14.3ms)
+  Rendered aorders/uporderstable.js.erb (35.8ms)
+Completed 200 OK in 210ms (Views: 46.6ms | ActiveRecord: 140.5ms)
+
+
+Started GET "/uporderstable?_=1413314220243" for 127.0.0.1 at 2014-10-14 22:21:18 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314220243"}
+  [1m[36mAction Load (3.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (3.9ms)[0m  BEGIN
+  [1m[36m (3.9ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:21:18' WHERE `actions`.`id` = 28[0m
+  [1m[35m (30.9ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.4ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (45.2ms)
+  [1m[35mAorder Load (4.1ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (6.7ms)
+  Rendered aorders/_olist.erb (67.6ms)
+  [1m[36mAdriver Load (6.2ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (33.9ms)
+  Rendered aorders/uporderstable.js.erb (111.7ms)
+Completed 200 OK in 195ms (Views: 122.7ms | ActiveRecord: 53.0ms)
+
+
+Started GET "/uporderstable?_=1413314250241" for 127.0.0.1 at 2014-10-14 22:21:18 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314250241"}
+  [1m[35mAction Load (2.0ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (4.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:21:19' WHERE `actions`.`id` = 28
+  [1m[36m (3.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.6ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (15.4ms)
+  [1m[36mAorder Load (6.8ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (10.6ms)
+  Rendered aorders/_olist.erb (32.1ms)
+  [1m[35mAdriver Load (0.6ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (48.1ms)
+  Rendered aorders/uporderstable.js.erb (89.8ms)
+Completed 200 OK in 154ms (Views: 100.9ms | ActiveRecord: 19.0ms)
+
+
+Started GET "/uporderstable?_=1413314280244" for 127.0.0.1 at 2014-10-14 22:21:19 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314280244"}
+  [1m[36mAction Load (0.7ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:21:19' WHERE `actions`.`id` = 28[0m
+  [1m[35m (2.9ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.8ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (20.5ms)
+  [1m[35mAorder Load (0.3ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (3.7ms)
+  Rendered aorders/_olist.erb (51.8ms)
+  [1m[36mAdriver Load (1.3ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (28.0ms)
+  Rendered aorders/uporderstable.js.erb (84.6ms)
+Completed 200 OK in 120ms (Views: 98.8ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/uporderstable?_=1413314310243" for 127.0.0.1 at 2014-10-14 22:21:19 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314310243"}
+  [1m[35mAction Load (6.6ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (1.9ms)[0m  [1mBEGIN[0m
+  [1m[35m (5.6ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:21:19' WHERE `actions`.`id` = 28
+  [1m[36m (2.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (4.9ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (22.9ms)
+  [1m[36mAorder Load (2.2ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (4.5ms)
+  Rendered aorders/_olist.erb (35.1ms)
+  [1m[35mAdriver Load (1.1ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (25.8ms)
+  Rendered aorders/uporderstable.js.erb (72.7ms)
+Completed 200 OK in 130ms (Views: 82.7ms | ActiveRecord: 24.6ms)
+
+
+Started GET "/uporderstable?_=1413314340242" for 127.0.0.1 at 2014-10-14 22:21:19 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314340242"}
+  [1m[36mAction Load (1.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2.2ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:21:19' WHERE `actions`.`id` = 28[0m
+  [1m[35m (18.7ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (17.7ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (17.7ms)
+  [1m[35mAorder Load (16.1ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (23.2ms)
+  Rendered aorders/_olist.erb (48.7ms)
+  [1m[36mAdriver Load (15.1ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (154.3ms)
+  Rendered aorders/uporderstable.js.erb (241.4ms)
+Completed 200 OK in 354ms (Views: 254.1ms | ActiveRecord: 71.3ms)
+
+
+Started GET "/uporderstable?_=1413314370242" for 127.0.0.1 at 2014-10-14 22:21:20 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314370242"}
+  [1m[35mAction Load (21.8ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (6.6ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:21:20' WHERE `actions`.`id` = 28
+  [1m[36m (4.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (3.3ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (29.1ms)
+  [1m[36mAorder Load (0.5ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (16.3ms)
+  Rendered aorders/_olist.erb (56.6ms)
+  [1m[35mAdriver Load (6.2ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (48.8ms)
+  Rendered aorders/uporderstable.js.erb (114.0ms)
+Completed 200 OK in 184ms (Views: 116.8ms | ActiveRecord: 42.6ms)
+
+
+Started GET "/uporderstable?_=1413314400243" for 127.0.0.1 at 2014-10-14 22:21:20 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314400243"}
+  [1m[36mAction Load (4.1ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (1.6ms)[0m  BEGIN
+  [1m[36m (3.5ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:21:20' WHERE `actions`.`id` = 28[0m
+  [1m[35m (2.1ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.4ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (24.6ms)
+  [1m[35mAorder Load (0.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (6.5ms)
+  Rendered aorders/_olist.erb (38.9ms)
+  [1m[36mAdriver Load (3.3ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (29.9ms)
+  Rendered aorders/uporderstable.js.erb (72.4ms)
+Completed 200 OK in 119ms (Views: 85.2ms | ActiveRecord: 15.5ms)
+
+
+Started GET "/uporderstable?_=1413314430241" for 127.0.0.1 at 2014-10-14 22:21:20 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314430241"}
+  [1m[35mAction Load (1.7ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (2.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (2.0ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:21:20' WHERE `actions`.`id` = 28
+  [1m[36m (1.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.6ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (14.5ms)
+  [1m[36mAorder Load (5.2ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (8.0ms)
+  Rendered aorders/_olist.erb (37.3ms)
+  [1m[35mAdriver Load (0.6ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (33.7ms)
+  Rendered aorders/uporderstable.js.erb (76.1ms)
+Completed 200 OK in 113ms (Views: 83.4ms | ActiveRecord: 14.1ms)
+
+
+Started GET "/uporderstable?_=1413314460244" for 127.0.0.1 at 2014-10-14 22:21:20 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314460244"}
+  [1m[36mAction Load (7.2ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (1.8ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:21:20' WHERE `actions`.`id` = 28[0m
+  [1m[35m (2.6ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (1.4ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (19.6ms)
+  [1m[35mAorder Load (1.8ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (4.3ms)
+  Rendered aorders/_olist.erb (35.1ms)
+  [1m[36mAdriver Load (4.1ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (31.2ms)
+  Rendered aorders/uporderstable.js.erb (72.8ms)
+Completed 200 OK in 118ms (Views: 86.6ms | ActiveRecord: 19.0ms)
+
+
+Started POST "/setstatdates" for 127.0.0.1 at 2014-10-14 22:21:38 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "first_date"=>"2014-10-01", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (11.7ms)
+  [1m[35mAorder Load (2.3ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= '2014-10-01' AND thedate <= '2014-10-14' AND iscanceled=false) ORDER BY thedate
+  [1m[36mAdriver Load (1.2ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  Rendered stat/_body.erb (101.0ms)
+  Rendered stat/index.html.erb within layouts/application (118.1ms)
+Completed 500 Internal Server Error in 140ms
+
+ActionView::Template::Error (undefined method `thedate' for #<Aorder:0xb44713b4>):
+    9:     <td><%= aorder.totime.strftime("%H:%M") %></td>
+    10:     <td><%= link_to aorder.adriver.name, aorder.adriver if aorder.adriver %></td>
+    11:     <td><%= aorder.comment %></td>
+    12:     <td><%= aorder.thedate %></td>
+    13:     <td><%= aorder.user.name %></td>
+    14: 
+    15: 
+  app/views/stat/_body.erb:12:in `block in _app_views_stat__body_erb__519074259_80968820'
+  app/views/stat/_body.erb:1:in `_app_views_stat__body_erb__519074259_80968820'
+  app/views/stat/index.html.erb:13:in `_app_views_stat_index_html_erb__602247121_81274640'
+  app/controllers/stat_controller.rb:22:in `block (2 levels) in setstatdates'
+  app/controllers/stat_controller.rb:21:in `setstatdates'
+
+
+  Rendered /home/fy/.rvm/gems/ruby-1.9.3-p429@tm2/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (7.2ms)
+  Rendered /home/fy/.rvm/gems/ruby-1.9.3-p429@tm2/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (52.3ms)
+  Rendered /home/fy/.rvm/gems/ruby-1.9.3-p429@tm2/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (70.7ms)
+
+
+Started POST "/setstatdates" for 127.0.0.1 at 2014-10-14 22:22:53 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "first_date"=>"2014-10-01", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (12.9ms)
+  [1m[35mAorder Load (1.6ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= '2014-10-01' AND thedate <= '2014-10-14' AND iscanceled=false) ORDER BY thedate
+  [1m[36mAdriver Load (0.6ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mOdate Load (11.5ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 9 LIMIT 1
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mAdriver Load (1.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1
+  [1m[36mOdate Load (1.0ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 8 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mOdate Load (8.4ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered stat/_body.erb (125.8ms)
+  Rendered stat/index.html.erb within layouts/application (147.2ms)
+Completed 200 OK in 173ms (Views: 146.0ms | ActiveRecord: 25.2ms)
+
+
+Started GET "/adrivers/1" for 127.0.0.1 at 2014-10-14 22:23:03 +0300
+Processing by AdriversController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mAdriver Load (0.5ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  Rendered adrivers/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 21ms (Views: 17.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/setstatdates" for 127.0.0.1 at 2014-10-14 22:23:15 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "first_date"=>"2014-10-05", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (12.5ms)
+  [1m[36mAorder Load (6.5ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= '2014-10-05' AND thedate <= '2014-10-14' AND iscanceled=false) ORDER BY thedate[0m
+  [1m[35mAdriver Load (0.7ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1
+  [1m[36mOdate Load (0.2ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 8 LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mAdriver Load (0.7ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mOdate Load (0.4ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered stat/_body.erb (48.8ms)
+  Rendered stat/index.html.erb within layouts/application (67.7ms)
+Completed 200 OK in 79ms (Views: 69.2ms | ActiveRecord: 8.9ms)
+
+
+Started POST "/setstatdates" for 127.0.0.1 at 2014-10-14 22:23:23 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pmmg2iFtRdyddsG52iWoaa/iHfMCARkb9JAb5RbMkw8=", "first_date"=>"2014-10-01", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (7.0ms)
+  [1m[35mAorder Load (1.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= '2014-10-01' AND thedate <= '2014-10-14' AND iscanceled=false) ORDER BY thedate
+  [1m[36mAdriver Load (0.5ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mOdate Load (0.6ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 9 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mAdriver Load (0.8ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1
+  [1m[36mOdate Load (0.3ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 8 LIMIT 1[0m
+  [1m[35mCACHE (0.5ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mOdate Load (0.7ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1
+  [1m[36mCACHE (0.9ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered stat/_body.erb (85.9ms)
+  Rendered stat/index.html.erb within layouts/application (195.5ms)
+Completed 200 OK in 212ms (Views: 205.1ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/uporderstable?_=1413314634572" for 127.0.0.1 at 2014-10-14 22:23:54 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314634572"}
+  [1m[35mAction Load (0.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:23:54' WHERE `actions`.`id` = 28
+  [1m[36m (2.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.7ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (6.5ms)
+  [1m[36mAorder Load (0.6ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (2.9ms)
+  Rendered aorders/_olist.erb (12.6ms)
+  [1m[35mAdriver Load (0.4ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (15.1ms)
+  Rendered aorders/uporderstable.js.erb (30.6ms)
+Completed 200 OK in 75ms (Views: 35.6ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-14 22:26:58 +0300
+Processing by SessionsController#new as HTML
+  [1m[36mOdate Load (0.7ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`thedate` = '2014-10-14' LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 295ms (Views: 55.0ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-14 22:26:59 +0300
+Processing by SessionsController#new as HTML
+  [1m[35mOdate Load (0.3ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`thedate` = '2014-10-14' LIMIT 1
+  Rendered sessions/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 24ms (Views: 21.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-10-14 22:27:03 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aN+FAq1vStTAGnY1tYexAwrVIWgWpkA8xcQn04rMq3U=", "name"=>"igor", "password"=>"[FILTERED]", "commit"=>"Войти"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'igor' LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-14 22:27:04', 'login', '2014-10-14 22:27:04', 1)[0m
+  [1m[35m (1.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-14 22:27:04', 'stay_in', '2014-10-14 22:27:04', 1)
+  [1m[36m (1.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://127.0.0.1:3000/aorders
+Completed 302 Found in 313ms (ActiveRecord: 9.5ms)
+
+
+Started GET "/aorders" for 127.0.0.1 at 2014-10-14 22:27:04 +0300
+Processing by AordersController#index as HTML
+  [1m[35mOnlinedriver Load (0.8ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  [1m[36mUserlevel Load (1.1ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1[0m
+  [1m[35mCompany Load (0.3ms)[0m  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 2 LIMIT 1
+  Rendered aorders/_head.erb (12.7ms)
+  [1m[36mAorder Load (0.5ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false) ORDER BY id[0m
+  Rendered aorders/_body.erb (62.3ms)
+  Rendered aorders/_olist.erb (78.4ms)
+  Rendered aorders/_head.erb (2.6ms)
+  [1m[35mAdriver Load (0.2ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` [0m
+  Rendered aorders/_form.html.erb (45.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (9.0ms)
+  Rendered aorders/index.html.erb within layouts/application (214.8ms)
+Completed 200 OK in 361ms (Views: 210.1ms | ActiveRecord: 24.0ms)
+
+
+Started GET "/stat" for 127.0.0.1 at 2014-10-14 22:27:06 +0300
+Processing by StatController#index as HTML
+  Rendered stat/_head.erb (11.6ms)
+  [1m[36mAorder Load (1.0ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= '2014-10-13' AND thedate <= '2014-10-14' AND iscanceled=false) ORDER BY thedate[0m
+  Rendered stat/_body.erb (2.8ms)
+  Rendered stat/index.html.erb within layouts/application (22.9ms)
+Completed 200 OK in 111ms (Views: 108.5ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/setstatdates" for 127.0.0.1 at 2014-10-14 22:27:10 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aN+FAq1vStTAGnY1tYexAwrVIWgWpkA8xcQn04rMq3U=", "first_date"=>"2014-10-01", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (8.2ms)
+  [1m[35mAorder Load (0.7ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= '2014-10-01' AND thedate <= '2014-10-14' AND iscanceled=false) ORDER BY thedate
+  [1m[36mAdriver Load (2.9ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mOdate Load (0.5ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 9 LIMIT 1
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mAdriver Load (0.2ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1
+  [1m[36mOdate Load (0.3ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 8 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mOdate Load (1.6ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered stat/_body.erb (34.7ms)
+  Rendered stat/index.html.erb within layouts/application (52.7ms)
+Completed 200 OK in 58ms (Views: 50.3ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/aorders" for 127.0.0.1 at 2014-10-14 22:27:14 +0300
+Processing by AordersController#index as HTML
+  [1m[35mOnlinedriver Load (0.4ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  [1m[36mUserlevel Load (0.3ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1[0m
+  [1m[35mCompany Load (0.2ms)[0m  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 2 LIMIT 1
+  Rendered aorders/_head.erb (2.2ms)
+  [1m[36mAorder Load (7.0ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false) ORDER BY id[0m
+  Rendered aorders/_body.erb (8.0ms)
+  Rendered aorders/_olist.erb (11.9ms)
+  Rendered aorders/_head.erb (3.3ms)
+  [1m[35mAdriver Load (0.5ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` [0m
+  Rendered aorders/_form.html.erb (17.8ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (5.5ms)
+  Rendered aorders/index.html.erb within layouts/application (45.9ms)
+Completed 200 OK in 54ms (Views: 43.1ms | ActiveRecord: 8.7ms)
+
+
+Started GET "/uporderstable?_=1413314865358" for 127.0.0.1 at 2014-10-14 22:27:45 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314865358"}
+  [1m[36mAction Load (0.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:27:45' WHERE `actions`.`id` = 30[0m
+  [1m[35m (15.3ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (5.8ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (6.2ms)
+  [1m[35mAorder Load (0.7ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (5.1ms)
+  Rendered aorders/_olist.erb (39.3ms)
+  [1m[36mAdriver Load (4.9ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (18.4ms)
+  Rendered aorders/uporderstable.js.erb (63.0ms)
+Completed 200 OK in 106ms (Views: 66.2ms | ActiveRecord: 28.0ms)
+
+
+Started GET "/" for 192.168.0.120 at 2014-10-14 22:28:03 +0300
+Processing by SessionsController#new as HTML
+  [1m[35mOdate Load (1.1ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`thedate` = '2014-10-14' LIMIT 1
+  Rendered sessions/new.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 14ms (Views: 7.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/uporderstable?_=1413314895355" for 127.0.0.1 at 2014-10-14 22:28:15 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314895355"}
+  [1m[36mAction Load (0.4ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.6ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:28:15' WHERE `actions`.`id` = 30[0m
+  [1m[35m (1.6ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.3ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (2.9ms)
+  [1m[35mAorder Load (0.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (1.1ms)
+  Rendered aorders/_olist.erb (5.2ms)
+  [1m[36mAdriver Load (0.4ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (5.3ms)
+  Rendered aorders/uporderstable.js.erb (12.2ms)
+Completed 200 OK in 24ms (Views: 15.1ms | ActiveRecord: 4.1ms)
+
+
+Started POST "/sessions" for 192.168.0.120 at 2014-10-14 22:28:16 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AnceSK1AgxVEop/H762KZd0AY1nw/mCuHb6DZ1HofHA=", "name"=>"igor", "password"=>"[FILTERED]", "commit"=>"Войти"}
+  [1m[35mUser Load (1.9ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`name` = 'igor' LIMIT 1
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 138ms (Views: 7.3ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/sessions" for 192.168.0.120 at 2014-10-14 22:28:26 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AnceSK1AgxVEop/H762KZd0AY1nw/mCuHb6DZ1HofHA=", "name"=>"igor", "password"=>"[FILTERED]", "commit"=>"Войти"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'igor' LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-14 22:28:26', 'login', '2014-10-14 22:28:26', 1)[0m
+  [1m[35m (1.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-14 22:28:26', 'stay_in', '2014-10-14 22:28:26', 1)
+  [1m[36m (2.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://192.168.0.134:3000/aorders
+Completed 302 Found in 124ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/aorders" for 192.168.0.120 at 2014-10-14 22:28:26 +0300
+Processing by AordersController#index as HTML
+  [1m[35mOnlinedriver Load (0.4ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  [1m[36mUserlevel Load (0.4ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1[0m
+  [1m[35mCompany Load (0.2ms)[0m  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 2 LIMIT 1
+  Rendered aorders/_head.erb (2.6ms)
+  [1m[36mAorder Load (0.6ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false) ORDER BY id[0m
+  Rendered aorders/_body.erb (1.5ms)
+  Rendered aorders/_olist.erb (6.4ms)
+  Rendered aorders/_head.erb (2.5ms)
+  [1m[35mAdriver Load (1.5ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT `users`.* FROM `users` [0m
+  Rendered aorders/_form.html.erb (21.3ms)
+  [1m[35mCACHE (0.3ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (4.7ms)
+  Rendered aorders/index.html.erb within layouts/application (76.9ms)
+Completed 200 OK in 87ms (Views: 80.4ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/stat" for 192.168.0.120 at 2014-10-14 22:28:35 +0300
+Processing by StatController#index as HTML
+  Rendered stat/_head.erb (2.5ms)
+  [1m[36mAorder Load (1.2ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= '2014-10-13' AND thedate <= '2014-10-14' AND iscanceled=false) ORDER BY thedate[0m
+  Rendered stat/_body.erb (2.1ms)
+  Rendered stat/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 16ms (Views: 13.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/uporderstable?_=1413314925353" for 127.0.0.1 at 2014-10-14 22:28:45 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314925353"}
+  [1m[35mAction Load (0.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.4ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:28:45' WHERE `actions`.`id` = 32
+  [1m[36m (28.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.4ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (3.4ms)
+  [1m[36mAorder Load (0.6ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (1.4ms)
+  Rendered aorders/_olist.erb (6.6ms)
+  [1m[35mAdriver Load (0.6ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (5.1ms)
+  Rendered aorders/uporderstable.js.erb (13.8ms)
+Completed 200 OK in 54ms (Views: 16.5ms | ActiveRecord: 31.0ms)
+
+
+Started POST "/setstatdates" for 192.168.0.120 at 2014-10-14 22:28:48 +0300
+Processing by StatController#setstatdates as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AnceSK1AgxVEop/H762KZd0AY1nw/mCuHb6DZ1HofHA=", "first_date"=>"2014-10-01", "last_date"=>"2014-10-14", "commit"=>"установить (обновить инф.)"}
+  Rendered stat/_head.erb (8.1ms)
+  [1m[36mAorder Load (1.3ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id` WHERE (thedate >= '2014-10-01' AND thedate <= '2014-10-14' AND iscanceled=false) ORDER BY thedate[0m
+  [1m[35mAdriver Load (0.5ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  [1m[36mOdate Load (0.8ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 9 LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mAdriver Load (0.2ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1[0m
+  [1m[35mOdate Load (0.5ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 8 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  [1m[36mOdate Load (1.0ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`id` = 10 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Rendered stat/_body.erb (21.9ms)
+  Rendered stat/index.html.erb within layouts/application (35.6ms)
+Completed 200 OK in 43ms (Views: 37.8ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/uporderstable?_=1413314955354" for 127.0.0.1 at 2014-10-14 22:29:15 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314955354"}
+  [1m[36mAction Load (0.6ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:29:15' WHERE `actions`.`id` = 32[0m
+  [1m[35m (12.4ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.5ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (3.9ms)
+  [1m[35mAorder Load (0.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (1.2ms)
+  Rendered aorders/_olist.erb (7.4ms)
+  [1m[36mAdriver Load (0.7ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (6.0ms)
+  Rendered aorders/uporderstable.js.erb (16.6ms)
+Completed 200 OK in 42ms (Views: 19.2ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/uporderstable?_=1413314963621" for 192.168.0.120 at 2014-10-14 22:29:23 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314963621"}
+  [1m[35mAction Load (1.0ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:29:23' WHERE `actions`.`id` = 32
+  [1m[36m (27.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.4ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (3.6ms)
+  [1m[36mAorder Load (0.8ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (1.7ms)
+  Rendered aorders/_olist.erb (7.7ms)
+  [1m[35mAdriver Load (1.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (8.0ms)
+  Rendered aorders/uporderstable.js.erb (19.7ms)
+Completed 200 OK in 61ms (Views: 24.0ms | ActiveRecord: 31.8ms)
+
+
+Started GET "/uporderstable?_=1413314985354" for 127.0.0.1 at 2014-10-14 22:29:45 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314985354"}
+  [1m[36mAction Load (1.1ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:29:45' WHERE `actions`.`id` = 32[0m
+  [1m[35m (16.0ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.5ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (3.2ms)
+  [1m[35mAorder Load (0.8ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (1.8ms)
+  Rendered aorders/_olist.erb (8.6ms)
+  [1m[36mAdriver Load (0.6ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (56.2ms)
+  Rendered aorders/uporderstable.js.erb (66.7ms)
+Completed 200 OK in 97ms (Views: 69.3ms | ActiveRecord: 19.8ms)
+
+
+Started GET "/uporderstable?_=1413314993625" for 192.168.0.120 at 2014-10-14 22:29:53 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413314993625"}
+  [1m[35mAction Load (1.0ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.8ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:29:53' WHERE `actions`.`id` = 32
+  [1m[36m (18.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.5ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (3.1ms)
+  [1m[36mAorder Load (0.7ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (1.8ms)
+  Rendered aorders/_olist.erb (7.8ms)
+  [1m[35mAdriver Load (0.3ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (7.4ms)
+  Rendered aorders/uporderstable.js.erb (18.0ms)
+Completed 200 OK in 50ms (Views: 21.0ms | ActiveRecord: 21.7ms)
+
+
+Started GET "/uporderstable?_=1413315015355" for 127.0.0.1 at 2014-10-14 22:30:15 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413315015355"}
+  [1m[36mAction Load (1.0ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:30:15' WHERE `actions`.`id` = 32[0m
+  [1m[35m (16.4ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.4ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (2.7ms)
+  [1m[35mAorder Load (0.3ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (1.3ms)
+  Rendered aorders/_olist.erb (5.5ms)
+  [1m[36mAdriver Load (0.6ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (6.9ms)
+  Rendered aorders/uporderstable.js.erb (15.5ms)
+Completed 200 OK in 44ms (Views: 18.1ms | ActiveRecord: 19.1ms)
+
+
+Started GET "/uporderstable?_=1413315023624" for 192.168.0.120 at 2014-10-14 22:30:23 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413315023624"}
+  [1m[35mAction Load (0.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.7ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:30:23' WHERE `actions`.`id` = 32
+  [1m[36m (18.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.5ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (12.3ms)
+  [1m[36mAorder Load (0.5ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (2.0ms)
+  Rendered aorders/_olist.erb (16.0ms)
+  [1m[35mAdriver Load (0.6ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (8.1ms)
+  Rendered aorders/uporderstable.js.erb (26.6ms)
+Completed 200 OK in 60ms (Views: 31.0ms | ActiveRecord: 22.3ms)
+
+
+Started GET "/setosort?sorton=aorders.ondepartment" for 192.168.0.120 at 2014-10-14 22:30:31 +0300
+Processing by AordersController#setosort as */*
+  Parameters: {"sorton"=>"aorders.ondepartment"}
+Redirected to http://192.168.0.134:3000/aorders
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/aorders" for 192.168.0.120 at 2014-10-14 22:30:31 +0300
+Processing by AordersController#index as */*
+Completed 500 Internal Server Error in 0ms
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/aorders_controller.rb:74:in `index'
+
+
+  Rendered /home/fy/.rvm/gems/ruby-1.9.3-p429@tm2/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.8ms)
+  Rendered /home/fy/.rvm/gems/ruby-1.9.3-p429@tm2/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /home/fy/.rvm/gems/ruby-1.9.3-p429@tm2/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.9ms)
+
+
+Started GET "/uporderstable?_=1413315045355" for 127.0.0.1 at 2014-10-14 22:30:45 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413315045355"}
+  [1m[36mAction Load (0.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.9ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:30:45' WHERE `actions`.`id` = 32[0m
+  [1m[35m (24.1ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.5ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (2.2ms)
+  [1m[35mAorder Load (0.5ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (1.8ms)
+  Rendered aorders/_olist.erb (5.6ms)
+  [1m[36mAdriver Load (0.7ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (6.7ms)
+  Rendered aorders/uporderstable.js.erb (15.4ms)
+Completed 200 OK in 51ms (Views: 18.2ms | ActiveRecord: 27.5ms)
+
+
+Started GET "/uporderstable?_=1413315053620" for 192.168.0.120 at 2014-10-14 22:30:53 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413315053620"}
+  [1m[35mAction Load (0.7ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.7ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:30:53' WHERE `actions`.`id` = 32
+  [1m[36m (11.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.6ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (5.5ms)
+  [1m[36mAorder Load (0.8ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (1.9ms)
+  Rendered aorders/_olist.erb (10.0ms)
+  [1m[35mAdriver Load (0.4ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (7.5ms)
+  Rendered aorders/uporderstable.js.erb (20.9ms)
+Completed 200 OK in 48ms (Views: 25.0ms | ActiveRecord: 15.5ms)
+
+
+Started GET "/uporderstable?_=1413315075356" for 127.0.0.1 at 2014-10-14 22:31:15 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413315075356"}
+  [1m[36mAction Load (1.7ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (2.6ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:31:15' WHERE `actions`.`id` = 32[0m
+  [1m[35m (13.8ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.4ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (5.9ms)
+  [1m[35mAorder Load (0.4ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (0.7ms)
+  Rendered aorders/_olist.erb (10.9ms)
+  [1m[36mAdriver Load (1.1ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (10.6ms)
+  Rendered aorders/uporderstable.js.erb (26.5ms)
+Completed 200 OK in 59ms (Views: 32.9ms | ActiveRecord: 20.1ms)
+
+
+Started GET "/uporderstable?_=1413315083621" for 192.168.0.120 at 2014-10-14 22:31:23 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413315083621"}
+  [1m[35mAction Load (0.4ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:31:23' WHERE `actions`.`id` = 32
+  [1m[36m (31.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.4ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (2.0ms)
+  [1m[36mAorder Load (0.4ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (2.5ms)
+  Rendered aorders/_olist.erb (6.0ms)
+  [1m[35mAdriver Load (2.1ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (9.9ms)
+  Rendered aorders/uporderstable.js.erb (18.2ms)
+Completed 200 OK in 60ms (Views: 19.3ms | ActiveRecord: 35.1ms)
+
+
+Started GET "/uporderstable?_=1413315105355" for 127.0.0.1 at 2014-10-14 22:31:45 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413315105355"}
+  [1m[36mAction Load (0.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (3.5ms)[0m  BEGIN
+  [1m[36m (1.2ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:31:45' WHERE `actions`.`id` = 32[0m
+  [1m[35m (12.0ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (0.5ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (2.8ms)
+  [1m[35mAorder Load (1.3ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (2.1ms)
+  Rendered aorders/_olist.erb (13.7ms)
+  [1m[36mAdriver Load (3.5ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (79.6ms)
+  Rendered aorders/uporderstable.js.erb (95.9ms)
+Completed 200 OK in 127ms (Views: 97.9ms | ActiveRecord: 22.5ms)
+
+
+Started GET "/uporderstable?_=1413315113621" for 192.168.0.120 at 2014-10-14 22:31:53 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413315113621"}
+  [1m[35mAction Load (0.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  UPDATE `actions` SET `updated_at` = '2014-10-14 22:31:53' WHERE `actions`.`id` = 32
+  [1m[36m (10.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mOnlinedriver Load (0.7ms)[0m  SELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11
+  Rendered aorders/_head.erb (2.7ms)
+  [1m[36mAorder Load (0.2ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)[0m
+  Rendered aorders/_body.erb (0.9ms)
+  Rendered aorders/_olist.erb (5.9ms)
+  [1m[35mAdriver Load (0.3ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (5.5ms)
+  Rendered aorders/uporderstable.js.erb (15.0ms)
+Completed 200 OK in 36ms (Views: 17.5ms | ActiveRecord: 12.8ms)
+
+
+Started GET "/uporderstable?_=1413315135355" for 127.0.0.1 at 2014-10-14 22:32:15 +0300
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1413315135355"}
+  [1m[36mAction Load (2.0ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE `actions`.`user_id` = 1 AND (created_at>'2014-10-14 00:00:00' and created_at<'2014-10-14 23:59:59') ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mUPDATE `actions` SET `updated_at` = '2014-10-14 22:32:15' WHERE `actions`.`id` = 32[0m
+  [1m[35m (28.6ms)[0m  COMMIT
+  [1m[36mOnlinedriver Load (1.0ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 11[0m
+  Rendered aorders/_head.erb (3.6ms)
+  [1m[35mAorder Load (0.3ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=11 AND iscanceled=false)
+  Rendered aorders/_body.erb (3.6ms)
+  Rendered aorders/_olist.erb (14.6ms)
+  [1m[36mAdriver Load (3.3ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (13.6ms)
+  Rendered aorders/uporderstable.js.erb (32.4ms)
+Completed 200 OK in 83ms (Views: 38.5ms | ActiveRecord: 36.0ms)
