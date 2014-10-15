@@ -1,14 +1,14 @@
 <% @aorders.each do |aorder| %>
-  <tr>
-    <td><%= aorder.id %></td>
-    <td><%= aorder.onname %></td>
-    <td><%= aorder.ondepartment %></td>
-    <td><%= aorder.contact %></td>
-    <td><%= aorder.adestination %></td>
-    <td><%= aorder.ftime.strftime("%H:%M") %></td>
-    <td><%= aorder.totime.strftime("%H:%M") %></td>
-    <td><%= link_to aorder.adriver.name, aorder.adriver if aorder.adriver %></td>
-    <td><%= aorder.comment %></td>
+  <tr >
+    <td class= 'hoverable order<%=aorder.id %>' ><%= aorder.id %></td>
+    <td class= 'hoverable order<%=aorder.id %>' ><%= aorder.onname %></td>
+    <td class= 'hoverable order<%=aorder.id %>' ><%= aorder.ondepartment %></td>
+    <td class= 'hoverable order<%=aorder.id %>' ><%= aorder.contact %></td>
+    <td class= 'hoverable order<%=aorder.id %>' ><%= aorder.adestination %></td>
+    <td class= 'hoverable order<%=aorder.id %>' ><%= aorder.ftime.strftime("%H:%M") %></td>
+    <td class= 'hoverable order<%=aorder.id %>' ><%= aorder.totime.strftime("%H:%M") %></td>
+    <td class= 'hoverable order<%=aorder.id %>' ><%= link_to aorder.adriver.name, aorder.adriver if aorder.adriver %></td>
+    <td class= 'hoverable order<%=aorder.id %>' ><%= aorder.comment %></td>
 
     <% if is_admin? %>
       <td><%= link_to 'Измен.', edit_aorder_path(aorder) %></td>

@@ -58,20 +58,22 @@
       t=9.hours
       while t < 24.hours do 
         busytime=0
+        busyorderclasses=''
           @aorders.each do |o|
             if o.is_d_busy(onld.adriver.id, t.seconds)
                 busytime+=1
+                busyorderclasses+=" order#{o.id}"
             end
           end
           if busytime==0 %>
-            <td class="time">&nbsp;</td>
+            <td class='hoverable time'>&nbsp;</td>
           <%end%>
           <% if busytime==1 %>
-            <td class="timebusy">|</td>
+            <td class='hoverable timebusy <%= busyorderclasses %>' >|</td>
           <%end%>
           <% if busytime>1 %>
-            <td class="timeverybusy">
-              <%= busytime.times{"|<br/>"}%>
+            <td class='hoverable timeverybusy <%= busyorderclasses %>' >
+              <%= busytime %>
             </td>
           <%end%>
       <%
@@ -87,8 +89,7 @@
   </tr>
 
   <tr>
-
-      
+    
         <td colspan="97">
           <%= form_for(@onlinedriver) do |f| %>
           <%= f.hidden_field :odate_id %>

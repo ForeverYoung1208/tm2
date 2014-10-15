@@ -6,3 +6,15 @@
 
 $('#olist_div').html("<%= escape_javascript render(:partial => 'olist', :object=>@aorders) %>")
 $('#onlinedrivers').html("<%= escape_javascript render(:partial => 'onlinedrivers', :object=>@onlinedriver) %>")
+
+
+$(document).ready(
+  $( ".hoverable").hover(
+    function(){
+      $(this).filter(':not(:animated)').animate({
+        backgroundColor: "#aa0000",
+        boxShadow: "10px 10px 6px 2px #AA5252"
+      }, 100);
+    }
+  )	
+);

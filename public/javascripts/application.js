@@ -41,6 +41,18 @@ $(function() {
 });
 
 
+$(function() {
+  $( ".hoverable").hover(
+    function(){
+      $(this).filter(':not(:animated)').animate({
+        backgroundColor: "#aa0000",
+        boxShadow: "10px 10px 6px 2px #AA5252"
+      }, 100);
+    }
+  )
+});
+
+
 //$(document).ready(
 //      function(){
 //                  setInterval(function(){
