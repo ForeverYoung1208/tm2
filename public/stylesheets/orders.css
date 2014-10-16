@@ -265,3 +265,7 @@ table.onlinedriverlist tr.ruler{ height: 2px;}
     height: 40px;
 }
 
+.highlighted {
+    background-color: #9999FF !important;
+}
+

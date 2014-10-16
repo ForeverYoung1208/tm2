@@ -58,21 +58,22 @@
       t=9.hours
       while t < 24.hours do 
         busytime=0
-        busyorderclasses=''
+        order_ids=''
           @aorders.each do |o|
             if o.is_d_busy(onld.adriver.id, t.seconds)
                 busytime+=1
-                busyorderclasses+=" order#{o.id}"
+                order_ids+="#{o.id},"
             end
           end
+          order_ids.chop!    
           if busytime==0 %>
             <td class='hoverable time'>&nbsp;</td>
           <%end%>
           <% if busytime==1 %>
-            <td class='hoverable timebusy <%= busyorderclasses %>' >|</td>
+            <td class='hoverable timebusy' data-orderid='[<%= order_ids %>]' >|</td>
           <%end%>
           <% if busytime>1 %>
-            <td class='hoverable timeverybusy <%= busyorderclasses %>' >
+            <td class='hoverable timeverybusy' data-orderid='[<%= order_ids %>]' >
               <%= busytime %>
             </td>
           <%end%>

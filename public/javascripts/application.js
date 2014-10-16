@@ -43,11 +43,24 @@ $(function() {
 
 $(function() {
   $( ".hoverable").hover(
-    function(){
-      $(this).filter(':not(:animated)').animate({
-        backgroundColor: "#aa0000",
-        boxShadow: "10px 10px 6px 2px #AA5252"
-      }, 100);
+    function () {
+
+      var currorderids = $(this).data('orderid')
+//      alert(orderids[0])
+      $("td:data(orderid)").each(function(){
+        $( this ).addClass("highlighted");
+      })
+
+
+//      $(this).addClass("highlighted");
+    },
+    function () {
+      $("td:data(orderid)").each(function(){
+        $( this ).removeClass("highlighted");
+      })
+
+
+//      $(this).removeClass("highlighted");
     }
   )
 });
@@ -65,5 +78,5 @@ $(document).ready(
       function(){
                   setInterval(function(){
                      $.get('/uporderstable')
-                  }, 30000);
+                  }, 300000);
                 });
