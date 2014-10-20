@@ -41,13 +41,14 @@ $(function() {
 });
 
 
+
 $(function() {
   $( ".hoverable").hover(
     function () {
 
       var currorderids = $(this).data('orderid')
-//      alert(orderids[0])
-      $("td:data(orderid)").each(function(){
+      $("td:data(orderid)").each(function(i){
+        $( this ).append(":"+i+":")
         $( this ).addClass("highlighted");
       })
 
@@ -78,5 +79,5 @@ $(document).ready(
       function(){
                   setInterval(function(){
                      $.get('/uporderstable')
-                  }, 300000);
+                  }, 30000);
                 });
