@@ -67,7 +67,7 @@
           end
           order_ids.chop!    
           if busytime==0 %>
-            <td class='hoverable time'>&nbsp;</td>
+            <td class='hoverable time' data-orderid='[]'>&nbsp;</td>
           <%end%>
           <% if busytime==1 %>
             <td class='hoverable timebusy' data-orderid='[<%= order_ids %>]' >|</td>

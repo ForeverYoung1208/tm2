@@ -16,6 +16,8 @@ $.ajaxSetup({
 //});
 
 // конфигурируем календари
+
+
 $(function() {
   $( "#tek_date" ).datepicker({dateFormat: 'yy-mm-dd'});
   $( "#tek_date" ).datepicker( "option", "firstDay", 1 );
@@ -44,40 +46,35 @@ $(function() {
 
 $(function() {
   $( ".hoverable").hover(
+
     function () {
-
-      var currorderids = $(this).data('orderid')
-      $("td:data(orderid)").each(function(i){
-        $( this ).append(":"+i+":")
-        $( this ).addClass("highlighted");
+      var hoveredorderids = $(this).data('orderid')
+      $(".hoverable").each(function(){
+        var $i = $( this )
+        try{
+          $i.data('orderid').forEach(function(d){
+            if ($.inArray(d, hoveredorderids ) != -1 ) {
+              $i.addClass("highlighted");
+            }
+          })
+        }
+        catch(e){}
       })
-
-
-//      $(this).addClass("highlighted");
     },
+
     function () {
-      $("td:data(orderid)").each(function(){
-        $( this ).removeClass("highlighted");
-      })
-
-
-//      $(this).removeClass("highlighted");
+      $(".hoverable").removeClass("highlighted");
     }
+
   )
 });
 
 
-//$(document).ready(
-//      function(){
-//                  setInterval(function(){
-//                     $('table.allorderlist').hide();
-//                  }, 5000);
-//                });
-
-//
 $(document).ready(
-      function(){
-                  setInterval(function(){
-                     $.get('/uporderstable')
-                  }, 30000);
-                });
+
+  function(){
+    setInterval(function(){
+      $.get('/uporderstable')
+    }, 30000);
+  }
+);

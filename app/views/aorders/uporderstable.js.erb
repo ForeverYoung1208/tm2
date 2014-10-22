@@ -9,12 +9,29 @@ $('#onlinedrivers').html("<%= escape_javascript render(:partial => 'onlinedriver
 
 
 $(document).ready(
+
   $( ".hoverable").hover(
-    function(){
-      $(this).filter(':not(:animated)').animate({
-        backgroundColor: "#aa0000",
-        boxShadow: "10px 10px 6px 2px #AA5252"
-      }, 100);
+
+    function () {
+      var hoveredorderids = $(this).data('orderid')
+      $(".hoverable").each(function(){
+        var $i = $( this )
+        try{
+          $i.data('orderid').forEach(function(d){
+            if ($.inArray(d, hoveredorderids ) != -1 ) {
+              $i.addClass("highlighted");
+            }
+          })
+        }
+        catch(e){}
+      })
+    },
+
+    function () {
+      $(".hoverable").removeClass("highlighted");
     }
-  )	
+
+  )
+
+
 );
