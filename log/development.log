@@ -31906,3 +31906,148 @@ Processing by AordersController#index as HTML
   Rendered aorders/_onlinedrivers.erb (180.8ms)
   Rendered aorders/index.html.erb within layouts/application (336.1ms)
 Completed 200 OK in 360ms (Views: 335.5ms | ActiveRecord: 22.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-22 23:45:10 +0300
+Processing by SessionsController#new as HTML
+  [1m[36mOdate Load (0.4ms)[0m  [1mSELECT `odates`.* FROM `odates` WHERE `odates`.`thedate` = '2014-10-22' LIMIT 1[0m
+  Rendered sessions/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 117ms (Views: 89.8ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/sessions" for 127.0.0.1 at 2014-10-22 23:45:15 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ez9XU9pvYTnBKP5N9MwduwOdUArrtW6tpcXdo45uAyU=", "name"=>"igor", "password"=>"[FILTERED]", "commit"=>"Войти"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`name` = 'igor' LIMIT 1
+  [1m[36m (2.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-22 23:45:15', 'login', '2014-10-22 23:45:15', 1)
+  [1m[36m (13.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (6.1ms)[0m  [1mINSERT INTO `actions` (`created_at`, `kind`, `updated_at`, `user_id`) VALUES ('2014-10-22 23:45:15', 'stay_in', '2014-10-22 23:45:15', 1)[0m
+  [1m[35m (2.1ms)[0m  COMMIT
+Redirected to http://127.0.0.1:3000/aorders
+Completed 302 Found in 231ms (ActiveRecord: 25.1ms)
+
+
+Started GET "/aorders" for 127.0.0.1 at 2014-10-22 23:45:15 +0300
+Processing by AordersController#index as HTML
+  [1m[36mOnlinedriver Load (0.3ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 15[0m
+  [1m[35mUserlevel Load (0.4ms)[0m  SELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1
+  [1m[36mCompany Load (1.0ms)[0m  [1mSELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 2 LIMIT 1[0m
+  Rendered aorders/_head.erb (5.9ms)
+  [1m[35mAorder Load (0.7ms)[0m  SELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=15 AND iscanceled=false) ORDER BY id
+  [1m[36mAdriver Load (0.7ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mAdriver Load (0.8ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1
+  Rendered aorders/_body.erb (92.1ms)
+  Rendered aorders/_olist.erb (99.9ms)
+  Rendered aorders/_head.erb (2.0ms)
+  [1m[36mAdriver Load (0.5ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  [1m[35mUser Load (1.4ms)[0m  SELECT `users`.* FROM `users` 
+  Rendered aorders/_form.html.erb (33.9ms)
+  [1m[36mCACHE (0.7ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` [0m
+  Rendered aorders/_onlinedrivers.erb (119.7ms)
+  Rendered aorders/index.html.erb within layouts/application (272.8ms)
+Completed 200 OK in 399ms (Views: 270.6ms | ActiveRecord: 22.1ms)
+
+
+Started GET "/tabel" for 127.0.0.1 at 2014-10-22 23:45:21 +0300
+Processing by ActionsController#tabel as HTML
+  [1m[35mCompany Load (0.8ms)[0m  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 2 LIMIT 1
+  [1m[36mUser Load (2.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`company_id` = 2[0m
+  [1m[35mCompany Load (0.5ms)[0m  SELECT `companies`.* FROM `companies` 
+  [1m[36mAction Load (0.7ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-01 00:00:00' and updated_at< '2014-10-01 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-02 00:00:00' and updated_at< '2014-10-02 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (1.2ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-03 00:00:00' and updated_at< '2014-10-03 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.4ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-04 00:00:00' and updated_at< '2014-10-04 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-05 00:00:00' and updated_at< '2014-10-05 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.9ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-06 00:00:00' and updated_at< '2014-10-06 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.6ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-07 00:00:00' and updated_at< '2014-10-07 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-08 00:00:00' and updated_at< '2014-10-08 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.2ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-09 00:00:00' and updated_at< '2014-10-09 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-10 00:00:00' and updated_at< '2014-10-10 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.1ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-11 00:00:00' and updated_at< '2014-10-11 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-12 00:00:00' and updated_at< '2014-10-12 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.6ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-13 00:00:00' and updated_at< '2014-10-13 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-14 00:00:00' and updated_at< '2014-10-14 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-15 00:00:00' and updated_at< '2014-10-15 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-16 00:00:00' and updated_at< '2014-10-16 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-17 00:00:00' and updated_at< '2014-10-17 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (1.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-18 00:00:00' and updated_at< '2014-10-18 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-19 00:00:00' and updated_at< '2014-10-19 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (2.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-20 00:00:00' and updated_at< '2014-10-20 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.4ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-21 00:00:00' and updated_at< '2014-10-21 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.4ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-22 00:00:00' and updated_at< '2014-10-22 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (1.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-23 00:00:00' and updated_at< '2014-10-23 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-24 00:00:00' and updated_at< '2014-10-24 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (3.0ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-25 00:00:00' and updated_at< '2014-10-25 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (2.5ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-26 00:00:00' and updated_at< '2014-10-26 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (5.9ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-27 00:00:00' and updated_at< '2014-10-27 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.4ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-28 00:00:00' and updated_at< '2014-10-28 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-29 00:00:00' and updated_at< '2014-10-29 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-30 00:00:00' and updated_at< '2014-10-30 23:59:59' and user_id=1) LIMIT 1
+  [1m[36mAction Load (0.6ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-31 00:00:00' and updated_at< '2014-10-31 23:59:59' and user_id=1) LIMIT 1[0m
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-01 00:00:00' and updated_at< '2014-10-01 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.2ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-02 00:00:00' and updated_at< '2014-10-02 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (0.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-03 00:00:00' and updated_at< '2014-10-03 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (2.2ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-04 00:00:00' and updated_at< '2014-10-04 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (3.8ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-05 00:00:00' and updated_at< '2014-10-05 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.6ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-06 00:00:00' and updated_at< '2014-10-06 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (1.1ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-07 00:00:00' and updated_at< '2014-10-07 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (2.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-08 00:00:00' and updated_at< '2014-10-08 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (4.4ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-09 00:00:00' and updated_at< '2014-10-09 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.4ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-10 00:00:00' and updated_at< '2014-10-10 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (0.2ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-11 00:00:00' and updated_at< '2014-10-11 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.7ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-12 00:00:00' and updated_at< '2014-10-12 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (0.9ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-13 00:00:00' and updated_at< '2014-10-13 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.0ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-14 00:00:00' and updated_at< '2014-10-14 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (3.6ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-15 00:00:00' and updated_at< '2014-10-15 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.6ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-16 00:00:00' and updated_at< '2014-10-16 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (4.2ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-17 00:00:00' and updated_at< '2014-10-17 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (2.2ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-18 00:00:00' and updated_at< '2014-10-18 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (3.9ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-19 00:00:00' and updated_at< '2014-10-19 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (2.6ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-20 00:00:00' and updated_at< '2014-10-20 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (3.6ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-21 00:00:00' and updated_at< '2014-10-21 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-22 00:00:00' and updated_at< '2014-10-22 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (0.4ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-23 00:00:00' and updated_at< '2014-10-23 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-24 00:00:00' and updated_at< '2014-10-24 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (1.3ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-25 00:00:00' and updated_at< '2014-10-25 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.5ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-26 00:00:00' and updated_at< '2014-10-26 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (2.4ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-27 00:00:00' and updated_at< '2014-10-27 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (3.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-28 00:00:00' and updated_at< '2014-10-28 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (0.4ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-29 00:00:00' and updated_at< '2014-10-29 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  [1m[36mAction Load (0.3ms)[0m  [1mSELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-30 00:00:00' and updated_at< '2014-10-30 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1[0m
+  [1m[35mAction Load (1.2ms)[0m  SELECT `actions`.* FROM `actions` WHERE (updated_at> '2014-10-31 00:00:00' and updated_at< '2014-10-31 23:59:59' and user_id=1) ORDER BY `actions`.`id` DESC LIMIT 1
+  Rendered actions/tabel.erb within layouts/application (131.5ms)
+Completed 200 OK in 187ms (Views: 81.6ms | ActiveRecord: 80.0ms)
+
+
+Started GET "/aorders" for 127.0.0.1 at 2014-10-22 23:45:28 +0300
+Processing by AordersController#index as HTML
+  [1m[36mOnlinedriver Load (0.4ms)[0m  [1mSELECT `onlinedrivers`.* FROM `onlinedrivers` WHERE `onlinedrivers`.`odate_id` = 15[0m
+  [1m[35mCompany Load (0.4ms)[0m  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 2 LIMIT 1
+  Rendered aorders/_head.erb (2.2ms)
+  [1m[36mAorder Load (0.5ms)[0m  [1mSELECT `aorders`.* FROM `aorders` LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id` WHERE (odate_id=15 AND iscanceled=false) ORDER BY id[0m
+  [1m[35mAdriver Load (0.5ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mAdriver Load (0.5ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  Rendered aorders/_body.erb (16.1ms)
+  Rendered aorders/_olist.erb (19.5ms)
+  Rendered aorders/_head.erb (2.4ms)
+  [1m[35mAdriver Load (1.3ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` [0m
+  Rendered aorders/_form.html.erb (51.8ms)
+  [1m[35mCACHE (0.3ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 1 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `adrivers`.`id` = 2 LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT `adrivers`.* FROM `adrivers` 
+  Rendered aorders/_onlinedrivers.erb (61.1ms)
+  Rendered aorders/index.html.erb within layouts/application (141.6ms)
+Completed 200 OK in 150ms (Views: 143.0ms | ActiveRecord: 4.7ms)
