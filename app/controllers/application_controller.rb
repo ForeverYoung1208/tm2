@@ -1,12 +1,12 @@
 # encoding: utf-8
 
 class ApplicationController < ActionController::Base
-    ::USER_ID=1
-    ::ADMIN_ID=2
-    ::NO_COMPANY_ID=5
-    ::USERTABEL_ID=3
-    ::ALLTABELUSER_ID=4
-    ::NILDRIVER=4
+    ::USER_ID=1 #userlevel_id
+    ::ADMIN_ID=2 #userlevel_id
+#    ::NO_COMPANY_ID=5 
+    ::USERTABEL_ID=3 #userlevel_id
+    ::ALLTABELUSER_ID=4 #userlevel_id
+    ::NILDRIVER=4  #adriver_id
     ::DEF_PWD='123'
     ::MONTHNAMES_RUS = ["Ъ","Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Окрябрь","Ноябрь","Декабрь"]
  
