@@ -25,7 +25,7 @@ test:
   database: tm2_test
   pool: 5
   username: root_tm2
-  password: 120880
+  password: '120880'
   socket: /var/lib/mysql/mysql.sock
 
 production:

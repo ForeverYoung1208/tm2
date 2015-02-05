@@ -6,17 +6,38 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-Userlevel.create(id: 1, name: 'user') 
-Userlevel.create(id: 2, name: 'admin') 
-Userlevel.create(id: 3, name: 'usertabel') 
-Userlevel.create(id: 4, name: 'alltabeluser')
 
 
-adriver=Adriver.new(
-  name: 'no driver6',
+#Userlevel.create(id: 1, name: 'user') 
+#admin_ul = Userlevel.create(id: 2, name: 'admin') 
+#Userlevel.create(id: 3, name: 'usertabel') 
+#Userlevel.create(id: 4, name: 'alltabeluser')
+
+Userlevel.where(id: 1).first_or_create( name: 'user') 
+admin_ul = Userlevel.where(id: 2).first_or_create( name: 'admin') 
+Userlevel.where(id: 3).first_or_create( name: 'usertabel') 
+Userlevel.where(id: 4).first_or_create( name: 'alltabeluser') 
+
+adriver=Adriver.where( id: 6).first_or_create (
+  {name: 'no driver',
   autodesc: 'no auto',
   autonumber: 'no auto',
-  contact: 'no driver'
+  contact: 'no driver'}
 )
-adriver.id=6
-adriver.save
+
+company=Company.where( id: 1).first_or_create(
+	name: 'Company1',
+	istabelling: true
+)
+
+User.where(name: 'siafin2010@gmail.com').destroy_all
+unless User.create(
+	email: 'siafin2010@gmail.com',
+	name: 'admin',
+	userlevel: admin_ul,	
+	company: company,
+	password: '120880'
+) 
+then 
+	raise 'user not created blyat'
+end
