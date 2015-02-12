@@ -9,6 +9,19 @@
     <td><%= aorder.totime.strftime("%H:%M") %></td>
     <td><%= link_to aorder.adriver.name, aorder.adriver if aorder.adriver %></td>
     <td><%= aorder.comment %></td>
+
+    <td class= '
+    <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
+    '> 
+    <%= aorder.odobegin %></td>
+    
+    <td class= 
+    '
+    <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
+    '>
+    <%= aorder.odoend %></td>
+
+
     <td><%= aorder.odate.thedate %></td>
     <td><%= aorder.user.name %></td>
 

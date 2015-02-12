@@ -116,6 +116,10 @@ table.allorderlist td{
     background-color: #FFFFFF;
 }
 
+table.allorderlist td.badodometer {
+    background-color: #FF8800;
+}
+
 table.allorderlist th.nomer{ width: 3em}
 table.allorderlist th.fio{ }
 table.allorderlist th.depart{ }

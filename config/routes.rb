@@ -18,6 +18,7 @@ Tm2::Application.routes.draw do
 
   match "stat" => "stat#index", :as =>"stat"
   match "setstatdates" => "stat#setstatdates", :as =>"setstatdates"
+  match "routelist" => "stat#routelist", :as =>"routelist"
 
 
 #  get "onlinedrivers/:action/:id" => "onlinedrivers#index", :as=>"onlinedrivers"

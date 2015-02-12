@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111111113007) do
+ActiveRecord::Schema.define(:version => 20150206175808) do
 
   create_table "actions", :force => true do |t|
     t.string   "kind"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20111111113007) do
     t.string   "onname"
     t.time     "ftime"
     t.time     "totime"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "adriver_id"
     t.integer  "odate_id"
     t.string   "adestination"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20111111113007) do
     t.boolean  "iscanceled"
     t.string   "comment"
     t.integer  "user_id"
+    t.integer  "odobegin",     :default => 0
+    t.integer  "odoend",       :default => 0
   end
 
   create_table "companies", :force => true do |t|

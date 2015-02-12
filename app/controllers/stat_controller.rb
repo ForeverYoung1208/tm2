@@ -24,23 +24,27 @@ class StatController < ApplicationController
 	    end
 	end
 
+	def routelist
+		@date_begin = params[:first_date]
+		@date_end = params[:last_date]
+		get_orders 
+
+	    respond_to do |format|
+	      format.html { render :index }# index.html.erb
+	      format.xml  { }
+	    end
+	end
+
+
 	private
 
 	def get_orders 
-#		odate_first_id = Odate.find_by_thedate(@date_begin).id
-#		odate_last_id = Odate.find_by_thedate(@date_end).id
-
-		#debugger
-
 		join_str = "LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id`"
-
       	@aorders = Aorder.joins(join_str).order('thedate').where("thedate >= '#{@date_begin}' AND thedate <= '#{@date_end}' AND iscanceled=false")
 
-
-		#join_str = "LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id`"
-
-      	#@aorders = Aorder.joins(join_str).order(session[:sort_orders_by]).where("odate_id >= #{odate_first_id} AND odate_id <= #{odate_last_id} AND iscanceled=false")
-
+      	driver_ids=[]
+      	@aorders.each {|aorder| driver_ids<<aorder.adriver.id }
+		@driver_list=Adriver.where(id: driver_ids)
 	end
 
 

@@ -9,6 +9,22 @@
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.totime.strftime("%H:%M") %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= link_to aorder.adriver.name, aorder.adriver if aorder.adriver %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.comment %></td>
+    
+    <td class= '
+    hoverable 
+    <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
+    '
+    data-orderid='[<%=aorder.id%>]' > 
+    <%= aorder.odobegin %></td>
+    
+    <td class= 
+    '
+    hoverable 
+    <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
+    '
+    data-orderid='[<%=aorder.id%>]' > <%= aorder.odoend %></td>
+
+
 
     <% if is_admin? %>
       <td><%= link_to 'Измен.', edit_aorder_path(aorder) %></td>

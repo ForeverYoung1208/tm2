@@ -1,17 +1,28 @@
 <h1>Статистика</h1>
-<h2> Показать заказы автомобилей за период </h2>
+<h2> Заказы автомобилей за период с <%= @date_begin %> по <%= @date_end %> </h2>
 
-    <%= form_tag(setstatdates_path) do%>
+    <%= form_tag(setstatdates_path) do %>
+
        <%= text_field_tag :first_date, @date_begin, :size=>8 %>
        <%= text_field_tag :last_date, @date_end, :size=>8 %>
-       <%= submit_tag 'установить (обновить инф.)' %>
+       <%= submit_tag 'поменять (обновить инф.)' %>
+
     <% end %>
 
 	<table class="allorderlist" "id=table_active" >
-      
-      <%= render 'head' %>
-      <%= render 'body' %>
+    <%= render 'head' %>
+    <%= render 'body' %>
+  </table>
 
-    </table>
+<h2> Сформировать маршрутный лист за указанный период </h2>
+    <%= form_tag(routelist_path) do %>
+      <%= hidden_field_tag :first_date, @date_begin %>
+      <%= hidden_field_tag :last_date, @date_end %>
+
+       <%= label_tag :driver, 'по водителю' %>
+       <%= select_tag :driver,  options_for_select( @driver_list.collect{|u| [u.name, u.id]} ) %>
+
+      <%= submit_tag 'сформировать' %>
+    <% end %>
 
     <%= link_to 'Вернуться в список заказов (на главную)', aorders_path   %>

@@ -8,7 +8,10 @@
     <th class="time"><%= link_to('"по"', setosort_path(:sorton=>'aorders.totime'))%></th>
     <th class="driver"><%= link_to('Водитель', setosort_path(:sorton=>'adrivers.name'))%></th>
     <th class="comment"><%= link_to('Коммент.', setosort_path(:sorton=>'aorders.comment'))%></th>
+    <th class="odometer">Нач. км.</th>
+    <th class="odometer">Кон. км.</th>
     <th class="management" colspan="2">Управление заказом</th>
+
     <% if is_admin? %>
       <th class="owner">Заявитель</th>
     <%end%>
