@@ -125,10 +125,13 @@ table.allorderlist th.fio{ }
 table.allorderlist th.depart{ }
 table.allorderlist th.contact{}
 table.allorderlist th.destination{}
-table.allorderlist th.time{ width: 110px;}
-table.allorderlist th.driver{ width: 100px; }
+table.allorderlist th.time{ width: 7em;}
+table.allorderlist th.driver{ }
+table.allorderlist th.odometer{ width: 5em; }
+table.allorderlist th.outofcity{ width: 6em; }
 table.allorderlist th.comment{ }
 table.allorderlist th.management{ width: 100px}
+table.allorderlist th.owner{ width: 6em}
 
 
 #table_inactive {

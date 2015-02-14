@@ -11,18 +11,25 @@
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.comment %></td>
     
     <td class= '
-    hoverable 
-    <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
-    '
-    data-orderid='[<%=aorder.id%>]' > 
-    <%= aorder.odobegin %></td>
+        hoverable 
+        <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
+        '
+        data-orderid='[<%=aorder.id%>]' > 
+        <%= aorder.odobegin %>
+    </td>
     
     <td class= 
-    '
-    hoverable 
-    <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
-    '
-    data-orderid='[<%=aorder.id%>]' > <%= aorder.odoend %></td>
+        '
+        hoverable 
+        <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
+        '
+        data-orderid='[<%=aorder.id%>]' > <%= aorder.odoend %>
+    </td>
+
+    <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.outofcity %>
+    </td>
+
+
 
 
 

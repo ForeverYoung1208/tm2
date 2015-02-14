@@ -19,6 +19,7 @@ class AordersController < ApplicationController
       @aorder = Aorder.new
       @aorder.odate=@odate
       @aorder.iscanceled=false
+      @aorder.outofcity=0
       @aorder.user_id=session[:user].id if session[:user]
       @aorder.ftime=Time.now.localtime
       @aorder.totime=Time.now.localtime

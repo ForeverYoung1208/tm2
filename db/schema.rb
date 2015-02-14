@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150206175808) do
+ActiveRecord::Schema.define(:version => 20150214202506) do
 
   create_table "actions", :force => true do |t|
     t.string   "kind"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20150206175808) do
     t.integer  "user_id"
     t.integer  "odobegin",     :default => 0
     t.integer  "odoend",       :default => 0
+    t.integer  "outofcity",    :default => 0
   end
 
   create_table "companies", :force => true do |t|
