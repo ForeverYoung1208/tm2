@@ -15,7 +15,7 @@ class AordersController < ApplicationController
       )
 
       @odate = session[:working_date]
-      @aorders = Aorder.joins("LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id`").order(session[:sort_orders_by]).where("odate_id=#{@odate.id} AND iscanceled=false")
+      @aorders = Aorder.joins("LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`aauto_id`").order(session[:sort_orders_by]).where("odate_id=#{@odate.id} AND iscanceled=false")
       @aorder = Aorder.new
       @aorder.odate=@odate
       @aorder.iscanceled=false
@@ -24,10 +24,10 @@ class AordersController < ApplicationController
       @aorder.ftime=Time.now.localtime
       @aorder.totime=Time.now.localtime
 
-      @onlinedrivers=Onlinedriver.find_all_by_odate_id(@odate.id)
+      @onlinedrivers=Onlineauto.find_all_by_odate_id(@odate.id)
 
-      @onlinedriver=Onlinedriver.new
-      @onlinedriver.odate_id=@odate.id
+      @onlinedriver=Onlineauto.new
+      @onlineauto.odate_id=@odate.id
     else
       logger.info("No user logged in!")
       render :nothing => true
@@ -72,7 +72,7 @@ class AordersController < ApplicationController
   def index
     @odate = session[:working_date]
     session[:sort_orders_by]||='id'
-    @aorders = Aorder.joins("LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`adriver_id`").order(session[:sort_orders_by]).where("odate_id=#{@odate.id} AND iscanceled=false")
+    @aorders = Aorder.joins("LEFT OUTER JOIN `adrivers` ON `adrivers`.`id` = `aorders`.`aauto_id`").order(session[:sort_orders_by]).where("odate_id=#{@odate.id} AND iscanceled=false")
     @aorder = Aorder.new
     @aorder.odate=@odate
     @aorder.iscanceled=false
@@ -80,10 +80,10 @@ class AordersController < ApplicationController
     @aorder.ftime=Time.now.localtime
     @aorder.totime=Time.now.localtime
 
-    @onlinedrivers=Onlinedriver.find_all_by_odate_id(@odate.id)
+    @onlinedrivers=Onlineauto.find_all_by_odate_id(@odate.id)
 
-    @onlinedriver=Onlinedriver.new
-    @onlinedriver.odate_id=@odate.id
+    @onlinedriver=Onlineauto.new
+    @onlineauto.odate_id=@odate.id
 
     
 

@@ -1,6 +1,6 @@
 # MySQL.  Versions 4.1 and 5.0 are recommended.
 #
-# Install the MySQL driver:
+# Install the MySQL auto:
 #   gem install mysql2
 #
 # And be sure to use new-style password hashing:

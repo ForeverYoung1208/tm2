@@ -1,7 +1,7 @@
-class CreateOnlinedrivers < ActiveRecord::Migration
+class CreateOnlineautos < ActiveRecord::Migration
   def self.up
-    create_table :onlinedrivers do |t|
-      t.references :adriver
+    create_table :onlineautos do |t|
+      t.references :aauto
       t.references :odate
       
       t.timestamps
@@ -9,6 +9,6 @@ class CreateOnlinedrivers < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :onlinedrivers
+    drop_table :onlineautos
   end
 end

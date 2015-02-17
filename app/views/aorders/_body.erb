@@ -7,7 +7,7 @@
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.adestination %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.ftime.strftime("%H:%M") %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.totime.strftime("%H:%M") %></td>
-    <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= link_to aorder.adriver.name, aorder.adriver if aorder.adriver %></td>
+    <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= link_to aorder.adriver.name, aorder.adriver if aorder.aauto %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.comment %></td>
     
     <td class= '
@@ -43,7 +43,7 @@
         #link_to 'Удал', aorder, :confirm => 'Вы уверены?', :method => :delete настоящее удаление нам не надо
       %>
 
-    <td><%= link_to 'Удал.', aorder_cancel_path(aorder), :confirm => 'Вы уверены?' if (is_admin? or ( is_current_user_or_admin?(aorder.user_id) and(  (aorder.adriver_id==nil or aorder.adriver_id==::NILDRIVER) )))%></td>
+    <td><%= link_to 'Удал.', aorder_cancel_path(aorder), :confirm => 'Вы уверены?' if (is_admin? or ( is_current_user_or_admin?(aorder.user_id) and(  (aorder.adriver_id==nil or aorder.aauto_id==::NILDRIVER) )))%></td>
     <% if is_admin?  %>
         <td><%= aorder.user.name %></td>
     <%end%>

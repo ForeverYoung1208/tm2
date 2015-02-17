@@ -1,8 +1,8 @@
-class Adriver < ActiveRecord::Base
+class Aauto < ActiveRecord::Base
   has_many :aorders;
  
-  has_many :onlidedrivers;
-  has_many :odate, :through=>:onlinedrivers;
+  has_many :onlideautos;
+  has_many :odate, :through=>:onlineautos;
 
  
 end

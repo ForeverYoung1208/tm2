@@ -5,7 +5,7 @@ class CreateAorders < ActiveRecord::Migration
       t.string :onname
       t.time :ftime
       t.time :totime
-      t.integer :driver_id
+      t.integer :auto_id
 
       t.timestamps
     end

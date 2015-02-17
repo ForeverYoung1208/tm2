@@ -1,10 +1,10 @@
-<%= form_for(@adriver) do |f| %>
-  <% if @adriver.errors.any? %>
+<%= form_for(@aauto) do |f| %>
+  <% if @aauto.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@adriver.errors.count, "error") %> - ошибки  делают сохранение невозможным:</h2>
+      <h2><%= pluralize(@aauto.errors.count, "error") %> - ошибки  делают сохранение невозможным:</h2>
 
       <ul>
-      <% @adriver.errors.full_messages.each do |msg| %>
+      <% @aauto.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

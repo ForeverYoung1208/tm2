@@ -1,33 +1,33 @@
 # encoding: utf-8
 
-class OnlinedriversController < ApplicationController
+class OnlineautosController < ApplicationController
  
   # POST /aorders
   # POST /aorders.xml
   def create
-    @onlinedriver=Onlinedriver.new(params[:onlinedriver])
-    @onlinedriver.save!
+    @onlinedriver=Onlinedriver.new(params[:onlineauto])
+    @onlineauto.save!
     redirect_to aorders_path
   end
 
   # DELETE /aorders/1
   def destroy
-    @onlinedriver = Onlinedriver.find(params[:id])
-    @onlinedriver.destroy
+    @onlinedriver = Onlineauto.find(params[:id])
+    @onlineauto.destroy
 
     redirect_to aorders_path
   end
 
-  def filldrivers
-    if  not Onlinedriver.find_by_odate_id(session[:working_date])
+  def fillautos
+    if  not Onlineauto.find_by_odate_id(session[:working_date])
       lastdate=Odate.find(:all, :order =>'thedate', :conditions => "thedate < '#{session[:working_date].thedate}'").last
-      olddrivers=Onlinedriver.find_all_by_odate_id(lastdate.id)
+      olddrivers=Onlineauto.find_all_by_odate_id(lastdate.id)
 
-      olddrivers.each do |od|
-        newdriver=Onlinedriver.new
-        newdriver.adriver_id=od.adriver_id
-        newdriver.odate_id=session[:working_date].id
-        newdriver.save
+      oldautos.each do |od|
+        newdriver=Onlineauto.new
+        newdriver.adriver_id=od.aauto_id
+        newauto.odate_id=session[:working_date].id
+        newauto.save
       end
     end
 
@@ -35,9 +35,9 @@ class OnlinedriversController < ApplicationController
   end
 
   def setonduty
-    @onlinedriver = Onlinedriver.find(params[:id])
-    @onlinedriver.onduty = !@onlinedriver.onduty
-    @onlinedriver.save
+    @onlinedriver = Onlineauto.find(params[:id])
+    @onlinedriver.onduty = !@onlineauto.onduty
+    @onlineauto.save
     redirect_to aorders_path
   end
 

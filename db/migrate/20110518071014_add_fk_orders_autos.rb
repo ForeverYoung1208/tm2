@@ -2,7 +2,7 @@ class AddFkOrdersDrivers < ActiveRecord::Migration
   def self.up
 
     change_table :aorders do |t|
-      t.references :adriver
+      t.references :aauto
     end
 
   end
@@ -10,7 +10,7 @@ class AddFkOrdersDrivers < ActiveRecord::Migration
   def self.down
 
     change_table :aorders do |t|
-      t.remove :adriver
+      t.remove :aauto
     end
 
   end

@@ -42,9 +42,9 @@ class StatController < ApplicationController
 		join_str = "LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id`"
       	@aorders = Aorder.joins(join_str).order('thedate').where("thedate >= '#{@date_begin}' AND thedate <= '#{@date_end}' AND iscanceled=false")
 
-      	driver_ids=[]
-      	@aorders.each {|aorder| driver_ids<<aorder.adriver.id }
-		@driver_list=Adriver.where(id: driver_ids)
+      	auto_ids=[]
+      	@aorders.each {|aorder| driver_ids<<aorder.aauto.id }
+		@driver_list=Adriver.where(id: auto_ids)
 	end
 
 

@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class AdriversHelperTest < ActionView::TestCase
+class AautosHelperTest < ActionView::TestCase
 end

@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Aorder < ActiveRecord::Base
-  belongs_to :adriver;
+  belongs_to :aauto;
   belongs_to :odate;
   belongs_to :user;
   validates :onname, :presence=>true;
@@ -19,7 +19,7 @@ class Aorder < ActiveRecord::Base
 #    Убрали возможность редактировать свои заявки, только админ.
 #    if (ttmid.to_i==Aorder.find_by_id(self.id).user_id) or (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID)
     if (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID) or 
-        ( (ttmid.to_i==Aorder.find_by_id(self.id).user_id) and (self.adriver_id==nil or self.adriver_id==::NILDRIVER))
+        ( (ttmid.to_i==Aorder.find_by_id(self.id).user_id) and (self.adriver_id==nil or self.aauto_id==::NILDRIVER))
       res=true
     else
       self.errors.add(ttmid, "нет прав на изменеие, только для Администратора!")
@@ -42,7 +42,7 @@ class Aorder < ActiveRecord::Base
   def is_d_busy(d_id, t)
     res=false
     if not self.iscanceled
-      if (self.ftime.seconds_since_midnight<=t and t<self.totime.seconds_since_midnight) and d_id==self.adriver_id
+      if (self.ftime.seconds_since_midnight<=t and t<self.totime.seconds_since_midnight) and d_id==self.aauto_id
         res=true
       end
     end

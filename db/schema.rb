@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20150214202506) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "adrivers", :force => true do |t|
+  create_table "aautos", :force => true do |t|
     t.string   "name"
     t.string   "autodesc"
     t.string   "autonumber"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20150214202506) do
     t.time     "totime"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
-    t.integer  "adriver_id"
+    t.integer  "aauto_id"
     t.integer  "odate_id"
     t.string   "adestination"
     t.string   "ondepartment"
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20150214202506) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "onlinedrivers", :force => true do |t|
-    t.integer  "adriver_id"
+  create_table "onlineautos", :force => true do |t|
+    t.integer  "aauto_id"
     t.integer  "odate_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

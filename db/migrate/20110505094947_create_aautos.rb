@@ -1,6 +1,6 @@
-class CreateAdrivers < ActiveRecord::Migration
+class CreateAautos < ActiveRecord::Migration
   def self.up
-    create_table :adrivers do |t|
+    create_table :aautos do |t|
       t.string :name
       t.string :autodesc
       t.string :autonumber
@@ -10,6 +10,6 @@ class CreateAdrivers < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :adrivers
+    drop_table :aautos
   end
 end

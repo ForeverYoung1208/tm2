@@ -71,7 +71,7 @@
     margin-top: 1em;
 }
 
-#onlinedrivers{
+#onlineautos{
     position: relative;
     display: block;
     float: left;
@@ -126,7 +126,7 @@ table.allorderlist th.depart{ }
 table.allorderlist th.contact{}
 table.allorderlist th.destination{}
 table.allorderlist th.time{ width: 7em;}
-table.allorderlist th.driver{ }
+table.allorderlist th.auto{ }
 table.allorderlist th.odometer{ width: 5em; }
 table.allorderlist th.outofcity{ width: 6em; }
 table.allorderlist th.comment{ }
@@ -145,7 +145,7 @@ table.allorderlist th.owner{ width: 6em}
 }
 
 
-table.onlinedriverlist{
+table.onlineautolist{
     table-layout: fixed;
     margin-top: 0px;
     border-spacing: 0px;
@@ -154,7 +154,7 @@ table.onlinedriverlist{
     border-style: solid;
 }
 
-table.onlinedriverlist th{
+table.onlineautolist th{
 /*    border-color: black; */
     border-width: 1px 1px 0px 0px;
     border-style: solid;
@@ -162,23 +162,23 @@ table.onlinedriverlist th{
     font-size: small;
 }
 
-table.onlinedriverlist th.name{ width: 50px;}
-table.onlinedriverlist th.autodesc{ width: 10px;}
-table.onlinedriverlist th.autonumber{ width: 10px;}
-table.onlinedriverlist th.contact{ width: 10px;}
-table.onlinedriverlist th.onduty{ width: 10px;}
-table.onlinedriverlist th.todel{ width: 10px;}
-table.onlinedriverlist th.toduty{ width: 10px;}
-table.onlinedriverlist th.workingtime{
+table.onlineautolist th.name{ width: 50px;}
+table.onlineautolist th.autodesc{ width: 10px;}
+table.onlineautolist th.autonumber{ width: 10px;}
+table.onlineautolist th.contact{ width: 10px;}
+table.onlineautolist th.onduty{ width: 10px;}
+table.onlineautolist th.todel{ width: 10px;}
+table.onlineautolist th.toduty{ width: 10px;}
+table.onlineautolist th.workingtime{
     color: black;
     width: 10px;
 }
-table.onlinedriverlist th.notworkingtime{
+table.onlineautolist th.notworkingtime{
     color: gray;
 }
 
 
-table.onlinedriverlist td{
+table.onlineautolist td{
 /*    border-color: black; */
     padding: 0px;
     margin: 0px;
@@ -187,30 +187,30 @@ table.onlinedriverlist td{
     background-color: #FFFFFF;
 }
 
-table.onlinedriverlist td.time{
+table.onlineautolist td.time{
     width: 3px;
 }
 
-table.onlinedriverlist td.timebusy{
+table.onlineautolist td.timebusy{
     background-color: wheat;
     width: 3px;
 }
-table.onlinedriverlist td.timeverybusy{
+table.onlineautolist td.timeverybusy{
     background-color: lightcoral;
     width: 3px;
 }
 
 
-table.onlinedriverlist tr{ height: 3em;}
-table.onlinedriverlist tr.ruler{ height: 2px;}
+table.onlineautolist tr{ height: 3em;}
+table.onlineautolist tr.ruler{ height: 2px;}
 
 
-#aorder_adriver_id{
+#aorder_aauto_id{
     width: 100px;
     display: block;
 }
 
-#onlinedriver_adriver_id{
+#onlinedriver_aauto_id{
     width: 150px;
     display: inline;
 }

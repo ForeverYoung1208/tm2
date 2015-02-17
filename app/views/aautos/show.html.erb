@@ -2,26 +2,26 @@
 
 <p>
   <b>Водитель:</b>
-  <%= @adriver.name %>
+  <%= @aauto.name %>
 </p>
 
 <p>
   <b>Автомобиль:</b>
-  <%= @adriver.autodesc %>
+  <%= @aauto.autodesc %>
 </p>
 
 <p>
   <b>Госномер:</b>
-  <%= @adriver.autonumber %>
+  <%= @aauto.autonumber %>
 </p>
 
 <p>
   <b>Контактный тел. водителя:</b>
-  <%= @adriver.contact %>
+  <%= @aauto.contact %>
 </p>
 
 
-<%= link_to 'Изменить', edit_adriver_path(@adriver) if is_admin?%> |
-<%= link_to 'Список водителей', adrivers_path %>
+<%= link_to 'Изменить', edit_adriver_path(@aauto) if is_admin?%> |
+<%= link_to 'Список водителей', aautos_path %>
 <br />
 <%= link_to 'Список заказов', aorders_path %>

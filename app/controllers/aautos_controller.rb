@@ -1,87 +1,87 @@
 # encoding: utf-8
 
-class AdriversController < ApplicationController
+class AautosController < ApplicationController
   before_filter :is_admin, :except => [:index, :show]
  
 
-  # GET /adrivers
-  # GET /adrivers.xml
+  # GET /aautos
+  # GET /aautos.xml
   def index
-    @adrivers = Adriver.all
+    @adrivers = Aauto.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @adrivers }
+      format.xml  { render :xml => @aautos }
     end
   end
 
-  # GET /adrivers/1
-  # GET /adrivers/1.xml
+  # GET /aautos/1
+  # GET /aautos/1.xml
   def show
-    @adriver = Adriver.find(params[:id])
+    @adriver = Aauto.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @adriver }
+      format.xml  { render :xml => @aauto }
     end
   end
 
-  # GET /adrivers/new
-  # GET /adrivers/new.xml
+  # GET /aautos/new
+  # GET /aautos/new.xml
   def new
-    @adriver = Adriver.new
+    @adriver = Aauto.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @adriver }
+      format.xml  { render :xml => @aauto }
     end
   end
 
-  # GET /adrivers/1/edit
+  # GET /aautos/1/edit
   def edit
-    @adriver = Adriver.find(params[:id])
+    @adriver = Aauto.find(params[:id])
   end
 
-  # POST /adrivers
-  # POST /adrivers.xml
+  # POST /aautos
+  # POST /aautos.xml
   def create
-    @adriver = Adriver.new(params[:adriver])
+    @adriver = Adriver.new(params[:aauto])
 
     respond_to do |format|
-      if @adriver.save
-        format.html { redirect_to(@adriver, :notice => 'Adriver was successfully created.') }
-        format.xml  { render :xml => @adriver, :status => :created, :location => @adriver }
+      if @aauto.save
+        format.html { redirect_to(@adriver, :notice => 'Aauto was successfully created.') }
+        format.xml  { render :xml => @adriver, :status => :created, :location => @aauto }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @adriver.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @aauto.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PUT /adrivers/1
-  # PUT /adrivers/1.xml
+  # PUT /aautos/1
+  # PUT /aautos/1.xml
   def update
-    @adriver = Adriver.find(params[:id])
+    @adriver = Aauto.find(params[:id])
 
     respond_to do |format|
-      if @adriver.update_attributes(params[:adriver])
-        format.html { redirect_to(@adriver, :notice => 'Adriver was successfully updated.') }
+      if @adriver.update_attributes(params[:aauto])
+        format.html { redirect_to(@adriver, :notice => 'Aauto was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @adriver.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @aauto.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /adrivers/1
-  # DELETE /adrivers/1.xml
+  # DELETE /aautos/1
+  # DELETE /aautos/1.xml
   def destroy
-    @adriver = Adriver.find(params[:id])
-    @adriver.destroy
+    @adriver = Aauto.find(params[:id])
+    @aauto.destroy
 
     respond_to do |format|
-      format.html { redirect_to(adrivers_url) }
+      format.html { redirect_to(aautos_url) }
       format.xml  { head :ok }
     end
   end

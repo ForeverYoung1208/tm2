@@ -4,7 +4,7 @@ class ActulizeStruct < ActiveRecord::Migration
     #убираем лишнее
     change_table :aorders do |t|
       t.remove :ondate
-      t.remove :driver_id
+      t.remove :auto_id
     end
     #добавляем недостающее
     change_table :aorders do |t|
@@ -21,7 +21,7 @@ class ActulizeStruct < ActiveRecord::Migration
     #восстанавливаем убранное
     change_table :aorders do |t|
       t.date :ondate
-      t.integer :driver_id
+      t.integer :auto_id
     end
 
     #откатываем назад добавление

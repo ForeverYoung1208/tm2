@@ -4,7 +4,7 @@ class Odate < ActiveRecord::Base
     has_many :aorders;
  
     has_many :onlinerivers;
-    has_many :adrivers, :through=>:onlinedrivers;
+    has_many :adrivers, :through=>:onlineautos;
 
     validates :thedate, :uniqueness=>true;
 

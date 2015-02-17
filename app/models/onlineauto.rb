@@ -1,8 +1,8 @@
-class Onlinedriver < ActiveRecord::Base
-  belongs_to :adriver;
+class Onlineauto < ActiveRecord::Base
+  belongs_to :aauto;
   belongs_to :odate;
  
-  validates :adriver_id, :presence=>true;
+  validates :aauto_id, :presence=>true;
   validates :odate_id, :presence=>true;
 
 
