@@ -133,6 +133,8 @@ table.allorderlist th.comment{ }
 table.allorderlist th.management{ width: 100px}
 table.allorderlist th.owner{ width: 6em}
 
+table.allorderlist td input{ width: 90%}
+
 
 #table_inactive {
     color: gray;
