@@ -125,7 +125,7 @@ table.allorderlist th.fio{ }
 table.allorderlist th.depart{ }
 table.allorderlist th.contact{}
 table.allorderlist th.destination{}
-table.allorderlist th.time{ width: 7em;}
+table.allorderlist th.time{ width: 8em;}
 table.allorderlist th.auto{ }
 table.allorderlist th.odometer{ width: 5em; }
 table.allorderlist th.outofcity{ width: 6em; }
@@ -206,11 +206,11 @@ table.onlineautolist tr.ruler{ height: 2px;}
 
 
 #aorder_aauto_id{
-    width: 100px;
+    width: 100%;
     display: block;
 }
 
-#onlinedriver_aauto_id{
+#onlineauto_aauto_id{
     width: 150px;
     display: inline;
 }

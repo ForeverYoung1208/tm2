@@ -19,7 +19,7 @@ class Aorder < ActiveRecord::Base
 #    Убрали возможность редактировать свои заявки, только админ.
 #    if (ttmid.to_i==Aorder.find_by_id(self.id).user_id) or (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID)
     if (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID) or 
-        ( (ttmid.to_i==Aorder.find_by_id(self.id).user_id) and (self.adriver_id==nil or self.aauto_id==::NILDRIVER))
+        ( (ttmid.to_i==Aorder.find_by_id(self.id).user_id) and (self.aauto_id==nil or self.aauto_id==::NILDRIVER))
       res=true
     else
       self.errors.add(ttmid, "нет прав на изменеие, только для Администратора!")

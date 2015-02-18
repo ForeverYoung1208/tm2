@@ -7,7 +7,7 @@ Migrating to CreateAorders (20110505094933)
 Migrating to CreateAautos (20110505094947)
   [1m[35m (46.9ms)[0m  CREATE TABLE `aautos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `autodesc` varchar(255), `autonumber` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
   [1m[36m (7.3ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110505094947')[0m
-Migrating to AddFkOrdersDrivers (20110518071014)
+Migrating to AddFkOrdersAutos (20110518071014)
   [1m[35m (81.1ms)[0m  ALTER TABLE `aorders` ADD `aauto_id` int(11)
   [1m[36m (7.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110518071014')[0m
 Migrating to CreateOdates (20110520094152)
@@ -36,9 +36,9 @@ Migrating to AddSessionsTable (20110527104416)
   [1m[35m (114.9ms)[0m  CREATE INDEX `index_sessions_on_updated_at` ON `sessions` (`updated_at`)
   [1m[36m (7.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110527104416')[0m
 Migrating to CreateOnlineautos (20110529060115)
-  [1m[35m (55.2ms)[0m  CREATE TABLE `onlinedrivers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `aauto_id` int(11), `odate_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[35m (55.2ms)[0m  CREATE TABLE `onlineautos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `aauto_id` int(11), `odate_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
   [1m[36m (7.2ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110529060115')[0m
-Migrating to AddDriverContact (20110530081014)
+Migrating to AddAutoContact (20110530081014)
   [1m[35m (72.6ms)[0m  ALTER TABLE `aautos` ADD `contact` varchar(255)
   [1m[36m (7.0ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20110530081014')[0m
 Migrating to AddOnlinedirverOnduty (20110531154239)
@@ -70,7 +70,7 @@ WARNING: Can't mass-assign protected attributes: id
   [1m[35mSQL (0.3ms)[0m  INSERT INTO `userlevels` (`created_at`, `name`, `updated_at`) VALUES ('2015-02-05 00:05:00', 'alltabeluser', '2015-02-05 00:05:00')
   [1m[36m (13.8ms)[0m  [1mCOMMIT[0m
   [1m[35m (0.2ms)[0m  BEGIN
-  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `adrivers` (`autodesc`, `autonumber`, `contact`, `created_at`, `id`, `name`, `updated_at`) VALUES ('no auto', 'no auto', 'no driver', '2015-02-05 00:05:00', 6, 'no auto6', '2015-02-05 00:05:00')[0m
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO `aautos` (`autodesc`, `autonumber`, `contact`, `created_at`, `id`, `name`, `updated_at`) VALUES ('no auto', 'no auto', 'no auto', '2015-02-05 00:05:00', 6, 'no auto6', '2015-02-05 00:05:00')[0m
   [1m[35m (2.9ms)[0m  COMMIT
   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
   [1m[35mSQL (0.4ms)[0m  INSERT INTO `companies` (`created_at`, `istabelling`, `name`, `updated_at`) VALUES ('2015-02-05 00:05:00', 1, 'Company1', '2015-02-05 00:05:00')
@@ -85,7 +85,7 @@ WARNING: Can't mass-assign protected attributes: id
   [1m[36mUserlevel Load (0.5ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1[0m
   [1m[35mUserlevel Load (0.4ms)[0m  SELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 3 LIMIT 1
   [1m[36mUserlevel Load (0.3ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 4 LIMIT 1[0m
-  [1m[35mAdriver Load (0.4ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `aautos`.`id` = 6 LIMIT 1
+  [1m[35mAauto Load (0.4ms)[0m  SELECT `aautos`.* FROM `aautos` WHERE `aautos`.`id` = 6 LIMIT 1
   [1m[36mCompany Load (0.4ms)[0m  [1mSELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 1 LIMIT 1[0m
   [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`name` = 'siafin2010@gmail.com'
   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
@@ -99,9 +99,9 @@ WARNING: Can't mass-assign protected attributes: id
   [1m[36mUserlevel Load (0.5ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1[0m
   [1m[35mUserlevel Load (0.4ms)[0m  SELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 3 LIMIT 1
   [1m[36mUserlevel Load (0.4ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 4 LIMIT 1[0m
-  [1m[35mAdriver Load (0.3ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `aautos`.`id` = 6 LIMIT 1
+  [1m[35mAauto Load (0.3ms)[0m  SELECT `aautos`.* FROM `aautos` WHERE `aautos`.`id` = 6 LIMIT 1
   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
-  [1m[35mSQL (23.8ms)[0m  INSERT INTO `adrivers` (`autodesc`, `autonumber`, `contact`, `created_at`, `id`, `name`, `updated_at`) VALUES ('no auto', 'no auto', 'no driver', '2015-02-05 23:53:37', 6, 'no auto6', '2015-02-05 23:53:37')
+  [1m[35mSQL (23.8ms)[0m  INSERT INTO `aautos` (`autodesc`, `autonumber`, `contact`, `created_at`, `id`, `name`, `updated_at`) VALUES ('no auto', 'no auto', 'no auto', '2015-02-05 23:53:37', 6, 'no auto6', '2015-02-05 23:53:37')
   [1m[36m (9.9ms)[0m  [1mCOMMIT[0m
   [1m[35mCompany Load (0.4ms)[0m  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 1 LIMIT 1
   [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'siafin2010@gmail.com'[0m
@@ -115,7 +115,7 @@ WARNING: Can't mass-assign protected attributes: id
   [1m[36mUserlevel Load (0.5ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1[0m
   [1m[35mUserlevel Load (0.4ms)[0m  SELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 3 LIMIT 1
   [1m[36mUserlevel Load (0.3ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 4 LIMIT 1[0m
-  [1m[35mAdriver Load (0.5ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `aautos`.`id` = 6 LIMIT 1
+  [1m[35mAauto Load (0.5ms)[0m  SELECT `aautos`.* FROM `aautos` WHERE `aautos`.`id` = 6 LIMIT 1
   [1m[36mCompany Load (0.6ms)[0m  [1mSELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 1 LIMIT 1[0m
   [1m[35mUser Load (0.4ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`name` = 'siafin2010@gmail.com'
   [1m[36m (0.2ms)[0m  [1mBEGIN[0m
@@ -127,8 +127,8 @@ WARNING: Can't mass-assign protected attributes: id
   [1m[36mUserlevel Load (0.5ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 2 LIMIT 1[0m
   [1m[35mUserlevel Load (0.4ms)[0m  SELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 3 LIMIT 1
   [1m[36mUserlevel Load (0.4ms)[0m  [1mSELECT `userlevels`.* FROM `userlevels` WHERE `userlevels`.`id` = 4 LIMIT 1[0m
-  [1m[35mAdriver Load (0.4ms)[0m  SELECT `adrivers`.* FROM `adrivers` WHERE `aautos`.`id` = 6 LIMIT 1
-  [1m[36mAdriver Load (0.6ms)[0m  [1mSELECT `adrivers`.* FROM `adrivers` WHERE `aautos`.`id` = 6 LIMIT 1[0m
+  [1m[35mAauto Load (0.4ms)[0m  SELECT `aautos`.* FROM `aautos` WHERE `aautos`.`id` = 6 LIMIT 1
+  [1m[36mAauto Load (0.6ms)[0m  [1mSELECT `aautos`.* FROM `aautos` WHERE `aautos`.`id` = 6 LIMIT 1[0m
   [1m[35mCompany Load (0.4ms)[0m  SELECT `companies`.* FROM `companies` WHERE `companies`.`id` = 1 LIMIT 1
   [1m[36mUser Load (0.5ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'siafin2010@gmail.com'[0m
   [1m[35m (0.2ms)[0m  BEGIN

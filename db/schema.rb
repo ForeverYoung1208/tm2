@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20150214202506) do
 
-  create_table "actions", :force => true do |t|
-    t.string   "kind"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "aautos", :force => true do |t|
     t.string   "name"
     t.string   "autodesc"
@@ -27,6 +20,13 @@ ActiveRecord::Schema.define(:version => 20150214202506) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "contact"
+  end
+
+  create_table "actions", :force => true do |t|
+    t.string   "kind"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "aorders", :force => true do |t|

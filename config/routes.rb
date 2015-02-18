@@ -8,7 +8,7 @@ Tm2::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
   post "setdate" => "aorders#setdate", :as => "setdate"
-  post "filldrivers" => "onlinedrivers#filldrivers", :as => "fillautos"
+  post "fillautos" => "onlineautos#fillautos", :as => "fillautos"
   match "setonduty" => "onlineautos#setonduty", :as => "setonduty"
   match "setosort" => "aorders#setosort", :as => "setosort"
   match "aorders/:id/cancel" =>"aorders#ocancel", :as => "aorder_cancel"
@@ -21,7 +21,7 @@ Tm2::Application.routes.draw do
   match "routelist" => "stat#routelist", :as =>"routelist"
 
 
-#  get "onlinedrivers/:action/:id" => "onlinedrivers#index", :as=>"onlineautos"
+#  get "onlineautos/:action/:id" => "onlineautos#index", :as=>"onlineautos"
 
   resources :users
   resources :sessions

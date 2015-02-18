@@ -2,22 +2,22 @@
 
 <table class="allorderlist">
   <tr>
-    <th>ФИО</th>
-    <th>Описание авто</th>
-    <th>Номер авто</th>
+    <th>Автомобиль</th>
+    <th>Водитель</th>
+    <th>Госномер авто</th>
     <th>Контакт</th>
     <th colspan="3">Управление</th>
   </tr>
 
-<% @adrivers.each do |aauto| %>
+<% @aautos.each do |aauto| %>
   <tr>
     <td><%= aauto.name %></td>
     <td><%= aauto.autodesc %></td>
     <td><%= aauto.autonumber %></td>
     <td><%= aauto.contact %></td>
     <td><%= link_to 'Показать', aauto %></td>
-    <td><%= link_to 'Изменить', edit_adriver_path(aauto) if is_admin? %></td>
-    <td><%= link_to 'Удалить', aauto, :confirm => 'Вы уверены? Трижды подумайте! Удалится из всех заказов! Безвозвратно!', :method => :delete if is_admin? %></td>
+    <td><%= link_to 'Изменить', edit_aauto_path(aauto) if is_admin? %></td>
+    <td><%= link_to 'Удалить', aauto, :confirm => 'Вы уверены? Трижды подумайте! Удалится из всех заказов! Безвозвратно! И автор хотел это переделать, скажите ему если он забыл.', :method => :delete if is_admin? %></td>
   </tr>
 <% end %>
 </table>

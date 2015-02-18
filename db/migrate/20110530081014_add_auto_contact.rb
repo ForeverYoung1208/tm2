@@ -1,4 +1,4 @@
-class AddDriverContact < ActiveRecord::Migration
+class AddAutoContact < ActiveRecord::Migration
   def self.up
     change_table :aautos do |t|
       t.string :contact

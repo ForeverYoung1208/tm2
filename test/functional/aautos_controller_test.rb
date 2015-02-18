@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AautosControllerTest < ActionController::TestCase
   setup do
-    @adriver = aautos(:one)
+    @aauto = aautos(:one)
   end
 
   test "should get index" do
@@ -18,10 +18,10 @@ class AautosControllerTest < ActionController::TestCase
 
   test "should create aauto" do
     assert_difference('Aauto.count') do
-      post :create, :adriver => @aauto.attributes
+      post :create, :aauto => @aauto.attributes
     end
 
-    assert_redirected_to adriver_path(assigns(:aauto))
+    assert_redirected_to aauto_path(assigns(:aauto))
   end
 
   test "should show aauto" do
@@ -35,8 +35,8 @@ class AautosControllerTest < ActionController::TestCase
   end
 
   test "should update aauto" do
-    put :update, :id => @adriver.to_param, :adriver => @aauto.attributes
-    assert_redirected_to adriver_path(assigns(:aauto))
+    put :update, :id => @aauto.to_param, :aauto => @aauto.attributes
+    assert_redirected_to aauto_path(assigns(:aauto))
   end
 
   test "should destroy aauto" do

@@ -1,4 +1,4 @@
-class AddFkOrdersDrivers < ActiveRecord::Migration
+class AddFkOrdersAutos < ActiveRecord::Migration
   def self.up
 
     change_table :aorders do |t|

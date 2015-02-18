@@ -67,7 +67,7 @@
 
       <td>
         <% if is_admin? %>
-          <%= f.collection_select(:adriver_id, Aauto.all, :id, :name, :prompt => 'Не назначен', :size=>'5')  %>
+          <%= f.collection_select(:aauto_id, Aauto.all, :id, :name, :prompt => 'Не назначен', :size=>'5')  %>
         <%end%>
       </td>
 

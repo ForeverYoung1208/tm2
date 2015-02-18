@@ -43,8 +43,8 @@ class StatController < ApplicationController
       	@aorders = Aorder.joins(join_str).order('thedate').where("thedate >= '#{@date_begin}' AND thedate <= '#{@date_end}' AND iscanceled=false")
 
       	auto_ids=[]
-      	@aorders.each {|aorder| driver_ids<<aorder.aauto.id }
-		@driver_list=Adriver.where(id: auto_ids)
+      	@aorders.each {|aorder| auto_ids<<aorder.aauto.id }
+		@auto_list=Aauto.where(id: auto_ids)
 	end
 
 

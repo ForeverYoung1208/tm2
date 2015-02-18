@@ -20,7 +20,7 @@
       <%= hidden_field_tag :last_date, @date_end %>
 
        <%= label_tag :auto, 'по водителю' %>
-       <%= select_tag :driver,  options_for_select( @auto_list.collect{|u| [u.name, u.id]} ) %>
+       <%= select_tag :auto,  options_for_select( @auto_list.collect{|u| [u.name, u.id]} ) %>
 
       <%= submit_tag 'сформировать' %>
     <% end %>

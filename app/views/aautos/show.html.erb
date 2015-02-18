@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Водитель:</b>
+  <b>Автомобиль:</b>
   <%= @aauto.name %>
 </p>
 
 <p>
-  <b>Автомобиль:</b>
+  <b>Водитель:</b>
   <%= @aauto.autodesc %>
 </p>
 
@@ -21,7 +21,7 @@
 </p>
 
 
-<%= link_to 'Изменить', edit_adriver_path(@aauto) if is_admin?%> |
+<%= link_to 'Изменить', edit_aauto_path(@aauto) if is_admin?%> |
 <%= link_to 'Список водителей', aautos_path %>
 <br />
 <%= link_to 'Список заказов', aorders_path %>

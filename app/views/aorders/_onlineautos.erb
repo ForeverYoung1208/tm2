@@ -16,9 +16,9 @@
 <%= button_to 'Заполнить из предыдущего дня', fillautos_path if is_admin?%>
 <table class="onlineautolist">
   <tr>
-    <th class="name">ФИО</th>
-    <th class="autodesc">Описание авто</th>
-    <th class="autonumber">Номер авто</th>
+    <th class="name">Автомобиль</th>
+    <th class="Водитель">Описание авто</th>
+    <th class="autonumber">Госномер авто</th>
     <th class="contact">Тел. водителя</th>
     <th class="onduty">Примечание</th>
     <th class="todel"> </th>
@@ -45,10 +45,10 @@
 
 <% @onlineautos.each do |onld| %>
   <tr>
-    <td><%= onld.adriver.name if onld.aauto %></td>
-    <td><%= onld.adriver.autodesc if onld.aauto %></td>
-    <td><%= onld.adriver.autonumber if onld.aauto %></td>
-    <td><%= onld.adriver.contact if onld.aauto %></td>
+    <td><%= onld.aauto.name if onld.aauto %></td>
+    <td><%= onld.aauto.autodesc if onld.aauto %></td>
+    <td><%= onld.aauto.autonumber if onld.aauto %></td>
+    <td><%= onld.aauto.contact if onld.aauto %></td>
     <td><%= 'Дежурный' if onld.onduty %></td>
     <td><%= link_to 'Удалить', onld, :method => :delete if is_admin? %></td>
     <td><%= link_to '(Не-)Дежурить', setonduty_path(:id=>onld.id) if is_admin? %></td>
@@ -94,7 +94,7 @@
         <td colspan="97">
           <%= form_for(@onlineauto) do |f| %>
           <%= f.hidden_field :odate_id %>
-          <%= f.collection_select(:adriver_id, Aauto.all, :id, :name, :prompt => 'Не назначен', :size=>'5')  %>
+          <%= f.collection_select(:aauto_id, Aauto.all, :id, :name, :prompt => 'Не назначен', :size=>'5')  %>
           <%= f.submit 'Добавить' %>
           <%end%>
         </td>

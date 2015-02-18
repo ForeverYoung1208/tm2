@@ -7,7 +7,7 @@ class AautosController < ApplicationController
   # GET /aautos
   # GET /aautos.xml
   def index
-    @adrivers = Aauto.all
+    @aautos = Aauto.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,7 +18,7 @@ class AautosController < ApplicationController
   # GET /aautos/1
   # GET /aautos/1.xml
   def show
-    @adriver = Aauto.find(params[:id])
+    @aauto = Aauto.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,7 +29,7 @@ class AautosController < ApplicationController
   # GET /aautos/new
   # GET /aautos/new.xml
   def new
-    @adriver = Aauto.new
+    @aauto = Aauto.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,18 +39,18 @@ class AautosController < ApplicationController
 
   # GET /aautos/1/edit
   def edit
-    @adriver = Aauto.find(params[:id])
+    @aauto = Aauto.find(params[:id])
   end
 
   # POST /aautos
   # POST /aautos.xml
   def create
-    @adriver = Adriver.new(params[:aauto])
+    @aauto = Aauto.new(params[:aauto])
 
     respond_to do |format|
       if @aauto.save
-        format.html { redirect_to(@adriver, :notice => 'Aauto was successfully created.') }
-        format.xml  { render :xml => @adriver, :status => :created, :location => @aauto }
+        format.html { redirect_to(@aauto, :notice => 'Aauto was successfully created.') }
+        format.xml  { render :xml => @aauto, :status => :created, :location => @aauto }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @aauto.errors, :status => :unprocessable_entity }
@@ -61,11 +61,11 @@ class AautosController < ApplicationController
   # PUT /aautos/1
   # PUT /aautos/1.xml
   def update
-    @adriver = Aauto.find(params[:id])
+    @aauto = Aauto.find(params[:id])
 
     respond_to do |format|
-      if @adriver.update_attributes(params[:aauto])
-        format.html { redirect_to(@adriver, :notice => 'Aauto was successfully updated.') }
+      if @aauto.update_attributes(params[:aauto])
+        format.html { redirect_to(@aauto, :notice => 'Aauto was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -77,7 +77,7 @@ class AautosController < ApplicationController
   # DELETE /aautos/1
   # DELETE /aautos/1.xml
   def destroy
-    @adriver = Aauto.find(params[:id])
+    @aauto = Aauto.find(params[:id])
     @aauto.destroy
 
     respond_to do |format|
