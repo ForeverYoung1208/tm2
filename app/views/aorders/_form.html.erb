@@ -58,16 +58,16 @@
       </td>
 
       <td>
-        <%= f.time_select :ftime, :minute_step=>10 %>
+        <%= f.time_select :ftime, {:minute_step=>10},{class: 'time_selector'} %>
       </td>
 
       <td>
-        <%= f.time_select :totime, :minute_step=>10 %>
+        <%= f.time_select :totime, {:minute_step=>10},{class: 'time_selector'} %>
       </td>
 
       <td>
         <% if is_admin? %>
-          <%= f.collection_select(:aauto_id, Aauto.all, :id, :name_autodesc, :prompt => 'Не назначен', :size=>'5')  %>
+          <%= f.collection_select(:aauto_id, Aauto.all, :id, :name_autodesc, :prompt => 'Не назначен')  %>
         <%end%>
       </td>
 
@@ -94,7 +94,7 @@
       <% if is_admin? %>
 
         <td>
-          <%= f.collection_select(:user_id, User.all, :id, :name, :prompt => 'Не назначен', :size=>'5')  %>
+          <%= f.collection_select(:user_id, User.all, :id, :name, :prompt => 'Не назначен')  %>
         </td>
 
       <%else%>

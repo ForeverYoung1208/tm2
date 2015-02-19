@@ -88,7 +88,9 @@
     margin-top: 1em;
 }
 
-
+table {
+    font-size: x-small;
+}
 
 table.allorderlist{
     margin-top: 0em;
@@ -106,7 +108,7 @@ table.allorderlist th{
     border-width: 1px 1px 0px 0px;
     border-style: solid;
     background-color: #B9EFFF;
-    font-size: small;
+    /*font-size: small;*/
 }
 
 table.allorderlist td{
@@ -125,7 +127,7 @@ table.allorderlist th.fio{ }
 table.allorderlist th.depart{ }
 table.allorderlist th.contact{}
 table.allorderlist th.destination{}
-table.allorderlist th.time{ width: 8em;}
+table.allorderlist th.time{ width: 9em;}
 table.allorderlist th.auto{ }
 table.allorderlist th.odometer{ width: 5em; }
 table.allorderlist th.outofcity{ width: 6em; }
@@ -133,7 +135,12 @@ table.allorderlist th.comment{ }
 table.allorderlist th.management{ width: 100px}
 table.allorderlist th.owner{ width: 6em}
 
-table.allorderlist td input{ width: 90%}
+table.allorderlist td input{ width: 98%}
+table.allorderlist td select{ width: 98%}
+table.allorderlist td .time_selector{ 
+    font-size: x-small;
+    width: 40%
+}
 
 
 #table_inactive {
@@ -161,7 +168,7 @@ table.onlineautolist th{
     border-width: 1px 1px 0px 0px;
     border-style: solid;
     background-color: #B9EFFF;
-    font-size: small;
+ /*   font-size: small;*/
 }
 
 table.onlineautolist th.name{ width: 50px;}
@@ -207,10 +214,10 @@ table.onlineautolist tr{ height: 3em;}
 table.onlineautolist tr.ruler{ height: 2px;}
 
 
-#aorder_aauto_id{
+/*#aorder_aauto_id{
     width: 100%;
     display: block;
-}
+}*/
 
 #onlineauto_aauto_id{
     width: 150px;
