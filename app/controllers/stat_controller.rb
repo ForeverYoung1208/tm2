@@ -1,4 +1,5 @@
 class StatController < ApplicationController
+  before_filter :require_login	
 
 	def index
 		@date_begin ||= Time.now.to_date-1.day

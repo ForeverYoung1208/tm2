@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class UsersController < ApplicationController
+  before_filter :require_login  
 #    before_filter :is_admin
  
    def new

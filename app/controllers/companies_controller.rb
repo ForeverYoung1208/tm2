@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 class CompaniesController < ApplicationController
+  before_filter :require_login
+
+  
   # GET /companies
   # GET /companies.xml
   def index

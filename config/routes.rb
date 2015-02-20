@@ -1,5 +1,7 @@
 Tm2::Application.routes.draw do
 
+  resources :departments
+
   resources :companies
 
   resources :actions

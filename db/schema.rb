@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150214202506) do
+ActiveRecord::Schema.define(:version => 20150220144240) do
 
   create_table "aautos", :force => true do |t|
     t.string   "name"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(:version => 20150214202506) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.integer  "company_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "departments", ["company_id"], :name => "index_departments_on_company_id"
 
   create_table "odates", :force => true do |t|
     t.date     "thedate"
