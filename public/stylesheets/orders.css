@@ -2,7 +2,7 @@
     display: block;
     float: left;
     height: 80px;
-    width: 1000px;
+    /*width: 1000px;*/
 }
 
 #top_msg{
@@ -19,7 +19,7 @@
     display: block;
     float: left;
     margin-left: 2em;
-    width: 150px;
+    /*width: 150px;*/
 }
 
 #one_btn{
@@ -29,7 +29,7 @@
 #status_wrapper{
     position: relative;
     display: block;
-    width: 300px;
+    /*width: 300px;*/
     float: left;
     margin-left: 2em;
 }
@@ -135,7 +135,7 @@ table.allorderlist th.comment{ }
 table.allorderlist th.management{ width: 100px}
 table.allorderlist th.owner{ width: 6em}
 
-table.allorderlist td input{ width: 98%}
+table.allorderlist td input{ width: 95%}
 table.allorderlist td select{ width: 98%}
 table.allorderlist td .time_selector{ 
     font-size: x-small;
@@ -171,7 +171,7 @@ table.onlineautolist th{
  /*   font-size: small;*/
 }
 
-table.onlineautolist th.name{ width: 50px;}
+table.onlineautolist th.name{ width: 12em;}
 table.onlineautolist th.autodesc{ width: 10px;}
 table.onlineautolist th.autonumber{ width: 10px;}
 table.onlineautolist th.contact{ width: 10px;}
