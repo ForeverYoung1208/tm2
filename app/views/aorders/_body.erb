@@ -7,7 +7,7 @@
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.adestination %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.ftime.strftime("%H:%M") %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.totime.strftime("%H:%M") %></td>
-    <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= link_to aorder.aauto.name, aorder.aauto if aorder.aauto %></td>
+    <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= link_to aorder.aauto.name+' ('+aorder.aauto.autodesc+')', aorder.aauto if aorder.aauto %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.comment %></td>
     
     <td class= '

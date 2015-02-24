@@ -10,7 +10,7 @@ $('#onlineautos').html("<%= escape_javascript render(:partial => 'onlineautos', 
 
 $(document).ready(
 
-  $( ".hoverable").hover(
+ $( ".hoverable").click(
 
     function () {
       var hoveredorderids = $(this).data('orderid')
@@ -19,16 +19,12 @@ $(document).ready(
         try{
           $i.data('orderid').forEach(function(d){
             if ($.inArray(d, hoveredorderids ) != -1 ) {
-              $i.addClass("highlighted");
+              $i.toggleClass("highlighted");
             }
           })
         }
         catch(e){}
       })
-    },
-
-    function () {
-      $(".hoverable").removeClass("highlighted");
     }
 
   )

@@ -88,9 +88,7 @@
     margin-top: 1em;
 }
 
-table {
-    font-size: x-small;
-}
+
 
 table.allorderlist{
     margin-top: 0em;
@@ -129,16 +127,19 @@ table.allorderlist th.contact{}
 table.allorderlist th.destination{}
 table.allorderlist th.time{ width: 9em;}
 table.allorderlist th.auto{ }
-table.allorderlist th.odometer{ width: 5em; }
+table.allorderlist th.odometer{ width: 6em; }
 table.allorderlist th.outofcity{ width: 6em; }
 table.allorderlist th.comment{ }
 table.allorderlist th.management{ width: 100px}
 table.allorderlist th.owner{ width: 6em}
 
-table.allorderlist td input{ width: 95%}
+table.allorderlist td input{ 
+    font-size: small;
+    width: 90%;
+}
 table.allorderlist td select{ width: 98%}
 table.allorderlist td .time_selector{ 
-    font-size: x-small;
+    font-size: small;
     width: 40%
 }
 

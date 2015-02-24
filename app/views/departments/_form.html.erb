@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :company, 'Относится к компании:' %><br />
-    <%= f.collection_select :company, Company.all, :id, :name %>
+    <%= f.collection_select(:company_id, Company.all, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

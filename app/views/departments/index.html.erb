@@ -12,7 +12,7 @@
 <% @departments.each do |department| %>
   <tr>
     <td><%= department.name %></td>
-    <td><%= department.company %></td>
+    <td><%= department.company.name if department.company %></td>
     <td><%= link_to 'Show', department %></td>
     <td><%= link_to 'Edit', edit_department_path(department) %></td>
     <td><%= link_to 'Destroy', department, confirm: 'Are you sure?', method: :delete %></td>
@@ -23,3 +23,5 @@
 <br />
 
 <%= link_to 'Добавить отдел', new_department_path %>
+<br />
+<%= link_to 'Вернуться в список заказов (на главную)', aorders_path   %>

@@ -45,7 +45,7 @@ $(function() {
 
 
 $(function() {
-  $( ".hoverable").hover(
+  $( ".hoverable").click(
 
     function () {
       var hoveredorderids = $(this).data('orderid')
@@ -54,19 +54,20 @@ $(function() {
         try{
           $i.data('orderid').forEach(function(d){
             if ($.inArray(d, hoveredorderids ) != -1 ) {
-              $i.addClass("highlighted");
+              $i.toggleClass("highlighted");
             }
           })
         }
         catch(e){}
       })
-    },
-
-    function () {
-      $(".hoverable").removeClass("highlighted");
     }
 
   )
+
+//  .mouseleave( function(){
+//    $( ".hoverable").removeClass("highlighted")
+// })
+
 });
 
 
