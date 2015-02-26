@@ -4,8 +4,10 @@ class Aorder < ActiveRecord::Base
   belongs_to :aauto;
   belongs_to :odate;
   belongs_to :user;
+  belongs_to :department;
   validates :onname, :presence=>true;
-  validates :ondepartment, :presence=>true;
+#  validates :ondepartment, :presence=>true; - вместо него просто department
+  validates :department, :presence=>true;
   validates :contact, :presence=>true;
   validates :adestination, :presence=>true;
   validates :ftime, :presence=>true;

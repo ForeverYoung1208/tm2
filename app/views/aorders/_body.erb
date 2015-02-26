@@ -2,7 +2,7 @@
   <tr >
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.id %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.onname %></td>
-    <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.ondepartment %></td>
+    <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.department.name if aorder.department %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.contact %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.adestination %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.ftime.strftime("%H:%M") %></td>

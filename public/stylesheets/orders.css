@@ -125,7 +125,7 @@ table.allorderlist th.fio{ }
 table.allorderlist th.depart{ }
 table.allorderlist th.contact{}
 table.allorderlist th.destination{}
-table.allorderlist th.time{ width: 9em;}
+table.allorderlist th.time{ width: 4em }
 table.allorderlist th.auto{ }
 table.allorderlist th.odometer{ width: 6em; }
 table.allorderlist th.outofcity{ width: 6em; }
@@ -140,7 +140,7 @@ table.allorderlist td input{
 table.allorderlist td select{ width: 98%}
 table.allorderlist td .time_selector{ 
     font-size: small;
-    width: 40%
+    width: auto;
 }
 
 

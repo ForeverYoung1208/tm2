@@ -46,7 +46,7 @@
       </td>
 
       <td>
-        <%= f.text_field :ondepartment, :size=>5 %>
+        <%= f.collection_select(:department_id, Department.all, :id, :name)  %>
       </td>
 
       <td>
