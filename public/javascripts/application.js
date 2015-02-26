@@ -70,6 +70,10 @@ $(function() {
 
 });
 
+$(function(){
+
+
+})
 
 $(document).ready(
 
