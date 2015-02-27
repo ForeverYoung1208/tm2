@@ -119,7 +119,10 @@ class AordersController < ApplicationController
 
   # GET /aorders/1/edit
   def edit
+
     @odate = session[:working_date]
+    @onlineautos=Onlineauto.find_all_by_odate_id(@odate.id)
+  
     @aorder = Aorder.find(params[:id])
     @aorder.user_id=session[:user].id unless is_admin?
     @aorder.ttmid=session[:user].id
@@ -128,6 +131,7 @@ class AordersController < ApplicationController
   # POST /aorders
   # POST /aorders.xml
   def create
+    @odate = session[:working_date]    
     @aorder = Aorder.new(params[:aorder])
     @aorder.ttmid=session[:user].id
     respond_to do |format|
@@ -144,8 +148,12 @@ class AordersController < ApplicationController
   # PUT /aorders/1
   # PUT /aorders/1.xml
   def update
+    @odate = session[:working_date]
     @aorder = Aorder.find(params[:id])
     @aorder.ttmid=session[:user].id
+
+    @onlineautos=Onlineauto.find_all_by_odate_id(@odate.id)
+
     respond_to do |format|
       if @aorder.update_attributes(params[:aorder])
         format.html { redirect_to(aorders_path, :notice => 'Заказ изменен.') }
