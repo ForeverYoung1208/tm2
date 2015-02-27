@@ -10,21 +10,15 @@
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= link_to aorder.aauto.name+' ('+aorder.aauto.autodesc+')', aorder.aauto if aorder.aauto %></td>
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.comment %></td>
     
-    <td class= '
-        hoverable 
-        <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
-        '
-        data-orderid='[<%=aorder.id%>]' > 
+
+    <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
         <%= aorder.odobegin %>
-    </td>
-    
-    <td class= 
-        '
-        hoverable 
-        <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
-        '
-        data-orderid='[<%=aorder.id%>]' > <%= aorder.odoend %>
-    </td>
+    <%end%>
+
+  
+    <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
+        <%= aorder.odoend %>
+    <%end%>
 
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.outofcity %>
     </td>

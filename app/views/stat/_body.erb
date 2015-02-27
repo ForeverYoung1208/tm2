@@ -2,7 +2,7 @@
   <tr>
     <td><%= aorder.id %></td>
     <td><%= aorder.onname %></td>
-    <td><%= aorder.ondepartment %></td>
+    <td><%= aorder.department.name if aorder.department %></td>
     <td><%= aorder.contact %></td>
     <td><%= aorder.adestination %></td>
     <td><%= aorder.ftime.strftime("%H:%M") %></td>
@@ -10,16 +10,13 @@
     <td><%= link_to aorder.aauto.name_autodesc, aorder.aauto if aorder.aauto %></td>
     <td><%= aorder.comment %></td>
 
-    <td class= '
-    <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
-    '> 
-    <%= aorder.odobegin %></td>
+    <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity) do %>
+        <%= aorder.odobegin %>
+    <%end%>
     
-    <td class= 
-    '
-    <%= 'badodometer' if (aorder.odoend-aorder.odobegin)>100 or (aorder.odoend-aorder.odobegin)<=0 %>
-    '>
-    <%= aorder.odoend %></td>
+    <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity) do %>
+        <%= aorder.odoend %>
+    <%end%>
 
 
     <td><%= aorder.odate.thedate %></td>
