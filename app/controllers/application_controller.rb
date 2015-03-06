@@ -42,13 +42,13 @@ class ApplicationController < ActionController::Base
 
     def is_day_closed
       if session[:working_date].isclosed
-        redirect_to aorders_path, :notice => "Невозможно выполнить, т.к. дата #{session[:working_date].thedate} закрыта"
+        redirect_to aorders_path, :flash => {error: "Невозможно выполнить, т.к. дата #{session[:working_date].thedate} закрыта"}
       end
     end
 
     def require_login
       unless session[:user]
-        redirect_to root_url, :notice => "Действие не разрешено (только длязарегистрированного пользователя)"
+        redirect_to root_url, :flash => {notice: "Действие не разрешено (только для зарегистрированного пользователя)"}
       end
     end
 

@@ -71,6 +71,7 @@ class AordersController < ApplicationController
   # GET /aorders
   # GET /aorders.xml
   def index
+
     @odate = session[:working_date]
     session[:sort_orders_by]||='id'
     @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").order(session[:sort_orders_by]).where("odate_id=#{@odate.id} AND iscanceled=false")
@@ -86,11 +87,9 @@ class AordersController < ApplicationController
     @onlineauto=Onlineauto.new
     @onlineauto.odate_id=@odate.id
 
-    
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @aorders }
+      format.xml  { render :xml => @aorder }
     end
 
   end

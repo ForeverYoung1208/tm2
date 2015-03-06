@@ -1,3 +1,8 @@
+<% flash.each do |key, value| %>
+  <%= content_tag :div, "#{key}: #{value}", {class: "flash #{key}", id: "error_explanation"} %>
+<% end %>
+
+
 <div id="top_all">
   <div id="top_msg">
     Заказы автомобиля на день:
@@ -5,6 +10,7 @@
       (<%= @odate.showstatus %>)
   </div>
   <div id="top_btns">
+
 <%  if is_admin?  %>
     <%=
       button_to( 'Закрыть день',

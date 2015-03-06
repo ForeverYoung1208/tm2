@@ -20,8 +20,9 @@
         <%= aorder.odoend %>
     <%end%>
 
-    <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.outofcity %>
-    </td>
+    <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
+        <%= aorder.outofcity %>
+    <%end%>
 
 
 
