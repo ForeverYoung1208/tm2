@@ -72,6 +72,8 @@ class AordersController < ApplicationController
   # GET /aorders.xml
   def index
 
+    flash.keep
+
     @odate = session[:working_date]
     session[:sort_orders_by]||='id'
     @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").order(session[:sort_orders_by]).where("odate_id=#{@odate.id} AND iscanceled=false")
