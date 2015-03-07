@@ -9,12 +9,12 @@
 <%  if is_admin?  %>
     <%=
       button_to( 'Закрыть день',
-      set_day_status_path(:id=>@odate.id , :day_closed=>'true'),
+      set_day_status_path(:id=>@odate.id , day_action: 'day_close'),
       {:id=>:one_btn, :disabled=>@odate.isclosed})
     %>
     <%=
       button_to( 'Открыть день',
-      set_day_status_path(:id=>@odate.id , :day_closed=>'false'),
+      set_day_status_path(:id=>@odate.id , day_action: 'day_open'),
       {:id=>:one_btn, :disabled=>!@odate.isclosed})
     %>
 <%end%>

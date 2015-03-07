@@ -37,9 +37,7 @@ class AordersController < ApplicationController
   end
 
   def set_day_status
-    @odate=Odate.find_by_id(params[:id])
-    @odate.isclosed=params[:day_closed]
-    @odate.save!
+    @odate=Odate.set_day_status(params)
     session[:working_date]=@odate
     redirect_to aorders_path
   end

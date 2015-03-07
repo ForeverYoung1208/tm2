@@ -25,10 +25,7 @@
     <%end%>
 
 
-
-
-
-    <% if is_admin? %>
+    <% if is_admin? and !@odate.isclosed%>
       <td><%= link_to 'Измен.', edit_aorder_path(aorder) %></td>
     <%else%>
       <td><%= link_to 'Детали', aorder_path(aorder) %></td>
@@ -38,7 +35,17 @@
         #link_to 'Удал', aorder, :confirm => 'Вы уверены?', :method => :delete настоящее удаление нам не надо
       %>
 
-    <td><%= link_to 'Удал.', aorder_cancel_path(aorder), :confirm => 'Вы уверены?' if (is_admin? or ( is_current_user_or_admin?(aorder.user_id) and(  (aorder.aauto_id==nil or aorder.aauto_id==::NILDRIVER) )))%></td>
+    <td>
+      <%= link_to 'Удал.', aorder_cancel_path(aorder), :confirm => 'Вы уверены?' if (
+        is_admin? or 
+        ( is_current_user_or_admin?(aorder.user_id) and
+        (  (aorder.aauto_id==nil or aorder.aauto_id==::NILDRIVER) )) and
+        ( !@odate.isclosed )
+      )%>
+
+    </td>
+
+
     <% if is_admin?  %>
         <td><%= aorder.user.name %></td>
     <%end%>

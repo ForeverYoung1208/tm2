@@ -30,7 +30,7 @@ class Aorder < ActiveRecord::Base
         ( (ttmid.to_i==Aorder.find_by_id(self.id).user_id) and (self.aauto_id==nil or self.aauto_id==::NILDRIVER))
       res=true
     else
-      self.errors.add(ttmid, "нет прав на изменеие, только для Администратора!")
+      self.errors.add(:ttmid, "нет прав на изменеие, только для Администратора!")
       res=false
     end
     res
@@ -40,7 +40,7 @@ class Aorder < ActiveRecord::Base
     res=true
     if odate.isclosed
       res=false
-      self.errors.add("Невозможно выполнить: дата закрыта!")
+      self.errors.add(:odate, "Невозможно выполнить: дата закрыта!")
     else
       res=true
     end

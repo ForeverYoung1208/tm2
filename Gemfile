@@ -4,11 +4,13 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.3'
 
 gem 'mysql2'
-gem "mongrel", '>= 1.2.0.pre2'
-gem "cgi_multipart_eof_fix"
-gem "fastthread"
-## gem "mongrel_experimental"
-### gem 'ruby-debug19'
+
+
+#? gem "mongrel", '>= 1.2.0.pre2'
+#? gem "cgi_multipart_eof_fix"
+#? gem "fastthread"
+
+
 gem 'jquery-rails', '>= 1.0.3'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
@@ -44,3 +46,4 @@ gem 'debugger'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "rspec-rails", :group => [:development, :test]

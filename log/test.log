@@ -135,3 +135,73 @@ WARNING: Can't mass-assign protected attributes: id
   [1m[36mUser Exists (0.5ms)[0m  [1mSELECT 1 FROM `users` WHERE `users`.`email` = BINARY 'siafin2010@gmail.com' LIMIT 1[0m
   [1m[35mUser Exists (0.5ms)[0m  SELECT 1 FROM `users` WHERE `users`.`name` = BINARY 'admin' LIMIT 1
   [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36m (225.3ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (154.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (0.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[36m (54.9ms)[0m  [1mCREATE TABLE `aautos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `autodesc` varchar(255), `autonumber` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `contact` varchar(255)) ENGINE=InnoDB[0m
+  [1m[35m (47.5ms)[0m  CREATE TABLE `actions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `kind` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (36.5ms)[0m  [1mCREATE TABLE `aorders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `onname` varchar(255), `ftime` time, `totime` time, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `aauto_id` int(11), `odate_id` int(11), `adestination` varchar(255), `ondepartment` varchar(255), `contact` varchar(255), `iscanceled` tinyint(1), `comment` varchar(255), `user_id` int(11), `odobegin` int(11) DEFAULT 0, `odoend` int(11) DEFAULT 0, `outofcity` int(11) DEFAULT 0, `department_id` int(11)) ENGINE=InnoDB[0m
+  [1m[35m (47.6ms)[0m  CREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `istabelling` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (47.7ms)[0m  [1mCREATE TABLE `departments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `company_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (106.5ms)[0m  CREATE INDEX `index_departments_on_company_id` ON `departments` (`company_id`)
+  [1m[36m (47.4ms)[0m  [1mCREATE TABLE `odates` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `thedate` date, `isclosed` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (39.4ms)[0m  CREATE TABLE `onlineautos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `aauto_id` int(11), `odate_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `onduty` tinyint(1)) ENGINE=InnoDB
+  [1m[36m (47.6ms)[0m  [1mCREATE TABLE `sessions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `session_id` varchar(255) NOT NULL, `data` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (115.1ms)[0m  CREATE INDEX `index_sessions_on_session_id` ON `sessions` (`session_id`)
+  [1m[36m (115.0ms)[0m  [1mCREATE INDEX `index_sessions_on_updated_at` ON `sessions` (`updated_at`)[0m
+  [1m[35m (55.8ms)[0m  CREATE TABLE `userlevels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (39.2ms)[0m  [1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `name` varchar(255), `password_hash` varchar(255), `password_salt` varchar(255), `userlevel_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `company_id` int(11)) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  SELECT version FROM `schema_migrations`
+  [1m[36m (5.5ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150226183602')[0m
+  [1m[35m (8.2ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150206175808')
+  [1m[36m (7.5ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110527104416')[0m
+  [1m[35m (7.9ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110531154239')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110505094933')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110520094152')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110505094947')[0m
+  [1m[35m (8.0ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110529060115')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20111111113007')[0m
+  [1m[35m (8.3ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20111024153626')
+  [1m[36m (16.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110530081014')[0m
+  [1m[35m (7.8ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110524160903')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110518071014')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110522085814')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110524161038')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150220144240')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150214202506')[0m
+  [1m[36m (0.4ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (212.5ms)[0m  DROP DATABASE IF EXISTS `tm2t_test`
+  [1m[36m (10.7ms)[0m  [1mCREATE DATABASE `tm2t_test` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
+  [1m[35m (51.6ms)[0m  CREATE TABLE `aautos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `autodesc` varchar(255), `autonumber` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `contact` varchar(255)) ENGINE=InnoDB
+  [1m[36m (47.4ms)[0m  [1mCREATE TABLE `actions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `kind` varchar(255), `user_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (50.0ms)[0m  CREATE TABLE `aorders` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `onname` varchar(255), `ftime` time, `totime` time, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `aauto_id` int(11), `odate_id` int(11), `adestination` varchar(255), `ondepartment` varchar(255), `contact` varchar(255), `iscanceled` tinyint(1), `comment` varchar(255), `user_id` int(11), `odobegin` int(11) DEFAULT 0, `odoend` int(11) DEFAULT 0, `outofcity` int(11) DEFAULT 0, `department_id` int(11)) ENGINE=InnoDB
+  [1m[36m (72.5ms)[0m  [1mCREATE TABLE `companies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `istabelling` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (39.5ms)[0m  CREATE TABLE `departments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `company_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (274.8ms)[0m  [1mCREATE INDEX `index_departments_on_company_id` ON `departments` (`company_id`)[0m
+  [1m[35m (54.1ms)[0m  CREATE TABLE `odates` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `thedate` date, `isclosed` tinyint(1), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (56.2ms)[0m  [1mCREATE TABLE `onlineautos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `aauto_id` int(11), `odate_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `onduty` tinyint(1)) ENGINE=InnoDB[0m
+  [1m[35m (47.6ms)[0m  CREATE TABLE `sessions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `session_id` varchar(255) NOT NULL, `data` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (132.0ms)[0m  [1mCREATE INDEX `index_sessions_on_session_id` ON `sessions` (`session_id`)[0m
+  [1m[35m (131.6ms)[0m  CREATE INDEX `index_sessions_on_updated_at` ON `sessions` (`updated_at`)
+  [1m[36m (47.5ms)[0m  [1mCREATE TABLE `userlevels` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (39.4ms)[0m  CREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `name` varchar(255), `password_hash` varchar(255), `password_salt` varchar(255), `userlevel_id` int(11), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `company_id` int(11)) ENGINE=InnoDB
+  [1m[36m (56.8ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (123.8ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (5.4ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150226183602')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150206175808')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110527104416')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110531154239')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110505094933')
+  [1m[36m (8.0ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110520094152')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110505094947')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110529060115')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20111111113007')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20111024153626')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110530081014')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110524160903')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110518071014')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20110522085814')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20110524161038')
+  [1m[36m (8.1ms)[0m  [1mINSERT INTO `schema_migrations` (version) VALUES ('20150220144240')[0m
+  [1m[35m (8.1ms)[0m  INSERT INTO `schema_migrations` (version) VALUES ('20150214202506')

@@ -46,5 +46,5 @@
 </p>
 
 
-<%= link_to 'Редактировать', edit_aorder_path(@aorder) if is_admin? %> |
+<%= link_to 'Редактировать', edit_aorder_path(@aorder) if (is_admin? and !@aorder.odate.isclosed) %> |
 <%= link_to 'Назад в список заказов', aorders_path %>

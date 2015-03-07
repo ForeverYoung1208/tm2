@@ -45,7 +45,6 @@ class ApplicationController < ActionController::Base
         flash[:notice]="Невозможно выполнить, т.к. дата закрыта"
         flash.keep
         redirect_to aorders_path
-
       end
     end
 
