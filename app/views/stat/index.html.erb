@@ -14,6 +14,14 @@
     <%= render 'body' %>
   </table>
 
+  <%= form_tag(stat_xml_path, :format=> :xml) do %>
+
+       <%= hidden_field_tag :first_date_xml, @date_begin_xml,{value: @date_begin} %>
+       <%= hidden_field_tag :last_date_xml, @date_end_xml, {value: @date_end} %>
+       <%= submit_tag 'загрузить в xml' %>
+  <% end %>
+
+
 <h2> Сформировать маршрутный лист за указанный период </h2>
     <%= form_tag(routelist_path) do %>
       <%= hidden_field_tag :first_date, @date_begin %>

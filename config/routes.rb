@@ -19,6 +19,7 @@ Tm2::Application.routes.draw do
   post "password_reset" => "users#password_reset", :as => "password_reset"
 
   match "stat" => "stat#index", :as =>"stat"
+  match "stat_xml" => "stat#index_xml", :as =>"stat_xml"
   match "routelist" => "stat#routelist", :as =>"routelist"
 
 

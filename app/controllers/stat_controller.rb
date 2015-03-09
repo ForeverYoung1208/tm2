@@ -13,6 +13,18 @@ class StatController < ApplicationController
 	    end
 	end
 
+	def index_xml
+		@date_begin = params[:first_date_xml]
+		@date_end = params[:last_date_xml]
+
+		get_aorders 
+
+		send_data @aorders.to_xml, 
+			:type => 'text/xml; charset=UTF-8;',
+			:disposition => "attachment"
+	end
+
+
 	def routelist
 		@date_begin = params[:first_date]
 		@date_end = params[:last_date]
