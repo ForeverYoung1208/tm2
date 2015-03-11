@@ -22,6 +22,9 @@ class Aorder < ActiveRecord::Base
 # и вот уже тут анализируется этот id
 # кстаи логика нормальная а имя свойства конченное. Но таки лень переделывать.
 
+def department_name
+  self.department.name
+end
 
   def check_rights
 #    Убрали возможность редактировать свои заявки, только админ.
