@@ -28,10 +28,12 @@ class StatController < ApplicationController
 								lambda{ |options, record| options[:builder].tag!('totime_xml', record.totime.strftime("%H:%M") ) }
 
 							],
-				:except => 	[:aauto_id, :department_id, :odate_id, :user_id, :ftime, :totime]
+				:except => 	[:aauto_id, :department_id, :odate_id, :user_id, :ftime, :totime],
+				:skip_types => true
 				), 
 			:type => 'text/xml; charset=UTF-8;',
-			:disposition => "attachment"
+			:disposition => "attachment",
+			:filename => "stat.xml"
 	end
 
 
