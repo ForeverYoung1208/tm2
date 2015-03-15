@@ -67,7 +67,10 @@ class Odate < ActiveRecord::Base
       test1=true
       self.aorders.where( "aauto_id = ?", current_auto_id ).order(odobegin: :asc).find_each do |current_order|
         
-        if (current_order.odobegin != last_odoend+1) and last_odoend<>0 then test1=false
+        if (current_order.odobegin != last_odoend+1) and last_odoend != 0 then 
+          test1=false
+        end
+        
         km_by_auto += current_order.distance
         min_km = current_order.odobegin if current_order.odobegin < min_km
         max_km = current_order.odoend if current_order.odoend > max_km
