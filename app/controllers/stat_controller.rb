@@ -19,9 +19,21 @@ class StatController < ApplicationController
 
 		get_aorders 
 
-		send_data @aorders.to_xml, 
+		send_data @aorders.to_xml(
+				:procs => 	[lambda{ |options, record| options[:builder].tag!('department', record.department.name) },
+								lambda{ |options, record| options[:builder].tag!('driver', record.aauto.name_autodesc) },
+								lambda{ |options, record| options[:builder].tag!('date', record.odate.thedate) },
+								lambda{ |options, record| options[:builder].tag!('user_author', record.user.name) },
+								lambda{ |options, record| options[:builder].tag!('ftime_xml', record.ftime.strftime("%H:%M") ) },
+								lambda{ |options, record| options[:builder].tag!('totime_xml', record.totime.strftime("%H:%M") ) }
+
+							],
+				:except => 	[:aauto_id, :department_id, :odate_id, :user_id, :ftime, :totime],
+				:skip_types => true
+				), 
 			:type => 'text/xml; charset=UTF-8;',
-			:disposition => "attachment"
+			:disposition => "attachment",
+			:filename => "stat.xml"
 	end
 
 
