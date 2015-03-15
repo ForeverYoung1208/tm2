@@ -57,6 +57,10 @@ class Aorder < ActiveRecord::Base
     res
   end
 
+  def distance
+    self.odoend-self.odobegin
+  end
+
 end
 
 
