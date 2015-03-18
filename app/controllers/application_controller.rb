@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 #    ::NO_COMPANY_ID=5 
     ::USERTABEL_ID=3 #userlevel_id
     ::ALLTABELUSER_ID=4 #userlevel_id
-    ::NILDRIVER=4  #aauto_id
+    ::NILDRIVER=6  #aauto_id
     ::DEF_PWD='123'
     ::MONTHNAMES_RUS = ["Ъ","Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Окрябрь","Ноябрь","Декабрь"]
  

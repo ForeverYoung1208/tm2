@@ -25,7 +25,7 @@ class AordersController < ApplicationController
       @aorder.ftime=Time.now.localtime
       @aorder.totime=Time.now.localtime
 
-      @onlineautos=Onlineauto.find_all_by_odate_id(@odate.id)
+      @onlineautos=Onlineauto.find_all_by_odate_id_puls_empty(@odate.id)
 
       @onlineauto=Onlineauto.new
       @onlineauto.odate_id=@odate.id
@@ -82,7 +82,7 @@ class AordersController < ApplicationController
     @aorder.ftime=Time.now.localtime
     @aorder.totime=Time.now.localtime
 
-    @onlineautos=Onlineauto.find_all_by_odate_id(@odate.id)
+    @onlineautos=Onlineauto.find_all_by_odate_id_puls_empty(@odate.id)
 
     @onlineauto=Onlineauto.new
     @onlineauto.odate_id=@odate.id
@@ -120,7 +120,7 @@ class AordersController < ApplicationController
   def edit
 
     @odate = session[:working_date]
-    @onlineautos=Onlineauto.find_all_by_odate_id(@odate.id)
+    @onlineautos=Onlineauto.find_all_by_odate_id_puls_empty(@odate.id)
   
     @aorder = Aorder.find(params[:id])
     @aorder.user_id=session[:user].id unless is_admin?
@@ -151,7 +151,7 @@ class AordersController < ApplicationController
     @aorder = Aorder.find(params[:id])
     @aorder.ttmid=session[:user].id
 
-    @onlineautos=Onlineauto.find_all_by_odate_id(@odate.id)
+    @onlineautos=Onlineauto.find_all_by_odate_id_puls_empty(@odate.id)
 
     respond_to do |format|
       if @aorder.update_attributes(params[:aorder])

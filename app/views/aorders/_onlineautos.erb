@@ -50,8 +50,8 @@
     <td><%= onld.aauto.autonumber if onld.aauto %></td>
     <td><%= onld.aauto.contact if onld.aauto %></td>
     <td><%= 'Дежурный' if onld.onduty %></td>
-    <td><%= link_to 'Удалить', onld, :method => :delete if is_admin? %></td>
-    <td><%= link_to '(Не-) дежурить', setonduty_path(:id=>onld.id) if is_admin? %></td>
+    <td><%= link_to 'Удалить', onld, :method => :delete if (is_admin? and onld.id) %></td>
+    <td><%= link_to '(Не-) дежурить', setonduty_path(:id=>onld.id) if (is_admin? and onld.id) %></td>
 
     <%
       t=9.hours

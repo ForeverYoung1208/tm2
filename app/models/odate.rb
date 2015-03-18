@@ -29,7 +29,7 @@ class Odate < ActiveRecord::Base
   end
 
   def close_day
-    if is_day_ok?
+    if day_errors.empty?
       self.isclosed=true
       self.save
     else
@@ -58,29 +58,20 @@ class Odate < ActiveRecord::Base
 
   private
 
-  def is_day_ok?
+  def day_errors
+    test1_errors=[]
     self.aorders.select(:aauto_id).uniq.map{|aorder| aorder.aauto_id }.each do |current_auto_id|
-      km_by_auto=0
-      min_km=10000000
-      max_km=0
       last_odoend=0
-      test1=true
-      self.aorders.where( "aauto_id = ?", current_auto_id ).order(odobegin: :asc).find_each do |current_order|
+      # test1 на то что нет разырвов в показаниях спидометра
+      self.aorders.where( "aauto_id = ?", current_auto_id ).order(odobegin: :asc).to_a.each do |current_order|
         
-        if (current_order.odobegin != last_odoend+1) and last_odoend != 0 then 
-          test1=false
+        if (current_order.odobegin != last_odoend) and last_odoend != 0 then 
+          test1_errors << { auto_id: current_auto_id, order_id: current_order.id, message: "разрыв в показаниях спидометра : #{current_order.odobegin}"}
         end
-        
-        km_by_auto += current_order.distance
-        min_km = current_order.odobegin if current_order.odobegin < min_km
-        max_km = current_order.odoend if current_order.odoend > max_km
+        last_odoend=current_order.odoend
       end
-
-      max_km - min_km
-##################
     end
-
-    true
+    test1_errors
   end
   
 end
