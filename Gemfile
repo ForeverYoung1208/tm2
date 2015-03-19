@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 #gem 'rails', '3.0.5'
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.13'
 
 gem 'mysql2'
 
@@ -11,8 +11,9 @@ gem 'mysql2'
 #? gem "fastthread"
 
 
-gem 'jquery-rails', '>= 1.0.3'
-### gem 'jquery-ui-rails'
+gem 'jquery-rails', '>=3.1.2'
+gem 'jquery-ui-rails', '>=4.1.2'
+
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
 

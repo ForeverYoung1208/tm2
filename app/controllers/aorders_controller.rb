@@ -40,9 +40,9 @@ class AordersController < ApplicationController
     begin
       @odate=Odate.set_day_status(params)
       session[:working_date]=@odate
-      session[:error_text] = 'Готово.'
+      session[:error_text]='Готово.'
     rescue TraficError => e
-      session[:error_text] = "Ошибка: #{e.message}"
+      session[:error_text]="Ошибка: #{e.message}"
     end
     redirect_to aorders_url
   end
@@ -78,7 +78,6 @@ class AordersController < ApplicationController
   #сука не работает
     flash.keep 
   # костыль
-  debugger
     @error_text=session[:error_text]
     session[:error_text]=nil
 
