@@ -1,3 +1,7 @@
+
+
+ <%= content_tag(:div, @error_text, id: "flash#{name}", class:"field_with_errors") if @error_text %>
+
 <div id="top_all">
   <div id="top_msg">
     Заказы автомобиля на день:

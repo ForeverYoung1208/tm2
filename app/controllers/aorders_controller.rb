@@ -37,9 +37,14 @@ class AordersController < ApplicationController
   end
 
   def set_day_status
-    @odate=Odate.set_day_status(params)
-    session[:working_date]=@odate
-    redirect_to aorders_path
+    begin
+      @odate=Odate.set_day_status(params)
+      session[:working_date]=@odate
+      session[:error_text] = 'Готово.'
+    rescue TraficError => e
+      session[:error_text] = "Ошибка: #{e.message}"
+    end
+    redirect_to aorders_url
   end
 
   def setdate
@@ -70,7 +75,13 @@ class AordersController < ApplicationController
   # GET /aorders.xml
   def index
 
-    flash.keep
+  #сука не работает
+    flash.keep 
+  # костыль
+  debugger
+    @error_text=session[:error_text]
+    session[:error_text]=nil
+
 
     @odate = session[:working_date]
     session[:sort_orders_by]||='id'

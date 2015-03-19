@@ -7,6 +7,7 @@ class Odate < ActiveRecord::Base
     has_many :aautos, :through=>:onlineautos;
 
     validates :thedate, :uniqueness=>true;
+
     
 
 
@@ -28,12 +29,16 @@ class Odate < ActiveRecord::Base
     d
   end
 
+
   def close_day
-    if day_errors.empty?
+    de = day_errors
+    if de.empty?
       self.isclosed=true
       self.save
     else
-      raise "Can't close - day is bad ((("
+      text = "Errors : Can't close - day is bad ((( : </br>"
+      de.each {|e| text += 'Auto: '+e[:auto_id].to_s+' Заказ № '+e[:order_id].to_s+', '+e[:message]+'</br>' }
+      raise ApplicationController::TraficError.new(text)
     end
   end
 
@@ -50,7 +55,7 @@ class Odate < ActiveRecord::Base
       d = Odate.find_by_id(p[:id])
       d.open_day
     else
-      raise "unknown day_action in params"
+      raise ArgumentError.new ("unknown day_action in params")
     end 
     d
   end

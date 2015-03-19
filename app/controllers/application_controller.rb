@@ -15,6 +15,9 @@ class ApplicationController < ActionController::Base
     protect_from_forgery
     helper_method :is_admin?, :is_current_user_or_admin?, :check_tabel_rights?
 
+    class TraficError < StandardError
+    end
+
 
     def is_admin?
       session[:user].userlevel_id == ::ADMIN_ID if session[:user]
@@ -74,6 +77,8 @@ class ApplicationController < ActionController::Base
         redirect_to root_url, :notice => "Действие не разрешено (только для табелирующих)"
     end
   end
+
+
 
 
 
