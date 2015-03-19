@@ -36,8 +36,8 @@ class Odate < ActiveRecord::Base
       self.isclosed=true
       self.save
     else
-      text = "Errors : Can't close - day is bad ((( : </br>"
-      de.each {|e| text += 'Auto: '+e[:auto_id].to_s+' Заказ № '+e[:order_id].to_s+', '+e[:message]+'</br>' }
+      text = "Невозможно закрыть день - ошибки: </br>"
+      de.each {|e| text += 'Авто: '+Aauto.find_by_id(e[:auto_id]).name_autodesc+' Заказ № '+e[:order_id].to_s+', '+e[:message]+'</br>' }
       raise ApplicationController::TraficError.new(text)
     end
   end

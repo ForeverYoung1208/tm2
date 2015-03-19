@@ -44,7 +44,8 @@ class AordersController < ApplicationController
     rescue TraficError => e
       session[:error_text]="Ошибка: #{e.message}"
     end
-    redirect_to aorders_url
+    flash[:notice]=session[:error_text]
+    redirect_to aorders_path
   end
 
   def setdate
@@ -75,9 +76,6 @@ class AordersController < ApplicationController
   # GET /aorders.xml
   def index
 
-  #сука не работает
-    flash.keep 
-  # костыль
     @error_text=session[:error_text]
     session[:error_text]=nil
 
