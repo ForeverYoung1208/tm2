@@ -17,6 +17,7 @@ Tm2::Application.routes.draw do
   match "uporderstable" => "aorders#uporderstable", :as =>"uporderstable"
   match "tabel" => "actions#tabel", :as =>"tabel"
   post "password_reset" => "users#password_reset", :as => "password_reset"
+  match "aorders/:id/edit_odometer" =>"aorders#edit_odometer", :as => "edit_aorder_odometer"
 
   match "stat" => "stat#index", :as =>"stat"
   match "stat_xml" => "stat#index_xml", :as =>"stat_xml"

@@ -135,6 +135,19 @@ class AordersController < ApplicationController
     @aorder.ttmid=session[:user].id
   end
 
+  def edit_odometer
+
+    @odate = session[:working_date]
+    @onlineautos=Onlineauto.find_all_by_odate_id_puls_empty(@odate.id)
+    @aorder = Aorder.find(params[:id])
+    @aorder.user_id=session[:user].id unless is_admin?
+    @aorder.ttmid=session[:user].id
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   # POST /aorders
   # POST /aorders.xml
   def create

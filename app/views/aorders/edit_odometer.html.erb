@@ -1,0 +1,86 @@
+<h1>Редактирование заказа</h1>
+<% if @aorder.errors.any? %>
+  <td colspan="8">
+    <div id="error_explanation">
+      <h2><%= pluralize(@aorder.errors.count, "ошибки! ") %> - ошибки  делают сохранение невозможным.:</h2>
+      <ul>
+      <% @aorder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  </td>
+  <br/>
+<% end %>
+
+<%= form_for(@aorder) do |f| %>
+  <table class="allorderlist"
+      <%= "id=table_inactive" if @odate.isclosed%>
+      <%= "id=table_active" if !@odate.isclosed%>>
+
+    <%=render 'head'%>
+    <tr>
+      <%=
+        f.hidden_field :ttmid
+      %>    
+
+      <td>
+        <%= @aorder.id %>
+      </td>
+
+      <td>
+        <%= @aorder.onname %>
+      </td>
+
+      <td>
+        <%= @aorder.department.name %>
+      </td>
+
+      <td>
+        <%= @aorder.contact %>
+      </td>
+
+      <td>
+        <%= @aorder.adestination %>
+      </td>
+
+      <td>
+        <%= @aorder.ftime.strftime("%H:%M") %>
+      </td>
+
+      <td>
+        <%= @aorder.totime.strftime("%H:%M") %>
+      </td>
+
+      <td>
+        <%= @aorder.aauto.name_autodesc  %>
+      </td>
+
+      <td>
+        <%= @aorder.comment %>
+      </td>
+
+      <td>
+        <%= f.text_field :odobegin, :size=>4 %>
+      </td>
+      <td>
+        <%= f.text_field :odoend, :size=>4 %>
+      </td>
+
+      <td>
+        <%= f.text_field :outofcity, :size=>3 %>
+      </td>
+
+
+      <td colspan="2" align="center">
+        <%= f.submit "сохранить", {:class=>"widthed"} if !@odate.isclosed%>
+      </td>
+
+    </tr>
+  </table>
+<% end %>
+
+
+
+<%= link_to 'Подробно', @aorder %> |
+<%= link_to 'Назад в список заказов', aorders_path %>
