@@ -15,7 +15,9 @@ class Aorder < ActiveRecord::Base
   before_update :check_rights;
   before_update :check_is_date_closed;
 
+  attr_accessor :is_updating_odometer
   attr_accessor :ttmid;
+
 # upd. спустя 2 года: странная логика с :ttmid но лень переделывать:
 # перед Aorder.save / update в контроллере в ttmid прописывается id пользователя, который
 # пытается сохранить/обновить данные, потом вызывается  before_update который дергает check_rights 
@@ -30,7 +32,7 @@ end
 #    Убрали возможность редактировать свои заявки, только админ.
 #    if (ttmid.to_i==Aorder.find_by_id(self.id).user_id) or (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID)
     if (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID) or 
-        ( (ttmid.to_i==Aorder.find_by_id(self.id).user_id) and (self.aauto_id==nil or self.aauto_id==::NILDRIVER))
+        ( (ttmid.to_i==Aorder.find_by_id(self.id).user_id) and (self.aauto_id==nil or self.aauto_id==::NILDRIVER or is_updating_odometer))
       res=true
     else
       self.errors.add(:ttmid, "нет прав на изменеие, только для Администратора!")

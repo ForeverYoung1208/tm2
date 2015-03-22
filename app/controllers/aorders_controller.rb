@@ -140,8 +140,9 @@ class AordersController < ApplicationController
     @odate = session[:working_date]
     @onlineautos=Onlineauto.find_all_by_odate_id_puls_empty(@odate.id)
     @aorder = Aorder.find(params[:id])
-    @aorder.user_id=session[:user].id unless is_admin?
-    @aorder.ttmid=session[:user].id
+    @aorder.user_id = session[:user].id unless is_admin?
+    @aorder.ttmid = session[:user].id
+    @aorder.is_updating_odometer = true
 
     respond_to do |format|
       format.html
@@ -154,6 +155,8 @@ class AordersController < ApplicationController
     @odate = session[:working_date]    
     @aorder = Aorder.new(params[:aorder])
     @aorder.ttmid=session[:user].id
+    @onlineautos=Onlineauto.find_all_by_odate_id_puls_empty(@odate.id)
+        
     respond_to do |format|
       if @aorder.save
         format.html { redirect_to(aorders_path, :notice => 'Aorder was successfully created.') }

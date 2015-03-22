@@ -69,11 +69,12 @@ class Odate < ActiveRecord::Base
       last_odoend=0
       # test1 на то что нет разырвов в показаниях спидометра
       self.aorders.where( "aauto_id = ?", current_auto_id ).order(odobegin: :asc).to_a.each do |current_order|
-        
-        if (current_order.odobegin != last_odoend) and last_odoend != 0 then 
-          test1_errors << { auto_id: current_auto_id, order_id: current_order.id, message: "разрыв в показаниях спидометра : #{current_order.odobegin}"}
+        if !current_order.iscanceled?
+          if (current_order.odobegin != last_odoend) and last_odoend != 0 then 
+            test1_errors << { auto_id: current_auto_id, order_id: current_order.id, message: "разрыв в показаниях спидометра : #{last_odoend} - #{current_order.odobegin}"}
+          end
+          last_odoend=current_order.odoend
         end
-        last_odoend=current_order.odoend
       end
     end
     test1_errors

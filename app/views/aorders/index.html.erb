@@ -1,7 +1,6 @@
 
 
- <%= content_tag(:div, @error_text, id: "flash", class:"field_with_errors") if @error_text %>
-
+ 
 <div id="top_all">
   <div id="top_msg">
     Заказы автомобиля на день:
@@ -77,6 +76,9 @@
   <div id="onlineautos">
     <%= render 'onlineautos' %>
   </div>
+
+<%= content_tag(:div, raw(@error_text), id: "flash", class:"field_with_errors") if @error_text %>
+
 
   <div id="links">
       <br />  <%= link_to 'Справочник всех автомобилей', aautos_path %>

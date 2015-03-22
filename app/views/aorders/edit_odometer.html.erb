@@ -22,7 +22,11 @@
     <tr>
       <%=
         f.hidden_field :ttmid
+      %>
+      <%=
+        f.hidden_field :is_updating_odometer
       %>    
+
 
       <td>
         <%= @aorder.id %>
@@ -53,7 +57,7 @@
       </td>
 
       <td>
-        <%= @aorder.aauto.name_autodesc  %>
+        <%= @aorder.aauto.name_autodesc if @aorder.aauto %>
       </td>
 
       <td>
@@ -61,14 +65,14 @@
       </td>
 
       <td>
-        <%= f.text_field :odobegin, :size=>4 %>
+        <%= f.text_field :odobegin, :size=>4 if @aorder.aauto %>
       </td>
       <td>
-        <%= f.text_field :odoend, :size=>4 %>
+        <%= f.text_field :odoend, :size=>4 if @aorder.aauto %>
       </td>
 
       <td>
-        <%= f.text_field :outofcity, :size=>3 %>
+        <%= f.text_field :outofcity, :size=>3 if @aorder.aauto %>
       </td>
 
 
