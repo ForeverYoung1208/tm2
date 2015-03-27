@@ -16,14 +16,14 @@
 
   <%= form_tag(stat_xml_path, :format=> :xml) do %>
 
-       <%= hidden_field_tag :first_date_xml, @date_begin_xml,{value: @date_begin} %>
-       <%= hidden_field_tag :last_date_xml, @date_end_xml, {value: @date_end} %>
-       <%= submit_tag 'загрузить в xml' %>
+       <%= hidden_field_tag :first_date, @date_begin %>
+       <%= hidden_field_tag :last_date, @date_end %>
+       <%= submit_tag 'загрузить в xml (сортировки нет)' %>
   <% end %>
 
 
-<h2> Сформировать маршрутный лист за указанный период </h2>
-    <%= form_tag(routelist_path) do %>
+<h2> Сформировать маршрутные листы за указанный период </h2>
+    <%= form_tag(routelist_path, :target =>'_blank') do %>
       <%= hidden_field_tag :first_date, @date_begin %>
       <%= hidden_field_tag :last_date, @date_end %>
 

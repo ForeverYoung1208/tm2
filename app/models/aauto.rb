@@ -7,5 +7,11 @@ class Aauto < ActiveRecord::Base
   def name_autodesc
   	self.name+' ('+self.autodesc+')'
   end
+
+  def self.used_in_orders(aorders)
+		auto_ids=[]
+		aorders.each {|aorder| auto_ids<<aorder.aauto.id }
+		Aauto.where(id: auto_ids)
+  end
  
 end

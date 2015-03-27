@@ -66,6 +66,11 @@ end
     self.odoend-self.odobegin
   end
 
+  def self.get_by_dates(date_begin, date_end, sort_orders_by='id')
+    join_str = "LEFT OUTER JOIN `odates` ON `odates`.`id` = `aorders`.`odate_id`"
+    Aorder.joins(join_str).where("thedate >= ? AND thedate <= ? AND iscanceled=false", date_begin, date_end).order(sort_orders_by)
+  end
+
 end
 
 

@@ -16,7 +16,7 @@ class AordersController < ApplicationController
       )
 
       @odate = session[:working_date]
-      @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").order(session[:sort_orders_by]).where("odate_id=#{@odate.id} AND iscanceled=false")
+      @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").where("odate_id=#{@odate.id} AND iscanceled=false").order(session[:sort_orders_by])
       @aorder = Aorder.new
       @aorder.odate=@odate
       @aorder.iscanceled=false
@@ -59,10 +59,10 @@ class AordersController < ApplicationController
     redirect_to aorders_path
   end
 
-  def setosort
-    session[:sort_orders_by]=params[:sorton]
-    redirect_to aorders_path
-  end
+#  def setosort
+#    session[:sort_orders_by]=params[:sorton]
+#    redirect_to aorders_path
+#  end
 
   def ocancel
     @aorder=Aorder.find_by_id(params[:id])
@@ -78,11 +78,11 @@ class AordersController < ApplicationController
 
     @error_text=session[:error_text]
     session[:error_text]=nil
-
-
     @odate = session[:working_date]
-    session[:sort_orders_by]||='id'
-    @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").order(session[:sort_orders_by]).where("odate_id=#{@odate.id} AND iscanceled=false")
+
+    params[:sorton] ? (session[:sort_orders_by] = params[:sorton]) : (session[:sort_orders_by]||='id')
+
+    @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").where("odate_id=#{@odate.id} AND iscanceled=false").order(session[:sort_orders_by])
     @aorder = Aorder.new
     @aorder.odate=@odate
     @aorder.iscanceled=false

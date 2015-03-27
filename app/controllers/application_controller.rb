@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 class ApplicationController < ActionController::Base
+    protect_from_forgery
+
+
     ::USER_ID=1 #userlevel_id
     ::ADMIN_ID=2 #userlevel_id
 #    ::NO_COMPANY_ID=5 
@@ -13,7 +16,6 @@ class ApplicationController < ActionController::Base
     ::FREE_REGISTRATION = true
 #    ADMIN_ID=::ADMIN_ID
 
-    protect_from_forgery
     helper_method :is_admin?, :is_current_user_or_admin?, :check_tabel_rights?
 
     class TraficError < StandardError
