@@ -27,8 +27,8 @@
       <%= hidden_field_tag :first_date, @date_begin %>
       <%= hidden_field_tag :last_date, @date_end %>
 
-       <%= label_tag :auto, 'по автомобилю' %>
-       <%= select_tag :auto,  options_for_select( @auto_list.collect{|u| [u.name_autodesc, u.id]} ) %>
+       <%= label_tag :auto_id, 'по автомобилю' %>
+       <%= select_tag :auto_id,  options_for_select( @auto_list.collect{|u| [u.name_autodesc, u.id]} ) %>
 
       <%= submit_tag 'сформировать' %>
     <% end %>

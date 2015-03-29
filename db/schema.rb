@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150226183602) do
+ActiveRecord::Schema.define(:version => 20150329140952) do
 
   create_table "aautos", :force => true do |t|
     t.string   "name"
@@ -68,8 +68,9 @@ ActiveRecord::Schema.define(:version => 20150226183602) do
   create_table "odates", :force => true do |t|
     t.date     "thedate"
     t.boolean  "isclosed"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "was_used",   :default => false
   end
 
   create_table "onlineautos", :force => true do |t|

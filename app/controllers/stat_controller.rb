@@ -13,26 +13,27 @@ class StatController < ApplicationController
 		@aorders=Aorder.get_by_dates(params[:first_date], params[:last_date])
 
 		send_data @aorders.to_xml(
-				:procs =>   [lambda{ |options, record| options[:builder].tag!('department', record.department.name) },
-								lambda{ |options, record| options[:builder].tag!('driver', record.aauto.name_autodesc) },
-								lambda{ |options, record| options[:builder].tag!('date', record.odate.thedate) },
-								lambda{ |options, record| options[:builder].tag!('user_author', record.user.name) },
-								lambda{ |options, record| options[:builder].tag!('ftime_xml', record.ftime.strftime("%H:%M") ) },
-								lambda{ |options, record| options[:builder].tag!('totime_xml', record.totime.strftime("%H:%M") ) }
+			:procs =>   [lambda{ |options, record| options[:builder].tag!('department', record.department.name) },
+							lambda{ |options, record| options[:builder].tag!('driver', record.aauto.name_autodesc) if record.aauto },
+							lambda{ |options, record| options[:builder].tag!('date', record.odate.thedate) },
+							lambda{ |options, record| options[:builder].tag!('user_author', record.user.name) },
+							lambda{ |options, record| options[:builder].tag!('ftime_xml', record.ftime.strftime("%H:%M") ) },
+							lambda{ |options, record| options[:builder].tag!('totime_xml', record.totime.strftime("%H:%M") ) }
 
-							],
-				:except =>  [:aauto_id, :department_id, :odate_id, :user_id, :ftime, :totime],
-				:skip_types => true
-				), 
-			:type => 'text/xml; charset=UTF-8;',
-			:disposition => "attachment",
-			:filename => "stat.xml"
+						],
+			:except =>  [:aauto_id, :department_id, :odate_id, :user_id, :ftime, :totime],
+			:skip_types => true
+			), 
+		:type => 'text/xml; charset=UTF-8;',
+		:disposition => "attachment",
+		:filename => "stat.xml"
 	end
 
 
 	def routelist
-		@dates = Odate.where("thedate >= ? and thedate <= ?", params[:first_date], params[:last_date] ).pluck(:thedate)
+		@aorders=Aorder.get_by_dates(params[:first_date], params[:last_date]).where("aorders.aauto_id= ? ", params[:auto_id])
 
+		@odates = Odate.used_in_orders(@aorders)
 
 		respond_to do |format|
 		  format.html # routelist.html.erb

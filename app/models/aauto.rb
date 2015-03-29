@@ -9,9 +9,14 @@ class Aauto < ActiveRecord::Base
   end
 
   def self.used_in_orders(aorders)
-		auto_ids=[]
-		aorders.each {|aorder| auto_ids<<aorder.aauto.id }
-		Aauto.where(id: auto_ids)
+
+# Заменил плюком :)))    можно удалить если плюк не будет глючить
+#		auto_ids=[]
+#		aorders.each {|aorder| auto_ids<<aorder.aauto.id }
+#		Aauto.where(id: auto_ids)
+
+   Aauto.where(id: aorders.pluck(:aauto_id))
+
   end
  
 end

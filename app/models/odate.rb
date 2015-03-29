@@ -18,12 +18,12 @@ class Odate < ActiveRecord::Base
     result
   end
   
-  def self.get_today
-    t=Time.now.to_date
+  def self.get_or_create_by_date(t = Time.now.to_date)
     if not d = Odate.find_by_thedate(t)
       d = Odate.new
       d.thedate=t
-      d.isclosed=false
+      d.isclosed=true
+      d.was_used=false
       d.save
     end
     d
@@ -44,6 +44,7 @@ class Odate < ActiveRecord::Base
 
   def open_day
     self.isclosed=false
+    self.was_used=true
     self.save
   end
 
@@ -58,6 +59,10 @@ class Odate < ActiveRecord::Base
       raise ArgumentError.new ("unknown day_action in params")
     end 
     d
+  end
+
+  def self.used_in_orders(aorders)
+    Odate.where(id: aorders.pluck(:odate_id))
   end
 
 

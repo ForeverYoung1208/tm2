@@ -2,7 +2,7 @@
 
 class SessionsController < ApplicationController
   def new
-    session[:working_date] = Odate.get_today
+    session[:working_date] = Odate.get_or_create_by_date(Time.now.to_date)
   end
  
   def create

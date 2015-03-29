@@ -49,13 +49,7 @@ class AordersController < ApplicationController
   end
 
   def setdate
-    if not session[:working_date]=Odate.find_by_thedate(params[:tek_date])
-      d=Odate.new
-      d.isclosed=false
-      d.thedate=params[:tek_date]
-      d.save
-      session[:working_date]=d
-    end
+    session[:working_date]=Odate.get_or_create_by_date(params[:tek_date])
     redirect_to aorders_path
   end
 
