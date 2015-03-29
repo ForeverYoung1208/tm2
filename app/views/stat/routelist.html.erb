@@ -1,34 +1,43 @@
-<h2>Маршрутні листи по автівці</h2> 
-<br/>
-
-<br/><br/>
-<%= @aorders.explain %>
-<br/><br/>
-<%= @odates.explain %>
-<br/><br/>
 
 
-<% @odates.each do|d|  %>
-	<h3>Дата: <%= d[:thedate].strftime('%Y.%m.%d') %></h3>
+<% @days_of_orders.each do|date, orders|  
+			total_city = 0
+			total_outofcity = 0
+%>
+<h2>Маршрутний лист по автівці: <%= @auto.name_autodesc %></h2> 
+	<h3>Дата: <%= date.strftime('%d.%m.%Y') %></h3>
 	<table class="routelist">
 		<tr>
-			<th>Пункт(и) призначеня</th>
-			<th>Час початку руху</th>
-			<th>Час закінченя руху</th>
-			<th>Спідометр на початку</th>
-			<th>Спідометр в кінці</th>
-			<th>Дистанція</th>
-			<th>ПІБ відповідальної особи</th>
+			<th id='adestination'>Пункт(и) призначеня</th>
+			<th id='ftime'>Час початку руху</th>
+			<th id='totime'>Час закінченя руху</th>
+			<th id='odobegin'>Спідометр на початку</th>
+			<th id='odoend'>Спідометр в кінці</th>
+			<th id='distance'>Дистанція всього, км.</th>
+			<th id='outofcity'>Дистанція поза містом, км.</th>
+			<th id='onname'>ПІБ відповідальної особи</th>
 		</tr>
-		<tr>
-			<td>Пункт(и) призначеня</td>
-			<td>Час початку руху</td>
-			<td>Час закінченя руху</td>
-			<td>Спідометр на початку</td>
-			<td>Спідометр в кінці</td>
-			<td>Дистанція</td>
-			<td>ПІБ відповідальної особи</td>		
-		</tr>
+
+		<% orders.each do |order|
+			total_city =+ order.distance
+			total_outofcity =+ order.outofcity
+		%>
+			<tr>
+				<td><%= order.adestination %></td>
+				<td><%= order.ftime.strftime("%H:%M") %></td>
+				<td><%= order.totime.strftime("%H:%M") %></td>
+				<td><%= order.odobegin %></td>
+				<td><%= order.odoend %></td>
+				<td><%= order.distance %></td>
+				<td><%= order.outofcity %></td>
+				<td><%= order.onname %></td>		
+			</tr>
+		<% end %>
   </table>
+
+  <h4>Всего за день, км: <%= total_city + total_outofcity %></h4>
+  <h4>Из них по городу, км: <%= total_city %></h4>
+  <h4>Из них за городом, км:<%= total_outofcity %></h4>
+  <p class = 'break_page'> ---наступна сторінка-- </p>
 
 <% end %>

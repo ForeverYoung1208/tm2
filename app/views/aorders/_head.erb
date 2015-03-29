@@ -1,7 +1,7 @@
 <tr>
     <th class="nomer"> <%= link_to('№', aorders_path(:sorton=>'aorders.id'))%> </th>
     <th class="fio"> <%= link_to('Кто едет', aorders_path(:sorton=>'aorders.onname'))%> </th>
-    <th class="depart"><%= link_to('Отдел', aorders_path(:sorton=>'aorders.ondepartment'))%></th>
+    <th class="depart"><%= link_to('Отдел', aorders_path(:sorton=>'aorders.department_id'))%></th>
     <th class="contact"><%= link_to('Тел.', aorders_path(:sorton=>'aorders.contact'))%></th>
     <th class="destination"><%= link_to('Куда', aorders_path(:sorton=>'aorders.adestination'))%></th>
     <th class="time"><%= link_to('"с"', aorders_path(:sorton=>'aorders.ftime'))%></th>

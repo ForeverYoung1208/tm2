@@ -4,7 +4,7 @@ class StatController < ApplicationController
 	def index
 		@date_begin = params[:first_date] ? params[:first_date] : Time.now.to_date-1.day
 		@date_end = params[:last_date] ? params[:last_date] : Time.now.to_date
-		@aorders=Aorder.get_by_dates(@date_begin, @date_end, params[:sorton])
+		@aorders=Aorder.get_by_dates(@date_begin, @date_end, params[:sorton]).order(:ftime)
 		@auto_list=Aauto.used_in_orders(@aorders)
 
 	end
@@ -31,9 +31,24 @@ class StatController < ApplicationController
 
 
 	def routelist
-		@aorders=Aorder.get_by_dates(params[:first_date], params[:last_date]).where("aorders.aauto_id= ? ", params[:auto_id])
+#	@aorders = Aorder.get_by_dates(params[:first_date], params[:last_date]).where("aorders.aauto_id= ? ", params[:auto_id])
+#	@odates = Odate.used_in_orders(@aorders).order(:thedate)
 
-		@odates = Odate.used_in_orders(@aorders)
+# получаем массив  интересующих нас aorders по датам и машине
+		aorders = Aorder.get_by_dates( params[:first_date], params[:last_date] ).where("aorders.aauto_id= ? ", params[:auto_id]).reorder(:thedate)
+
+# получаем idшки дней где оно біло
+		used_odate_ids = aorders.pluck(:odate_id).uniq!
+
+#формируем хеш {дата  => [масив ордеров] }
+		@days_of_orders={}
+
+		used_odate_ids.each do |curr_odate_id|
+			@days_of_orders[ Odate.find_by_id(curr_odate_id).thedate ] = aorders.where("odate_id = ?", curr_odate_id).order(:ftime)
+		end
+
+
+		@auto = Aauto.find_by_id(params[:auto_id])
 
 		respond_to do |format|
 		  format.html # routelist.html.erb

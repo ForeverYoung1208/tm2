@@ -19,7 +19,7 @@
     <%end%>
 
 
-    <td><%= aorder.odate.thedate %></td>
+    <td <%= 'class= baddate' if !aorder.odate.isclosed %> ><%= aorder.odate.thedate %></td>
     <td><%= aorder.user.name %></td>
 
 

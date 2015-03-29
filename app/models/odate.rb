@@ -22,7 +22,7 @@ class Odate < ActiveRecord::Base
     if not d = Odate.find_by_thedate(t)
       d = Odate.new
       d.thedate=t
-      d.isclosed=true
+      d.isclosed=false
       d.was_used=false
       d.save
     end

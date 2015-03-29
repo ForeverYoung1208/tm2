@@ -16,7 +16,7 @@ class AordersController < ApplicationController
       )
 
       @odate = session[:working_date]
-      @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").where("odate_id=#{@odate.id} AND iscanceled=false").order(session[:sort_orders_by])
+      @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").where("odate_id=#{@odate.id} AND iscanceled=false").order(session[:sort_orders_by]).order(:ftime)
       @aorder = Aorder.new
       @aorder.odate=@odate
       @aorder.iscanceled=false
@@ -76,7 +76,7 @@ class AordersController < ApplicationController
 
     params[:sorton] ? (session[:sort_orders_by] = params[:sorton]) : (session[:sort_orders_by]||='id')
 
-    @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").where("odate_id=#{@odate.id} AND iscanceled=false").order(session[:sort_orders_by])
+    @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").where("odate_id=#{@odate.id} AND iscanceled=false").order(session[:sort_orders_by]).order(:ftime)
     @aorder = Aorder.new
     @aorder.odate=@odate
     @aorder.iscanceled=false

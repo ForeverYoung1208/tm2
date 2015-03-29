@@ -15,6 +15,8 @@ class Aorder < ActiveRecord::Base
   before_update :check_rights;
   before_update :check_is_date_closed;
 
+  after_save :make_odate_be_used
+
   attr_accessor :is_updating_odometer
   attr_accessor :ttmid;
 
@@ -24,13 +26,18 @@ class Aorder < ActiveRecord::Base
 # и вот уже тут анализируется этот id
 # кстаи логика нормальная а имя свойства конченное. Но таки лень переделывать.
 
-def department_name
-  self.department.name
-end
+  def make_odate_be_used
+    self.odate.was_used=true
+    self.odate.save!
+  end
+
+  def department_name
+    self.department.name
+  end
 
   def check_rights
-#    Убрали возможность редактировать свои заявки, только админ.
-#    if (ttmid.to_i==Aorder.find_by_id(self.id).user_id) or (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID)
+  #    Убрали возможность редактировать свои заявки, только админ.
+  #    if (ttmid.to_i==Aorder.find_by_id(self.id).user_id) or (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID)
     if (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID) or 
         ( (ttmid.to_i==Aorder.find_by_id(self.id).user_id) and (self.aauto_id==nil or self.aauto_id==::NILDRIVER or is_updating_odometer))
       res=true

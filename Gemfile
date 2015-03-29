@@ -15,7 +15,7 @@ gem 'jquery-rails', '>=3.1.2'
 gem 'jquery-ui-rails', '>=4.1.2'
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
-
+gem 'sass-rails'
 
 
 

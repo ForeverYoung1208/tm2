@@ -1,0 +1,41 @@
+
+table.allorderlist td.baddate {
+  background-color: #FF8800;
+}
+
+.break_page{
+	page-break-after:always;
+}
+
+table.routelist{
+  margin-top: 0em;
+  border-spacing: 0px;
+  border-color: black;
+  border-width: 0px 0px 1px 1px;
+  border-style: solid;
+  width: auto;
+  table-layout: fixed;
+
+  #adestination {width: 15em;};
+	#ftime {width: 5em;};
+	#totime {width: 5em;};
+	#odobegin {width: 5em;};
+	#odoend {width: 5em;};
+	#distance {width: 5em;};
+	#outofcity {width: 5em;};
+	#onname {width: 5em;};
+
+	th{
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    background-color: #B9EFFF;
+	};
+
+	td{
+    border-width: 1px 1px 0px 0px;
+    border-style: solid;
+    background-color: #FFFFFF;
+	};
+}
+
+
