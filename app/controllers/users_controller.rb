@@ -22,7 +22,13 @@ class UsersController < ApplicationController
     get_companies_and_userlevels
 
     if @user.save
-      redirect_to users_path, :notice => "Пользователь #{@user.name} создан"
+
+      if ::FREE_REGISTRATION
+        redirect_to root_url, :notice => "Пользователь #{@user.name} создан (свободная регистрация)"
+      else  
+        redirect_to users_path, :notice => "Пользователь #{@user.name} создан"
+      end
+
     else
       render "new"
     end
