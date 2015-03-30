@@ -38,13 +38,13 @@ class StatController < ApplicationController
 		aorders = Aorder.get_by_dates( params[:first_date], params[:last_date] ).where("aorders.aauto_id= ? ", params[:auto_id]).reorder(:thedate)
 
 # получаем idшки дней где оно біло
-		used_odate_ids = aorders.pluck(:odate_id).uniq!
+		used_odate_ids = aorders.pluck(:odate_id).uniq
 
 #формируем хеш {дата  => [масив ордеров] }
 		@days_of_orders={}
 
 		used_odate_ids.each do |curr_odate_id|
-			@days_of_orders[ Odate.find_by_id(curr_odate_id).thedate ] = aorders.where("odate_id = ?", curr_odate_id).order(:ftime)
+			@days_of_orders[ Odate.find_by_id(curr_odate_id) ] = aorders.where("odate_id = ?", curr_odate_id).order(:ftime)
 		end
 
 

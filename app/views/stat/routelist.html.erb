@@ -1,11 +1,16 @@
 
 
-<% @days_of_orders.each do|date, orders|  
-			total_city = 0
+<% @days_of_orders.each do|odate, orders|  
+			total_all = 0
 			total_outofcity = 0
 %>
 <h2>Маршрутний лист по автівці: <%= @auto.name_autodesc %></h2> 
-	<h3>Дата: <%= date.strftime('%d.%m.%Y') %></h3>
+	<h3>Дата: <%= odate.thedate.strftime('%d.%m.%Y') %> 
+		<% if !odate.isclosed%>
+			<div class='field_with_errors'> - День не закрито !</div>
+		<% end %>
+
+	</h3>
 	<table class="routelist">
 		<tr>
 			<th id='adestination'>Пункт(и) призначеня</th>
@@ -14,13 +19,13 @@
 			<th id='odobegin'>Спідометр на початку</th>
 			<th id='odoend'>Спідометр в кінці</th>
 			<th id='distance'>Дистанція всього, км.</th>
-			<th id='outofcity'>Дистанція поза містом, км.</th>
+			<th id='outofcity'>Із них поза містом, км.</th>
 			<th id='onname'>ПІБ відповідальної особи</th>
 		</tr>
 
 		<% orders.each do |order|
-			total_city =+ order.distance
-			total_outofcity =+ order.outofcity
+			total_all += order.distance
+			total_outofcity += order.outofcity
 		%>
 			<tr>
 				<td><%= order.adestination %></td>
@@ -35,8 +40,8 @@
 		<% end %>
   </table>
 
-  <h4>Всего за день, км: <%= total_city + total_outofcity %></h4>
-  <h4>Из них по городу, км: <%= total_city %></h4>
+  <h4>Всего за день, км: <%= total_all %></h4>
+  <h4>Из них по городу, км: <%= total_all-total_outofcity %></h4>
   <h4>Из них за городом, км:<%= total_outofcity %></h4>
   <p class = 'break_page'> ---наступна сторінка-- </p>
 
