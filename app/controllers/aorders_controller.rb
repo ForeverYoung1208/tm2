@@ -135,6 +135,8 @@ class AordersController < ApplicationController
     @onlineautos=Onlineauto.find_all_by_odate_id_puls_empty(@odate.id)
     @aorder = Aorder.find(params[:id])
     @aorder.user_id = session[:user].id unless is_admin?
+
+#вот здесь костыль с правами на редактирование
     @aorder.ttmid = session[:user].id
     @aorder.is_updating_odometer = true
 

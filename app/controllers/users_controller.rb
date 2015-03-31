@@ -1,8 +1,10 @@
 # encoding: utf-8
 
 class UsersController < ApplicationController
-#  before_filter :require_login
-  before_filter :require_login, except: [:new, :create]
+
+  ::FREE_REGISTRATION ? before_filter( :require_login, except: [:new, :create] ) : (before_filter :require_login)
+#  
+  
 #    before_filter :is_admin
  
   def new

@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
 #    ::NO_COMPANY_ID=5 
     ::USERTABEL_ID=3 #userlevel_id
     ::ALLTABELUSER_ID=4 #userlevel_id
+    ::DRIVERUSER_ID=5 #userlevel_id
+
     ::NILDRIVER=6  #aauto_id
     ::DEF_PWD='123'
     ::MONTHNAMES_RUS = ["Ъ","Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Окрябрь","Ноябрь","Декабрь"]
@@ -16,7 +18,7 @@ class ApplicationController < ActionController::Base
     ::FREE_REGISTRATION = true
 #    ADMIN_ID=::ADMIN_ID
 
-    helper_method :is_admin?, :is_current_user_or_admin?, :check_tabel_rights?
+    helper_method :is_admin?, :is_current_user_or_admin?, :check_tabel_rights?, :is_current_user_driver?
 
     class TraficError < StandardError
     end
@@ -37,6 +39,10 @@ class ApplicationController < ActionController::Base
         res=true if session[:user].userlevel_id == ::ADMIN_ID
       end
       res
+    end
+
+    def is_current_user_driver?
+      session[:user].userlevel_id == ::DRIVERUSER_ID if session[:user]
     end
 
 

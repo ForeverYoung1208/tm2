@@ -29,6 +29,8 @@
       <td><%= link_to 'Измен. заказ', edit_aorder_path(aorder) %></td>
     <%elsif is_current_user_or_admin?(aorder.user_id) and !@odate.isclosed%>
       <td><%= link_to 'Измен. пробег', edit_aorder_odometer_path(aorder) %></td>
+    <%elsif is_current_user_driver? and !@odate.isclosed%>
+      <td><%= link_to 'Измен. пробег', edit_aorder_odometer_path(aorder) %></td>
     <%else%>
       <td><%= link_to 'Детали', aorder_path(aorder) %></td>
     <%end%>
