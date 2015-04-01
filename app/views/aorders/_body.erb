@@ -12,16 +12,16 @@
     
 
     <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
-        <%= aorder.odobegin %>
+        <%= aorder.odobegin if aorder.odobegin %>
     <%end%>
 
   
     <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
-        <%= aorder.odoend %>
+        <%= aorder.odoend if aorder.odoend%>
     <%end%>
 
     <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
-        <%= aorder.outofcity %>
+        <%= aorder.outofcity if aorder.outofcity%>
     <%end%>
 
 
