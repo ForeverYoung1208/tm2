@@ -11,18 +11,18 @@
     <td class= 'hoverable' data-orderid='[<%=aorder.id%>]' > <%= aorder.comment %></td>
     
 
-    <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
-        <%= aorder.odobegin if aorder.odobegin %>
-    <%end%>
+    <%= td_odometer( aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
+        <%= aorder.odobegin  %>
+    <%end %>
 
   
-    <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
-        <%= aorder.odoend if aorder.odoend%>
-    <%end%>
+    <%= td_odometer( aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
+        <%= aorder.odoend %>
+    <%end %>
 
-    <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
-        <%= aorder.outofcity if aorder.outofcity%>
-    <%end%>
+    <%= td_odometer( aorder.odobegin, aorder.odoend, aorder.outofcity, :"data-orderid"=>"[#{aorder.id}]") do %>
+        <%= aorder.outofcity%>
+    <%end %>
 
 
     <% if is_admin? and !@odate.isclosed%>

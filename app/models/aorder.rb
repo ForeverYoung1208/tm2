@@ -12,6 +12,12 @@ class Aorder < ActiveRecord::Base
   validates :adestination, :presence=>true;
   validates :ftime, :presence=>true;
   validates :totime, :presence=>true;
+
+  validates :odobegin, :presence=>true;
+  validates :odoend, :presence=>true;
+  validates :outofcity, :presence=>true;
+
+
   before_update :check_rights;
   before_update :check_is_date_closed;
 
