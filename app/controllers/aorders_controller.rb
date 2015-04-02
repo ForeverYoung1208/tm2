@@ -79,6 +79,11 @@ class AordersController < ApplicationController
 
     @aorders = Aorder.joins("LEFT OUTER JOIN `aautos` ON `aautos`.`id` = `aorders`.`aauto_id`").where("odate_id=#{@odate.id} AND iscanceled=false").order(session[:sort_orders_by]).order(:ftime)
     @aorder = Aorder.new
+
+    @aorder.odobegin = ''
+    @aorder.odoend = ''
+    @aorder.outofcity = ''
+
     @aorder.odate=@odate
     @aorder.iscanceled=false
     @aorder.user_id=session[:user].id

@@ -20,6 +20,8 @@ class Aorder < ActiveRecord::Base
 
   before_update :check_rights;
   before_update :check_is_date_closed;
+  before_validation :replace_nil_with_zero;
+
 
   after_save :make_odate_be_used
 
@@ -31,6 +33,13 @@ class Aorder < ActiveRecord::Base
 # пытается сохранить/обновить данные, потом вызывается  before_update который дергает check_rights 
 # и вот уже тут анализируется этот id
 # кстаи логика нормальная а имя свойства конченное. Но таки лень переделывать.
+
+  def replace_nil_with_zero
+    self.odobegin = 0 if !self.odobegin
+    self.odoend = 0 if !self.odoend
+    self.outofcity = 0 if !self.outofcity
+  end
+
 
   def make_odate_be_used
     self.odate.was_used=true
