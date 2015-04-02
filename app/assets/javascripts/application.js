@@ -12,6 +12,6 @@ $(document).ready(
   function(){
     setInterval(function(){
       $.get('/uporderstable')
-    }, 30000);
+    }, 120000);
   }
 );

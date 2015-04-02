@@ -128,6 +128,11 @@ class AordersController < ApplicationController
     @aorder = Aorder.find(params[:id])
     @aorder.user_id=session[:user].id unless is_admin?
     @aorder.ttmid=session[:user].id
+
+    @aorder.odobegin = '' if @aorder.odobegin == 0
+    @aorder.odoend = '' if @aorder.odoend == 0
+    @aorder.outofcity = '' if @aorder.outofcity == 0
+    
   end
 
   def edit_odometer
