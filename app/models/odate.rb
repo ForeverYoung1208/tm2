@@ -72,13 +72,15 @@ class Odate < ActiveRecord::Base
     test1_errors=[]
     self.aorders.select(:aauto_id).uniq.map{|aorder| aorder.aauto_id }.each do |current_auto_id|
       last_odoend=0
+      prev_order_id=0
       # test1 на то что нет разырвов в показаниях спидометра
       self.aorders.where( "aauto_id = ?", current_auto_id ).order(:odobegin).to_a.each do |current_order|
         if !current_order.iscanceled?
           if (current_order.odobegin != last_odoend) and last_odoend != 0 then 
-            test1_errors << { auto_id: current_auto_id, order_id: current_order.id, message: "разрыв в показаниях спидометра : #{last_odoend} - #{current_order.odobegin}"}
+            test1_errors << { auto_id: current_auto_id, order_id: current_order.id, message: "разрыв в показаниях спидометра заказов № #{prev_order_id} и #{current_order.id} : #{last_odoend} - #{current_order.odobegin}"}
           end
           last_odoend=current_order.odoend
+          prev_order_id=current_order.id
         end
       end
     end
