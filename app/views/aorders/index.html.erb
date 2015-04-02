@@ -63,6 +63,8 @@
   </div>
 </div>
 
+<%= content_tag(:div, raw(@error_text), id: "flash", class:"field_with_errors") if @error_text %>
+
 <div id="olist_wrapper">
   <div id="olist_div">
       <%= render 'olist' %>
@@ -77,7 +79,7 @@
     <%= render 'onlineautos' %>
   </div>
 
-<%= content_tag(:div, raw(@error_text), id: "flash", class:"field_with_errors") if @error_text %>
+
 
 
   <div id="links">

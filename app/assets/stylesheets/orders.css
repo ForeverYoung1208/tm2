@@ -60,7 +60,7 @@
 }
 
 #olist_wrapper{
-    position: absolute;
+/*     position: absolute;*/
     display: block;
     top: 100px;
     float: left;
@@ -284,5 +284,13 @@ table.onlineautolist tr.ruler{ height: 2px;}
 
 .highlighted {
     background-color: #9999FF !important;
+}
+
+#flash{
+    display: block;
+    float: left;
+    margin-top: 1em;
+    position: relative;
+    width: 100%;
 }
 
