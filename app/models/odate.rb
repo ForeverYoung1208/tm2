@@ -87,7 +87,7 @@ class Odate < ActiveRecord::Base
         end
       end
       if total_distance == 0 
-        test1_errors << { message: "За весь день нет пробега у автомобиля #{Aauto.find_by_id(current_auto_id).name_autodesc.to_s}  " }
+        test1_errors << { message: "За весь день нет пробега у автомобиля #{Aauto.find_by_id(current_auto_id).name_autodesc.to_s}  " } if current_auto_id
       end
     end
 
