@@ -74,6 +74,7 @@ class Odate < ActiveRecord::Base
     self.aorders.select(:aauto_id).uniq.map{|aorder| aorder.aauto_id }.each do |current_auto_id|
       last_odoend=0
       prev_order_id=0
+      total_distance=0
       # test1 на то что нет разырвов в показаниях спидометра
       self.aorders.where( "aauto_id = ?", current_auto_id ).order(:odobegin).order(:odoend).to_a.each do |current_order|
         if !current_order.iscanceled?
@@ -82,9 +83,14 @@ class Odate < ActiveRecord::Base
           end
           last_odoend=current_order.odoend
           prev_order_id=current_order.id
+          total_distance=+current_order.distance
         end
       end
+      if total_distance == 0 
+        test1_errors << { message: "За весь день нет пробега у автомобиля #{Aauto.find_by_id(current_auto_id).name_autodesc.to_s}  " }
+      end
     end
+
 
     if err_orders_wo_auto=self.aorders.where( 'aauto_id IS NULL')
       err_orders_wo_auto.each do |current_order|
