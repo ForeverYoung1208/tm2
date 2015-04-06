@@ -37,7 +37,8 @@ class Odate < ActiveRecord::Base
       self.save
     else
       text = "Невозможно закрыть день - ошибки: </br>"
-      de.each {|e| text += 'Авто: '+Aauto.find_by_id(e[:auto_id]).name_autodesc+' Заказ № '+e[:order_id].to_s+', '+e[:message]+'</br>' }
+#      de.each {|e| text += 'Авто: '+Aauto.find_by_id(e[:auto_id]).name_autodesc+' Заказ № '+e[:order_id].to_s+', '+e[:message]+'</br>' }
+      de.each {|e| text += 'Заказ № '+e[:order_id].to_s+', '+e[:message]+'</br>' }
       raise ApplicationController::TraficError.new(text)
     end
   end
@@ -74,7 +75,7 @@ class Odate < ActiveRecord::Base
       last_odoend=0
       prev_order_id=0
       # test1 на то что нет разырвов в показаниях спидометра
-      self.aorders.where( "aauto_id = ?", current_auto_id ).order(:odobegin).to_a.each do |current_order|
+      self.aorders.where( "aauto_id = ?", current_auto_id ).order(:odobegin).order(:odoend).to_a.each do |current_order|
         if !current_order.iscanceled?
           if (current_order.odobegin != last_odoend) and last_odoend != 0 then 
             test1_errors << { auto_id: current_auto_id, order_id: current_order.id, message: "разрыв в показаниях спидометра заказов № #{prev_order_id} и #{current_order.id} : #{last_odoend} - #{current_order.odobegin}"}
@@ -84,6 +85,15 @@ class Odate < ActiveRecord::Base
         end
       end
     end
+
+    if err_orders_wo_auto=self.aorders.where( 'aauto_id IS NULL')
+      err_orders_wo_auto.each do |current_order|
+        if !current_order.iscanceled?
+          test1_errors << { order_id: current_order.id, message: "Не назначена машина у заказа №: #{current_order.id}"}
+        end
+      end
+    end
+
     test1_errors
   end
   

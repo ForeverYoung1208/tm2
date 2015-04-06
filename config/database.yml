@@ -10,11 +10,11 @@ development:
   encoding: utf8
   reconnect: false
   database: tm2t_development
+  socket: /var/lib/mysql/mysql.sock
 
   pool: 5
   username: root_tm2
   password: '120880'
-  socket: /var/lib/mysql/mysql.sock
 
 
 #  database: tm2t_production
