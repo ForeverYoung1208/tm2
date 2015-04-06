@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     ::ALLTABELUSER_ID=4 #userlevel_id
     ::DRIVERUSER_ID=5 #userlevel_id
 
-    ::NILDRIVER=6  #aauto_id
+    ::NOAUTO_ID=6  #aauto_id            ::NILDRIVER=6
     ::DEF_PWD='123'
     ::MONTHNAMES_RUS = ["Ъ","Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Окрябрь","Ноябрь","Декабрь"]
  

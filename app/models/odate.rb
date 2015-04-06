@@ -71,27 +71,41 @@ class Odate < ActiveRecord::Base
 
   def day_errors
     test1_errors=[]
+
+    # по каждому авто которые есть в заказах в данной (self) дате
     self.aorders.select(:aauto_id).uniq.map{|aorder| aorder.aauto_id }.each do |current_auto_id|
       last_odoend=0
       prev_order_id=0
       total_distance=0
-      # test1 на то что нет разырвов в показаниях спидометра
+
+      # По каждому заказу в которых есть данное авто (отсортированы по спидометру)
       self.aorders.where( "aauto_id = ?", current_auto_id ).order(:odobegin).order(:odoend).to_a.each do |current_order|
         if !current_order.iscanceled?
-          if (current_order.odobegin != last_odoend) and last_odoend != 0 then 
+
+          # проверка на стыковку пробега на то что нет разырвов в показаниях спидометра
+          if (current_order.odobegin != last_odoend) and last_odoend != 0 and current_auto_id!=::NOAUTO_ID then 
             test1_errors << { auto_id: current_auto_id, order_id: current_order.id, message: "разрыв в показаниях спидометра заказов № #{prev_order_id} и #{current_order.id} : #{last_odoend} - #{current_order.odobegin}"}
           end
+
+          # проверка на внесение пробега
+          if current_order.distance == 0 and current_order.comment=='' and current_auto_id!=::NOAUTO_ID 
+            test1_errors << { order_id: current_order.id, message: "У заказа № #{current_order.id} нулевой пробег без указания примечания" } if current_auto_id
+          end
+
           last_odoend=current_order.odoend
           prev_order_id=current_order.id
           total_distance=+current_order.distance
         end
       end
-      if total_distance == 0 
-        test1_errors << { message: "За весь день нет пробега у автомобиля #{Aauto.find_by_id(current_auto_id).name_autodesc.to_s}  " } if current_auto_id
-      end
+
+      # проверка на внесение пробега за день
+      #if total_distance == 0 and current_auto_id!=::NOAUTO_ID
+      #  test1_errors << { message: "За весь день нет пробега у автомобиля #{Aauto.find_by_id(current_auto_id).name_autodesc.to_s}  " } if current_auto_id
+      #end
+
     end
 
-
+    # проверка на назначение авто
     if err_orders_wo_auto=self.aorders.where( 'aauto_id IS NULL')
       err_orders_wo_auto.each do |current_order|
         if !current_order.iscanceled?

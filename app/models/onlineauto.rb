@@ -11,7 +11,7 @@ class Onlineauto < ActiveRecord::Base
 
   def self.find_all_by_odate_id_puls_empty(odate)
   	res = self.find_all_by_odate_id(odate)
-  	emptyauto = Onlineauto.new(odate_id: odate, aauto_id: ::NILDRIVER)
+  	emptyauto = Onlineauto.new(odate_id: odate, aauto_id: ::NOAUTO_ID)
   	res << emptyauto
   end
 

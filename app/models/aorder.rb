@@ -56,7 +56,7 @@ class Aorder < ActiveRecord::Base
     if (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID) or 
         ( 
           (ttmid.to_i==self.user_id) and 
-          (self.aauto_id==nil or self.aauto_id==::NILDRIVER or is_updating_odometer)
+          (self.aauto_id==nil or self.aauto_id==::NOAUTO_ID or is_updating_odometer)
         ) or 
         (User.find_by_id(ttmid).userlevel_id==::DRIVERUSER_ID)
       res=true
