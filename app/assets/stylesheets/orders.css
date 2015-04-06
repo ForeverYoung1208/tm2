@@ -62,7 +62,7 @@
 #olist_wrapper{
 /*     position: absolute;*/
     display: block;
-    top: 100px;
+/*    top: 100px;*/
     float: left;
     margin-right: 1em;
 }
