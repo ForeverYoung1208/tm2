@@ -7,7 +7,7 @@
     <td><%= aorder.adestination %></td>
     <td><%= aorder.ftime.strftime("%H:%M") %></td>
     <td><%= aorder.totime.strftime("%H:%M") %></td>
-    <td><%= link_to aorder.aauto.name_autodesc, aorder.aauto if aorder.aauto %></td>
+    <td><%= aorder.aauto.name_autodesc if aorder.aauto %></td>
     <td><%= aorder.comment %></td>
 
     <%= td_odometer(aorder.odobegin, aorder.odoend, aorder.outofcity) do %>
@@ -18,8 +18,11 @@
         <%= aorder.odoend %>
     <%end%>
 
+    <td><%= aorder.distance %></td>
 
-    <td <%= 'class= baddate' if !aorder.odate.isclosed %> ><%= aorder.odate.thedate %></td>
+
+
+    <td <%= 'class= baddate' if !aorder.odate.isclosed %> ><%= link_to( aorder.odate.thedate, setdate_path( tek_date: aorder.odate.thedate), method: :post ) %></td>
     <td><%= aorder.user.name %></td>
 
 

@@ -11,6 +11,10 @@
     <th class="comment"><%= link_to('Коммент.', stat_path(:sorton=>'aorders.comment', :first_date=>@date_begin, :last_date=>@date_end))%></th>
     <th class="odometer"><%= link_to('Нач. км.', stat_path(:sorton=>'aorders.odobegin', :first_date=>@date_begin, :last_date=>@date_end)) %></th>
     <th class="odometer"><%= link_to('Кон. км.', stat_path(:sorton=>'aorders.odoend', :first_date=>@date_begin, :last_date=>@date_end)) %></th>
+
+    <th class="odometer"><%= link_to('Дістанція', stat_path(:sorton=>'aorders.odoend - aorders.odobegin', :first_date=>@date_begin, :last_date=>@date_end)) %></th>
+
+
     <th class="management"><%= link_to('Дата заказа', stat_path(:sorton=>'odates.thedate', :first_date=>@date_begin, :last_date=>@date_end)) %></th>
     <th class="owner"><%= link_to('Заявитель (сортировка по id)', stat_path(:sorton=>'aorders.user_id', :first_date=>@date_begin, :last_date=>@date_end)) %></th>
 
