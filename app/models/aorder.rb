@@ -16,7 +16,7 @@ class Aorder < ActiveRecord::Base
   validates :odobegin, :presence=>true;
   validates :odoend, :presence=>true;
   validates :outofcity, :presence=>true;
-
+  validates :user, :presence=>true;
 
   before_update :check_rights;
   before_update :check_is_date_closed;
