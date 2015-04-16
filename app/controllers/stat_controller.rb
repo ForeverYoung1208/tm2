@@ -16,17 +16,17 @@ class StatController < ApplicationController
 			:procs =>   [lambda{ |options, record| options[:builder].tag!('department', record.department.name) },
 							lambda{ |options, record| options[:builder].tag!('driver', record.aauto.name_autodesc) if record.aauto },
 							lambda{ |options, record| options[:builder].tag!('date', record.odate.thedate) },
+							lambda{ |options, record| options[:builder].tag!('distance', record.distance) },
 							lambda{ |options, record| options[:builder].tag!('user_author', record.user.name) },
 							lambda{ |options, record| options[:builder].tag!('ftime_xml', record.ftime.strftime("%H:%M") ) },
 							lambda{ |options, record| options[:builder].tag!('totime_xml', record.totime.strftime("%H:%M") ) }
-
 						],
-			:except =>  [:aauto_id, :department_id, :odate_id, :user_id, :ftime, :totime],
+			:except =>  [:aauto_id, :department_id, :odate_id, :user_id, :ftime, :totime, :iscanceled, :ondepartment, :updated_at],
 			:skip_types => true
 			), 
 		:type => 'text/xml; charset=UTF-8;',
 		:disposition => "attachment",
-		:filename => "stat.xml"
+		:filename => "stat_#{params[:first_date]}-#{params[:last_date]}.xml"
 	end
 
 
