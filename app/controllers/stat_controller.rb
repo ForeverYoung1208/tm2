@@ -35,7 +35,7 @@ class StatController < ApplicationController
 #	@odates = Odate.used_in_orders(@aorders).order(:thedate)
 
 # получаем массив  интересующих нас aorders по датам и машине
-		aorders = Aorder.get_by_dates( params[:first_date], params[:last_date] ).where("aorders.aauto_id= ? ", params[:auto_id]).reorder(:thedate)
+		aorders = Aorder.get_by_dates( params[:first_date], params[:last_date] ).where("aorders.aauto_id IN (?) ", params[:auto_id]).reorder(:thedate)
 
 # получаем idшки дней где оно біло
 		used_odate_ids = aorders.pluck(:odate_id).uniq
@@ -48,7 +48,7 @@ class StatController < ApplicationController
 		end
 
 
-		@auto = Aauto.find_by_id(params[:auto_id])
+		@auto = Aauto.find_all_by_id(params[:auto_id])
 
 		respond_to do |format|
 		  format.html # routelist.html.erb

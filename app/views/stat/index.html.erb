@@ -23,12 +23,12 @@
 
 
 <h2> Сформировать маршрутные листы за указанный период </h2>
-    <%= form_tag(routelist_path, :target =>'_blank') do %>
+    <%= form_tag(routelist_path, :target =>'_blank', id: "auto_select_form") do %>
       <%= hidden_field_tag :first_date, @date_begin %>
       <%= hidden_field_tag :last_date, @date_end %>
 
-       <%= label_tag :auto_id, 'по автомобилю' %>
-       <%= select_tag :auto_id,  options_for_select( @auto_list.collect{|u| [u.name_autodesc, u.id]} ) %>
+       <%= label_tag :auto_id, 'по автомобилям (Ctrl+клик - выбор нескольких)' %>
+       <%= select_tag :auto_id,  options_for_select( @auto_list.collect{|u| [u.name_autodesc, u.id]}), {multiple: true, size: "#{@auto_list.size}"}  %>
 
       <%= submit_tag 'сформировать' %>
     <% end %>

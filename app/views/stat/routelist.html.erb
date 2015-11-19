@@ -7,7 +7,13 @@
 			total_all = 0
 			total_outofcity = 0
 %>
-	<h2>Маршрутний лист по автівці: <%= @auto.name_autodesc %></h2> 
+	<h2>Маршрутний лист по автівкам: 
+		<% @auto.each do |a|  %>
+			<%= a.name_autodesc+", " %>
+		<% end %>
+	</h2> 
+
+
 	<h3>Дата: <%= odate.thedate.strftime('%d.%m.%Y') %> 
 		<% if !odate.isclosed%>
 			<div class='field_with_errors'> - День не закрито !</div>

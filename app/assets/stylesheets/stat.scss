@@ -36,6 +36,24 @@ table.routelist{
     border-style: solid;
     background-color: #FFFFFF;
 	};
+
+};
+
+#auto_select_form{
+  background-color: none;
+
+  label{
+    background-color: none;
+
+  };
+  select{
+    background-color: none;
+    display: block;
+
+  };
+  input{
+    background-color: none;
+  };
 }
 
 
