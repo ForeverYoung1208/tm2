@@ -2,7 +2,7 @@
 
 <h2> Телфоннннные звонки за период с <%= @date_begin %> по <%= @date_end %> </h2>
 
-<%= form_tag(call_path) do %>
+<%= form_tag(calls_path) do %>
 
    <%= text_field_tag :first_date, @date_begin, :size=>8 %>
    <%= text_field_tag :last_date, @date_end, :size=>8 %>
@@ -14,7 +14,7 @@
   <tr>
     <th>Tel number</th>
     <th>Datetime</th>
-    <th>Type</th>
+    <th>callType</th>
     <th>Direction</th>
     <th>Dest number</th>
     <th>Duration</th>
@@ -30,7 +30,7 @@
   <tr>
     <td><%= call.tel_number %></td>
     <td><%= call.datetime %></td>
-    <td><%= call.type %></td>
+    <td><%= call.calltype %></td>
     <td><%= call.direction %></td>
     <td><%= call.dest_number %></td>
     <td><%= call.duration %></td>

@@ -52,12 +52,12 @@ ActiveRecord::Schema.define(:version => 20160713145440) do
   create_table "calls", :force => true do |t|
     t.string   "tel_number"
     t.string   "datetime"
-    t.string   "type"
+    t.string   "calltype"
     t.string   "direction"
     t.integer  "dest_number"
     t.integer  "duration"
-    t.decimal  "cost_bal",        :precision => 10, :scale => 0
-    t.decimal  "cost_nodiscount", :precision => 10, :scale => 0
+    t.decimal  "cost_bal",        :precision => 15, :scale => 2
+    t.decimal  "cost_nodiscount", :precision => 15, :scale => 2
     t.integer  "user_id"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
