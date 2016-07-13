@@ -10,6 +10,7 @@ class CreateCalls < ActiveRecord::Migration
       t.decimal :cost_bal, :precision => 15, :scale => 2
       t.decimal :cost_nodiscount, :precision => 15, :scale => 2
       t.references :user
+      t.references :callist
 
       t.timestamps
     end
