@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150329140952) do
+ActiveRecord::Schema.define(:version => 20160713145440) do
 
   create_table "aautos", :force => true do |t|
     t.string   "name"
@@ -48,6 +48,22 @@ ActiveRecord::Schema.define(:version => 20150329140952) do
     t.integer  "outofcity",     :default => 0
     t.integer  "department_id"
   end
+
+  create_table "calls", :force => true do |t|
+    t.string   "tel_number"
+    t.string   "datetime"
+    t.string   "type"
+    t.string   "direction"
+    t.integer  "dest_number"
+    t.integer  "duration"
+    t.decimal  "cost_bal",        :precision => 10, :scale => 0
+    t.decimal  "cost_nodiscount", :precision => 10, :scale => 0
+    t.integer  "user_id"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "calls", ["user_id"], :name => "index_calls_on_user_id"
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -90,6 +106,13 @@ ActiveRecord::Schema.define(:version => 20150329140952) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "telnumbers", :force => true do |t|
+    t.string   "tel_number"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "userlevels", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>call number:</b>
+  <%= @call.tel_number %>
+</p>
+
+<p>
+  <b>Datetime:</b>
+  <%= @call.datetime %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @call.type %>
+</p>
+
+<p>
+  <b>Direction:</b>
+  <%= @call.direction %>
+</p>
+
+<p>
+  <b>Dest number:</b>
+  <%= @call.dest_number %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%= @call.duration %>
+</p>
+
+<p>
+  <b>Cost bal:</b>
+  <%= @call.cost_bal %>
+</p>
+
+<p>
+  <b>Cost nodiscount:</b>
+  <%= @call.cost_nodiscount %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @call.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_call_path(@call) %> |
+<%= link_to 'Back', calls_path %>

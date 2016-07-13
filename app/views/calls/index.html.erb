@@ -1,0 +1,49 @@
+<h1>Listing calls</h1>
+
+<h2> Телфоннннные звонки за период с <%= @date_begin %> по <%= @date_end %> </h2>
+
+<%= form_tag(call_path) do %>
+
+   <%= text_field_tag :first_date, @date_begin, :size=>8 %>
+   <%= text_field_tag :last_date, @date_end, :size=>8 %>
+   <%= submit_tag 'поменять (обновить инф.)' %>
+
+<% end %>
+
+<table>
+  <tr>
+    <th>Tel number</th>
+    <th>Datetime</th>
+    <th>Type</th>
+    <th>Direction</th>
+    <th>Dest number</th>
+    <th>Duration</th>
+    <th>Cost bal</th>
+    <th>Cost nodiscount</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @calls.each do |call| %>
+  <tr>
+    <td><%= call.tel_number %></td>
+    <td><%= call.datetime %></td>
+    <td><%= call.type %></td>
+    <td><%= call.direction %></td>
+    <td><%= call.dest_number %></td>
+    <td><%= call.duration %></td>
+    <td><%= call.cost_bal %></td>
+    <td><%= call.cost_nodiscount %></td>
+    <td><%= call.user %></td>
+    <td><%= link_to 'Show', call %></td>
+    <td><%= link_to 'Edit', edit_call_path(call) %></td>
+    <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New call', new_call_path %>
