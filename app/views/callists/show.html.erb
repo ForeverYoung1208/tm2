@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Data:</b>
+  <%= @callist.data %>
+</p>
+
+<p>
+  <b>Loadedby:</b>
+  <%= @callist.loadedby %>
+</p>
+
+<p>
+  <b>Isparsed:</b>
+  <%= @callist.isparsed %>
+</p>
+
+<p>
+  <b>filename:</b>
+  <%= @callist.filename %>
+</p>
+
+
+<%= link_to 'Edit', edit_callist_path(@callist) %> |
+<%= link_to 'Back', callists_path %>

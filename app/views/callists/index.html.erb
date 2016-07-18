@@ -1,0 +1,33 @@
+<h1>Listing callists</h1>
+
+<table>
+  <tr>
+    <th>Data</th>
+    <th>Loadedby</th>
+    <th>Isparsed</th>
+    <th>Filename</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @callists.each do |callist| %>
+  <tr>
+    <td><%= callist.data %></td>
+    <td><%= callist.loadedby %></td>
+    <td><%= callist.isparsed %></td>
+    <td><%= callist.filename %></td>
+    <td><%= link_to 'Show', callist %></td>
+    <td><%= link_to 'Edit', edit_callist_path(callist) %></td>
+    <td><%= link_to 'Destroy', callist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Callist', new_callist_path %>
+
+
+
+
