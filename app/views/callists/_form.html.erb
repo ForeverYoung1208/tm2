@@ -1,0 +1,44 @@
+<%= form_for @callist, :html => { :multipart => true } do |f| %>
+  <% if @callist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@callist.errors.count, "error") %> prohibited this callist from being saved:</h2>
+
+      <ul>
+      <% @callist.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :data %><br />
+    <%= f.text_area :data %>
+  </div>
+
+  <div class="field">
+    <%= f.label :loadedby %><br />
+    <%= f.text_field :loadedby %>
+  </div>
+
+  <div class="field">
+    <%= f.label :isparsed %><br />
+    <%= f.check_box :isparsed %>
+  </div>
+
+  <h3> ИЛИ Загрузить из файла:</h3>
+
+
+  <div class="field">
+    <%= f.label "файл:"%><br />
+    <%= f.file_field :callsfile %>
+  </div>
+
+  <h3> Загрузить, файл приоритетнее.</h3>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+<% end %>
