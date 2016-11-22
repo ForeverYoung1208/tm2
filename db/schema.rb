@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160713145440) do
+ActiveRecord::Schema.define(:version => 20160713192130) do
 
   create_table "aautos", :force => true do |t|
     t.string   "name"
@@ -49,16 +49,28 @@ ActiveRecord::Schema.define(:version => 20160713145440) do
     t.integer  "department_id"
   end
 
+  create_table "callists", :force => true do |t|
+    t.text     "data",        :limit => 16777215
+    t.string   "filename"
+    t.integer  "loadedby_id"
+    t.boolean  "isparsed"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "callists", ["loadedby_id"], :name => "index_callists_on_loadedby_id"
+
   create_table "calls", :force => true do |t|
     t.string   "tel_number"
     t.string   "datetime"
-    t.string   "type"
+    t.string   "calltype"
     t.string   "direction"
     t.integer  "dest_number"
     t.integer  "duration"
-    t.decimal  "cost_bal",        :precision => 10, :scale => 0
-    t.decimal  "cost_nodiscount", :precision => 10, :scale => 0
+    t.decimal  "cost_bal",        :precision => 15, :scale => 2
+    t.decimal  "cost_nodiscount", :precision => 15, :scale => 2
     t.integer  "user_id"
+    t.integer  "callist_id"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
   end
