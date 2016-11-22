@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160713192130) do
+ActiveRecord::Schema.define(:version => 20161122151954) do
 
   create_table "aautos", :force => true do |t|
     t.string   "name"
@@ -138,9 +138,11 @@ ActiveRecord::Schema.define(:version => 20160713192130) do
     t.string   "password_hash"
     t.string   "password_salt"
     t.integer  "userlevel_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "company_id"
+    t.boolean  "is_ip_controlled", :default => true
+    t.string   "ip_address"
   end
 
 end

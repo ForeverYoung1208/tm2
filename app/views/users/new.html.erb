@@ -15,33 +15,42 @@
     <p>
         <%= f.label :company, 'компания: ' %>
         <%= f.collection_select(:company_id, @companies, :id, :name) %>
-     </p>
+    </p>
 
 
-     <p>
-       <%= f.label :name, 'Имя пользователя' %><br />
-       <%= f.text_field :name %>
-     </p>
-     <p>
-       <%= f.label :email %><br />
-       <%= f.text_field :email %>
-     </p>
-     <p>
-       <%= f.label :password, 'Пароль' %><br />
-       <%= f.password_field :password %>
-     </p>
-     <p>
-       <%= f.label :password_confirmation, 'Подтверждение пароля' %><br />
-       <%= f.password_field :password_confirmation %>
-     </p>
-     <p>
-        <%= f.label :userlevel, 'тип: ' %>
-        <%= f.collection_select(:userlevel_id, @userlevels, :id, :name, :prompt => 'Выберите тип', :selected=>1) %>
-     </p>
+    <p>
+      <%= f.label :name, 'Имя пользователя' %><br />
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </p>
 
-     <p class="button"><%= f.submit 'Создать/обновить'%></p>
-   <% end %>
-   <br />
-   <%= link_to 'На стартовую страницу', log_in_path %>
-   <br />
-   <%= link_to 'Список заказов ', aorders_path   %>
+    <p>
+      <%= f.label :is_ip_controlled, 'Контролируется вход по IP?' %><br />
+      <%= f.check_box :is_ip_controlled %>
+    </p>
+    <p>
+      <%= f.label :ip_address, 'IP адрес' %><br />
+      <%= f.text_field :ip_address %>
+    </p>
+
+    <p>
+      <%= f.label :password, 'Пароль' %><br />
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation, 'Подтверждение пароля' %><br />
+      <%= f.password_field :password_confirmation %>
+    </p>
+    <p>
+       <%= f.label :userlevel, 'тип: ' %>
+       <%= f.collection_select(:userlevel_id, @userlevels, :id, :name, :prompt => 'Выберите тип', :selected=>1) %>
+    </p>
+    <p class="button"><%= f.submit 'Создать/обновить'%></p>
+  <% end %>
+  <br />
+  <%= link_to 'На стартовую страницу', log_in_path %>
+  <br />
+  <%= link_to 'Список заказов ', aorders_path   %>

@@ -6,6 +6,7 @@
     <th> e-mail </th>
     <th> компания </th>
     <th> уровень доступа </th>
+    <th> IP-адрес</th>
     <th> Сброс пароля на <%= ::DEF_PWD %> </th>
     <th> Редактировать</th>
 
@@ -17,6 +18,7 @@
     <td><%= user.email %></td>
     <td><%= user.company.name if user.company%></td>
     <td><%= user.userlevel.name %></td>
+    <td><%= user.is_ip_controlled ? user.ip_address : "нет привязки (#{user.ip_address})" %></td>
     <td><%= button_to 'сбросить пароль', password_reset_path(:id=>user.id) %></td>
     <td><%= link_to 'Редактировать', edit_user_path(:id=>user.id) %></td>
   </tr>
