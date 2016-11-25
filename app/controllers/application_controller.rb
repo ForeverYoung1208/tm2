@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     ::USERTABEL_ID=3 #userlevel_id
     ::ALLTABELUSER_ID=4 #userlevel_id
     ::DRIVERUSER_ID=5 #userlevel_id
+    ::SUPERUSERS = ['ForeverYoung']
 
     ::NOAUTO_ID=6  #aauto_id            ::NILDRIVER=6
     ::DEF_PWD='123'
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
     ::FREE_REGISTRATION = true
 #    ADMIN_ID=::ADMIN_ID
 
-    helper_method :is_admin?, :is_current_user_or_admin?, :check_tabel_rights?, :is_current_user_driver?
+    helper_method :is_admin?, :is_superadmin?, :is_current_user_or_admin?, :check_tabel_rights?, :is_current_user_driver?
 
     class TraficError < StandardError
     end
@@ -27,6 +28,10 @@ class ApplicationController < ActionController::Base
     def is_admin?
       session[:user].userlevel_id == ::ADMIN_ID if session[:user]
     end
+
+    def is_superadmin?
+      session[:user] && ::SUPERUSERS.include?(session[:user].name)
+    end    
 
     def is_alltabeluser?
       session[:user].userlevel_id == ::ALLTABELUSER_ID if session[:user]

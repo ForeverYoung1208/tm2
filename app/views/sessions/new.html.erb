@@ -14,6 +14,6 @@ v14.4 - привязка к IP
    </p>
    <p class="button"><%= submit_tag 'Войти'%></p>
    <br/>
-   <%= link_to 'создать нового пользователя', sign_up_path %>
+   <%= link_to 'создать нового пользователя', sign_up_path if ::FREE_REGISTRATION %>
 
  <% end %>
