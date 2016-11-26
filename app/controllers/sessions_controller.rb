@@ -7,13 +7,13 @@ class SessionsController < ApplicationController
  
   def create
      user = User.authenticate(params[:name], params[:password])
-     if user
+     if user && user.ip_check( request.remote_ip )
        session[:user] = user
        user.actions.create( :kind => "login" )
        user.actions.create( :kind => "stay_in")
        redirect_to aorders_path
      else
-       flash.now.alert = "неправильные имя или пароль"
+       flash.now.alert = user ? "неправильный IP #{ user.ip_address } != #{ request.remote_ip }" :  "неправильные имя или пароль"
        render "new"
      end
    end

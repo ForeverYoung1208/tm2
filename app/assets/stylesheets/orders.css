@@ -1,4 +1,4 @@
-#top_all{
+f#top_all{
     display: block;
     float: left;
     height: 80px;
@@ -128,7 +128,7 @@ table.allorderlist th.destination{}
 table.allorderlist th.time{ width: 4em }
 table.allorderlist th.auto{ }
 table.allorderlist th.odometer{ width: 6em; }
-table.allorderlist th.outofcity{ width: 6em; }
+table.allorderlist th.outofcity{ width: 4em; }
 table.allorderlist th.comment{ }
 table.allorderlist th.management{ width: 100px}
 table.allorderlist th.owner{ width: 6em}

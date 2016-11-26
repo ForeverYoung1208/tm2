@@ -8,12 +8,13 @@ class UsersController < ApplicationController
 #    before_filter :is_admin
  
   def new
-    @user = User.new
+    @user = User.new( ip_address: '0.0.0.0' )
     get_companies_and_userlevels
   end
 
   def edit
     @user = User.find_by_id(params[:id])
+    @user.ip_address ||= '0.0.0.0'
     get_companies_and_userlevels
 
     render "new"

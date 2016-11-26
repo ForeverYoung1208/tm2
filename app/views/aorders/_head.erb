@@ -10,6 +10,7 @@
     <th class="comment"><%= link_to('Коммент.', aorders_path(:sorton=>'aorders.comment'))%></th>
     <th class="odometer"><%= link_to('Нач. км.', aorders_path(:sorton=>'aorders.odobegin'))%></th>
     <th class="odometer"><%= link_to('Кон. км.', aorders_path(:sorton=>'aorders.odoend'))%></th>
+    <th class="odometer"><%= link_to('всего км.', aorders_path(:sorton=>'aorders.distance'))%></th>
     <th class="outofcity"><%= link_to('из них по трассе, км', aorders_path(:sorton=>'aorders.outofcity'))%></th>
     <th class="management" colspan="2">Управление заказом</th>
 
