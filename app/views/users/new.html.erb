@@ -29,12 +29,12 @@
 
     <p>
       <%= f.label :is_ip_controlled, 'Контролируется вход по IP?' %><br />
-      <%= f.check_box :is_ip_controlled %>
+      <%= f.check_box :is_ip_controlled, disabled: !is_superadmin? %>
     </p>
 
     <p>
       <%= f.label :ip_address, 'IP адрес' %><br />
-      <%= f.text_field :ip_address  %>
+      <%= f.text_field :ip_address, disabled: !is_superadmin?  %>
     </p>
 
     <p>

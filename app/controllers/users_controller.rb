@@ -55,8 +55,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users=User.find(:all) if is_admin?
-    @users=User.find_all_by_id(session[:user].id) if !is_admin?
+    if is_admin?
+      @users=User.find(:all) 
+    elsif is_company_admin?
+      @users=User.find_all_by_company_id(session[:user].company_id)
+    else
+      @users=User.find_all_by_id(session[:user].id) if !is_admin?
+    end
   end
 
   def password_reset
@@ -70,9 +75,12 @@ class UsersController < ApplicationController
   private
 
   def get_companies_and_userlevels
-    if ( session[:user] and (session[:user].userlevel_id==::ADMIN_ID) )
+    if session[:user] && is_admin?
       @userlevels = Userlevel.find(:all)
       @companies = Company.find(:all)
+    elsif session[:user] && is_company_admin?
+      @userlevels = Userlevel.find_all_by_id([::COMPANY_ADMIN_ID, ::USER_ID])
+      @companies = [session[:user].company]
     elsif session[:user]
       @userlevels = [Userlevel.find_by_id(::USER_ID)]
       @companies = [session[:user].company]
@@ -86,7 +94,7 @@ class UsersController < ApplicationController
   end
 
   def ip_change_allowed?
-    unless ::SUPERUSERS.include?( session[:user].name )
+    if !is_superadmin?
       params[:user].delete(:ip_address)
       params[:user].delete(:is_ip_controlled)
       flash[:notice] = "Немає можливості зміни IP-адреси. Решта змін застосовано."

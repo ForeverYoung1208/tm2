@@ -18,6 +18,7 @@ admin_ul = Userlevel.where(id: 2).first_or_create( name: 'admin')
 Userlevel.where(id: 3).first_or_create( name: 'usertabel') 
 Userlevel.where(id: 4).first_or_create( name: 'alltabeluser') 
 Userlevel.where(id: 5).first_or_create( name: 'driver') 
+Userlevel.where(id: 6).first_or_create( name: 'сompany_admin')
 
 aauto=Aauto.where( id: 6).first_or_create (
   {name: 'no auto',
