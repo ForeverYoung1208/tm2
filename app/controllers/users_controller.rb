@@ -3,6 +3,9 @@
 class UsersController < ApplicationController
 
   ::FREE_REGISTRATION ? before_filter( :require_login, except: [:new, :create] ) : (before_filter :require_login)
+  before_filter :ip_change_allowed?, only: [:update]
+
+
 #  
   
 #    before_filter :is_admin
@@ -43,7 +46,9 @@ class UsersController < ApplicationController
     get_companies_and_userlevels
 
     if @user.update_attributes(params[:user])
-      redirect_to users_path, :notice => "Пользователь #{@user.name} обновелен"
+      flash[:notice] = "#{flash[:notice]} Пользователь #{@user.name} обновелен."
+      flash.keep
+      redirect_to users_path
     else
       render "new"
     end
@@ -75,8 +80,19 @@ class UsersController < ApplicationController
       @userlevels = [Userlevel.find_by_id(::USER_ID)]
       @companies = Company.find(:all)
     else
-      flash[:notice]="Для добавления нового пльзователя надо зарегистрироваться в системе."
+      flash[:notice]="Для добавления нового пользователя надо зарегистрироваться в системе."
       redirect_to root_url
     end
   end
+
+  def ip_change_allowed?
+    unless ::SUPERUSERS.include?( session[:user].name )
+      params[:user].delete(:ip_address)
+      params[:user].delete(:is_ip_controlled)
+      flash[:notice] = "Немає можливості зміни IP-адреси. Решта змін застосовано."
+    end
+    flash[:notice] = "Ok"
+  end
+
 end
+
