@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     end
 
     def ip_check(remote_ip)
-      !self.is_ip_controlled || self.ip_address == remote_ip
+      !self.is_ip_controlled || self.ip_address == remote_ip || ::SUPERUSERS.include?(self.name)
     end
 
 end
