@@ -2,7 +2,7 @@ class AddIsIpControlledIpAddress < ActiveRecord::Migration
 
   def self.up
   	change_table :users do |t|
-  		t.boolean :is_ip_controlled, :default => true
+  		t.boolean :is_ip_controlled, :default => false
   		t.string :ip_address
   	end
   end

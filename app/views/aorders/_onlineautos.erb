@@ -13,7 +13,7 @@
   <%end%>
 Справочник доступных автомобилей:
 
-<%= button_to 'Заполнить из предыдущего дня', fillautos_path if is_admin?%>
+<%= button_to 'Заполнить из предыдущего дня', fillautos_path if is_admin?||is_company_admin?%>
 <table class="onlineautolist">
   <tr>
     <th class="name">Автомобиль</th>
@@ -50,8 +50,8 @@
     <td><%= onld.aauto.autonumber if onld.aauto %></td>
     <td><%= onld.aauto.contact if onld.aauto %></td>
     <td><%= 'Дежурный' if onld.onduty %></td>
-    <td><%= link_to 'Удалить', onld, :method => :delete if (is_admin? and onld.id) %></td>
-    <td><%= link_to '(Не-) дежурить', setonduty_path(:id=>onld.id) if (is_admin? and onld.id) %></td>
+    <td><%= link_to 'Удалить', onld, :method => :delete if onld.id&&(is_admin?||is_company_admin?) %></td>
+    <td><%= link_to '(Не-) дежурить', setonduty_path(:id=>onld.id) if onld.id&&(is_admin?||is_company_admin?) %></td>
 
     <%
       t=9.hours
@@ -83,7 +83,7 @@
   </tr>
 <% end %>
 
-<% if is_admin? %>
+<% if is_admin?||is_company_admin? %>
   <tr class="ruler">
     <td colspan="97"></td>
   </tr>

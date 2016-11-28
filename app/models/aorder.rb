@@ -33,6 +33,7 @@ class Aorder < ActiveRecord::Base
 # пытается сохранить/обновить данные, потом вызывается  before_update который дергает check_rights 
 # и вот уже тут анализируется этот id
 # кстаи логика нормальная а имя свойства конченное. Но таки лень переделывать.
+# спустя еще 2 года: Таки логика - говно, но переделывать все еще лень.
 
   def replace_nil_with_zero
     self.odobegin = 0 if !self.odobegin
@@ -54,6 +55,7 @@ class Aorder < ActiveRecord::Base
   #    Убрали возможность редактировать свои заявки, только админ.
   #    if (ttmid.to_i==Aorder.find_by_id(self.id).user_id) or (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID)
     if (User.find_by_id(ttmid).userlevel_id==::ADMIN_ID) or 
+        (User.find_by_id(ttmid).userlevel_id==::COMPANY_ADMIN_ID) or
         ( 
           (ttmid.to_i==self.user_id) and 
           (self.aauto_id==nil or self.aauto_id==::NOAUTO_ID or is_updating_odometer)
