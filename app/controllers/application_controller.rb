@@ -34,8 +34,12 @@ class ApplicationController < ActionController::Base
         )
     end
 
-    def is_company_admin?
-      session[:user] && session[:user].userlevel_id == ::COMPANY_ADMIN_ID 
+    def is_company_admin?(company_id='')
+      if company_id == '' 
+        session[:user] && session[:user].userlevel_id == ::COMPANY_ADMIN_ID 
+      else
+        session[:user] && (session[:user].userlevel_id == ::COMPANY_ADMIN_ID && session[:user].company_id == company_id)
+      end
     end
 
     def is_superadmin?
@@ -47,12 +51,15 @@ class ApplicationController < ActionController::Base
     end
 
     def is_current_user_or_admin?(checked_id)
-      res=false
-      if session[:user]
-        res=true if session[:user].id == checked_id
-        res=true if session[:user].userlevel_id == ::ADMIN_ID
-      end
-      res
+      # res=false
+      # if session[:user]
+      #   res=true if session[:user].id == checked_id
+      #   res=true if session[:user].userlevel_id == ::ADMIN_ID
+      # end
+      # res
+
+      session[:user] && ( session[:user].id == checked_id || session[:user].userlevel_id == ::ADMIN_ID )
+
     end
 
     def is_current_user_driver?
@@ -85,7 +92,8 @@ class ApplicationController < ActionController::Base
     def check_tabel_rights?
       if (session[:user].userlevel_id== ::ADMIN_ID) or
           (session[:user].userlevel_id==::USERTABEL_ID) or
-          (session[:user].userlevel_id==::ALLTABELUSER_ID)
+          (session[:user].userlevel_id==::ALLTABELUSER_ID) or
+          (session[:user].userlevel_id==::COMPANY_ADMIN_ID)
         true
       else
         false

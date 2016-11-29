@@ -45,7 +45,7 @@
 
     <td>
       <%= link_to 'Удал.', aorder_cancel_path(aorder), :confirm => 'Вы уверены?' if (
-        is_admin? or 
+        is_admin? or is_company_admin?(aorder.user.company_id) or
         ( is_current_user_or_admin?(aorder.user_id) and
         (  (aorder.aauto_id==nil or aorder.aauto_id==::NOAUTO_ID) )) and
         ( !@odate.isclosed )
