@@ -46,8 +46,12 @@ class ApplicationController < ActionController::Base
       session[:user] && ::SUPERUSERS.include?(session[:user].name)
     end    
 
+    def is_tabeluser?
+      session[:user] && session[:user].userlevel_id == ::USERTABEL_ID
+    end
+
     def is_alltabeluser?
-      session[:user].userlevel_id == ::ALLTABELUSER_ID if session[:user]
+      session[:user] && session[:user].userlevel_id == ::ALLTABELUSER_ID
     end
 
     def is_current_user_or_admin?(checked_id)
@@ -101,11 +105,11 @@ class ApplicationController < ActionController::Base
     end
 
   def check_tabel_rights
-    unless (session[:user].userlevel_id== ::ADMIN_ID) or
-        (session[:user].userlevel_id==::USERTABEL_ID) or
-          (session[:user].userlevel_id==::ALLTABELUSER_ID)
-        
-        redirect_to root_url, :notice => "Действие не разрешено (только для табелирующих)"
+    unless is_admin? or is_tabeluser? or
+           is_alltabeluser? or is_company_admin?
+      flash[:notice] = "Действие не разрешено"
+      flash.keep
+      redirect_to root_url
     end
   end
 
