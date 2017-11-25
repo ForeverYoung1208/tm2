@@ -138,10 +138,10 @@ ActiveRecord::Schema.define(:version => 20161122151954) do
     t.string   "password_hash"
     t.string   "password_salt"
     t.integer  "userlevel_id"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "company_id"
-    t.boolean  "is_ip_controlled", :default => true
+    t.boolean  "is_ip_controlled", :default => false
     t.string   "ip_address"
   end
 

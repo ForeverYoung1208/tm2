@@ -1,3 +1,4 @@
+# encoding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -32,7 +33,7 @@ company=Company.where( id: 1).first_or_create(
 	istabelling: true
 )
 
-User.where(name: 'siafin2010@gmail.com').destroy_all
+User.where(name: 'admin').destroy_all
 unless User.create(
 	email: 'siafin2010@gmail.com',
 	name: 'admin',
