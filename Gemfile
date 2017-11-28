@@ -39,6 +39,11 @@ group :development, :test do
 	gem 'debugger'
 end
 
+group :production do
+	# only for passenger stand-alone deployment
+	gem 'passenger'
+	
+end
 
 # Bundle the extra gems:
 # gem 'bj'
