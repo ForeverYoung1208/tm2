@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     ::DEF_PWD='123'
     ::MONTHNAMES_RUS = ["Ъ","Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Окрябрь","Ноябрь","Декабрь"]
  
-    ::FREE_REGISTRATION = true
+    ::FREE_REGISTRATION = false
 #    ADMIN_ID=::ADMIN_ID
 
     helper_method :is_admin?, :is_superadmin?, :is_company_admin?, :is_current_user_or_admin?, :check_tabel_rights?, :is_current_user_driver?
