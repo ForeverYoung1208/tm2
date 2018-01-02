@@ -13,8 +13,3 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-
-# Ignore config/database.yml 
-# To prevent mess with working asd arhive databases on production
-# thid file needs to be set up manually on production server!
-/config/database.yml

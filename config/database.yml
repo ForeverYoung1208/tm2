@@ -21,8 +21,6 @@ development:
 #  host: 192.168.20.33
 #  port: 3306
 
-
-
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -40,7 +38,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: tm2t_production
+  database: !!!SET_CORRECT_DATABASE_FOR_PRODUCTION!!!
   pool: 5
   username: root_tm2
   password: '120880'
