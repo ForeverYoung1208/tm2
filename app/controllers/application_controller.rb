@@ -4,21 +4,22 @@ class ApplicationController < ActionController::Base
     protect_from_forgery
 
 
-    ::USER_ID=1 #userlevel_id
-    ::ADMIN_ID=2 #userlevel_id
+    ::USER_ID = 1 #userlevel_id
+    ::ADMIN_ID = 2 #userlevel_id
 #    ::NO_COMPANY_ID=5 
-    ::USERTABEL_ID=3 #userlevel_id
-    ::ALLTABELUSER_ID=4 #userlevel_id
-    ::DRIVERUSER_ID=5 #userlevel_id
+    ::USERTABEL_ID = 3 #userlevel_id
+    ::ALLTABELUSER_ID = 4 #userlevel_id
+    ::DRIVERUSER_ID = 5 #userlevel_id
     ::SUPERUSERS = ['ForeverYoung','admin']
     ::COMPANY_ADMIN_ID=6 #userlevel_id
 
     ::NOAUTO_ID=6  #aauto_id            ::NILDRIVER=6
-    ::DEF_PWD='123'
+    ::DEF_PWD = '123'
     ::MONTHNAMES_RUS = ["Ъ","Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Окрябрь","Ноябрь","Декабрь"]
  
     ::FREE_REGISTRATION = false
 #    ADMIN_ID=::ADMIN_ID
+    ::NOT_TM2_USER_ID = 7 #userlevel_id for user who are not allowed to tm2
 
     helper_method :is_admin?, :is_superadmin?, :is_company_admin?, :is_current_user_or_admin?, :check_tabel_rights?, :is_current_user_driver?
 
@@ -86,7 +87,7 @@ class ApplicationController < ActionController::Base
     end
 
     def require_login
-      unless session[:user]
+      unless session[:user] && session[:user].userlevel_id != ::NOT_TM2_USER_ID
         flash[:notice]="Действие не разрешено (только для зарегистрированного пользователя)"
         flash.keep
         redirect_to root_url

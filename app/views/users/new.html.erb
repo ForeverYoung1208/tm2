@@ -47,7 +47,7 @@
     </p>
     <p>
        <%= f.label :userlevel, 'тип: ' %>
-       <%= f.collection_select(:userlevel_id, @userlevels, :id, :name, :prompt => 'Выберите тип', :selected=>1) %>
+       <%= f.collection_select(:userlevel_id, @userlevels, :id, :name, :prompt => 'Выберите тип') %>
     </p>
     <p class="button"><%= f.submit 'Создать/обновить'%></p>
   <% end %>
