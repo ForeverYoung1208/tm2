@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
 #    ADMIN_ID=::ADMIN_ID
     ::NOT_TM2_USER_ID = 7 #userlevel_id for user who are not allowed to tm2
 
-    helper_method :is_admin?, :is_superadmin?, :is_company_admin?, :is_current_user_or_admin?, :check_tabel_rights?, :is_current_user_driver?
+    helper_method :is_admin?, :is_superadmin?, :is_company_admin?,
+     :is_current_user_or_admin?, :check_tabel_rights?, :is_current_user_driver?,
+     :is_not_tm2_user?
 
     class TraficError < StandardError
     end
@@ -78,6 +80,10 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def is_not_tm2_user?
+      session[:user] && session[:user].userlevel_id == ::NOT_TM2_USER_ID
+    end
+
     def is_day_closed
       if session[:working_date].isclosed
         flash[:notice]="Невозможно выполнить, т.к. дата закрыта"
@@ -87,11 +93,19 @@ class ApplicationController < ActionController::Base
     end
 
     def require_login
-      unless session[:user] && session[:user].userlevel_id != ::NOT_TM2_USER_ID
+
+      unless session[:user]
         flash[:notice]="Действие не разрешено (только для зарегистрированного пользователя)"
         flash.keep
         redirect_to root_url
       end
+      if is_not_tm2_user?
+        unless controller_name == 'aorders' && action_name == 'index'
+          redirect_to root_url, :notice => "Действие не разрешено"
+        end
+      end
+
+
     end
 
     def check_tabel_rights?

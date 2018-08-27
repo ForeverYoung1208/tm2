@@ -2,11 +2,15 @@
 
  
 <div id="top_all">
-  <div id="top_msg">
-    Заказы автомобиля на день:
-      <%= @odate.thedate %>
-      (<%= @odate.showstatus %>)
-  </div>
+
+  <% unless is_not_tm2_user? %>
+    <div id="top_msg">
+      Заказы автомобиля на день:
+        <%= @odate.thedate %>
+        (<%= @odate.showstatus %>)
+    </div>
+  <% end %>
+
   <div id="top_btns">
 
 <%  if is_admin?  %>
@@ -38,8 +42,13 @@
           <%= session[:user].name %> (ID=<%=session[:user].id %>)<br/>
       Со статусом:
           <%= session[:user].userlevel.name %> <br />
+
+<% unless is_not_tm2_user? %>      
       Компания:
           <%= session[:user].company.name if session[:user].company %> <br/>
+<%end%>
+
+
       <%= link_to 'Выйти из системы', log_out_path %><br/>
       <%= 
       # link_to 'Обновить список заказов', uporderstable_path, :remote=>true    решили что лишнее
@@ -51,51 +60,54 @@
 
 <%=  image_tag('pic2.gif', :size=>"180x80",  :id=>:pic1) %>
 
-<div id="date_change">
-  <div id="date_msg">Изменение даты</div>
-  <div id="date_field">
+<% unless is_not_tm2_user? %>
 
-    <%= form_tag(setdate_path) do%>
-       <%= text_field_tag :tek_date, @odate.thedate, :size=>8 %>
-       <%= submit_tag 'установить (обновить инф.)' %>
-    <% end %>
+  <div id="date_change">
+    <div id="date_msg">Изменение даты</div>
+    <div id="date_field">
 
-  </div>
-</div>
+      <%= form_tag(setdate_path) do%>
+         <%= text_field_tag :tek_date, @odate.thedate, :size=>8 %>
+         <%= submit_tag 'установить (обновить инф.)' %>
+      <% end %>
 
-<%= content_tag(:div, raw(@error_text), id: "flash", class:"field_with_errors") if @error_text %>
-
-<div id="olist_wrapper">
-  <div id="olist_div">
-      <%= render 'olist' %>
+    </div>
   </div>
 
-  <div id="new_order">
-      Добавление нового заказа:
-      <%= render 'form' unless @odate.isclosed%>
+  <%= content_tag(:div, raw(@error_text), id: "flash", class:"field_with_errors") if @error_text %>
+
+  <div id="olist_wrapper">
+    <div id="olist_div">
+        <%= render 'olist' %>
+    </div>
+
+    <div id="new_order">
+        Добавление нового заказа:
+        <%= render 'form' unless @odate.isclosed%>
+    </div>
+
+    <div id="onlineautos">
+      <%= render 'onlineautos' %>
+    </div>
+
+
+
+
+    <div id="links">
+        <br />  <%= link_to 'Справочник всех автомобилей', aautos_path %>
+        <br/>
+        <br />  <%= link_to 'Список пользователей', users_path %>
+        <br/>
+        <br /> <%= link_to 'Список компаний', companies_path if is_admin? %>
+        <br/>
+        <br /> <%= link_to 'Список отделов', departments_path if is_admin? %>
+        <br/>
+        <br /> <%= link_to 'Статистика по автомобилям', stat_path%>
+        <br/>
+        <br /> <!-- %= link_to 'Статистика по телефонам ЦИК ', calls_path % -->
+
+    </div>
+
   </div>
-
-  <div id="onlineautos">
-    <%= render 'onlineautos' %>
-  </div>
-
-
-
-
-  <div id="links">
-      <br />  <%= link_to 'Справочник всех автомобилей', aautos_path %>
-      <br/>
-      <br />  <%= link_to 'Список пользователей', users_path %>
-      <br/>
-      <br /> <%= link_to 'Список компаний', companies_path if is_admin? %>
-      <br/>
-      <br /> <%= link_to 'Список отделов', departments_path if is_admin? %>
-      <br/>
-      <br /> <%= link_to 'Статистика по автомобилям', stat_path%>
-      <br/>
-      <br /> <!-- %= link_to 'Статистика по телефонам ЦИК ', calls_path % -->
-
-  </div>
-
-</div>
+<% end %>
 
