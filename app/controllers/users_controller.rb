@@ -2,7 +2,12 @@
 
 class UsersController < ApplicationController
 
-  ::FREE_REGISTRATION ? before_filter( :require_login, except: [:new, :create] ) : (before_filter :require_login)
+  if ::FREE_REGISTRATION 
+    before_filter :require_login, except: [:new, :create] 
+  else 
+    before_filter :require_login, except: [:index, :edit, :update]
+  end
+
   before_filter :ip_change_allowed?, only: [:update]
 
 
@@ -16,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+
     @user = User.find_by_id(params[:id])
     @user.ip_address ||= '0.0.0.0'
     get_companies_and_userlevels
@@ -45,7 +51,24 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
     get_companies_and_userlevels
 
-    if @user.update_attributes(params[:user])
+    filtered_params = params[:user]
+
+    if session[:user] && is_admin?
+      logger.debug "Admin #{session[:user].name} has updated user permission"
+    elsif session[:user] && is_company_admin?
+      filtered_params[:userlevel_id] == ::ADMIN_ID ? filtered_params[:userlevel_id] = ::COMPANY_ADMIN_ID : {}
+    elsif session[:user]
+      filtered_params[:userlevel_id] = session[:user].userlevel_id
+      filtered_params[:company_id] = session[:user].company_id
+    elsif ::FREE_REGISTRATION
+      logger.debug "Free registration fiesta!!!! "
+    else
+      flash[:notice]="Для изменения пользователя недостаточно прав"
+      redirect_to root_url
+    end
+
+
+    if @user.update_attributes(filtered_params)
       flash[:notice] = "#{flash[:notice]} Пользователь #{@user.name} обновелен."
       flash.keep
       redirect_to users_path
@@ -59,8 +82,11 @@ class UsersController < ApplicationController
       @users=User.find(:all) 
     elsif is_company_admin?
       @users=User.find_all_by_company_id(session[:user].company_id)
-    else
-      @users=User.find_all_by_id(session[:user].id) if !is_admin?
+    elsif session[:user]
+      @users=[ session[:user] ]
+    elsif
+      flash[:notice]="Надо зарегистрироваться в системе."
+      redirect_to root_url      
     end
   end
 
@@ -82,7 +108,7 @@ class UsersController < ApplicationController
       @userlevels = Userlevel.find_all_by_id([::COMPANY_ADMIN_ID, ::USER_ID])
       @companies = [session[:user].company]
     elsif session[:user]
-      @userlevels = [Userlevel.find_by_id(::USER_ID)]
+      @userlevels = [session[:user].userlevel]
       @companies = [session[:user].company]
     elsif ::FREE_REGISTRATION
       @userlevels = [Userlevel.find_by_id(::USER_ID)]
