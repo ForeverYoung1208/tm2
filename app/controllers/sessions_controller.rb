@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
        user.actions.create( :kind => "stay_in")
        redirect_to aorders_path
      else
-       flash.now.alert = user ? "неправильный IP #{ user.ip_address } != #{ request.remote_ip }" :  "неправильные имя или пароль"
+       flash.now.alert = user ? "неправильный IP: ожидается #{ user.ip_address }; получен #{ request.remote_ip }" :  "неправильные имя или пароль"
        render "new"
      end
    end
