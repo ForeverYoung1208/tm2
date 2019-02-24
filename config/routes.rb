@@ -22,7 +22,7 @@ Tm2::Application.routes.draw do
   match "aorders/:id/cancel" =>"aorders#ocancel", :as => "aorder_cancel"
   match "uporderstable" => "aorders#uporderstable", :as =>"uporderstable"
   match "tabel" => "actions#tabel", :as =>"tabel"
-  post "password_reset" => "users#password_reset", :as => "password_reset"
+  # post "password_reset" => "users#password_reset", :as => "password_reset"
   match "aorders/:id/edit_odometer" =>"aorders#edit_odometer", :as => "edit_aorder_odometer"
 
   match "stat" => "stat#index", :as =>"stat"

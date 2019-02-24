@@ -6,7 +6,7 @@ class AordersController < ApplicationController
   before_filter :is_day_closed, :only => [:ocancel, :new, :create, :update, :destroy]
 
   def uporderstable
-    if session[:user]
+    if session[:user] && !is_not_tm2_user?
 
       last_today_act = session[:user].actions.where("created_at>'#{DateTime.current.beginning_of_day.to_s(:db)}' and created_at<'#{DateTime.current.end_of_day.to_s(:db)}'").last
 
@@ -30,9 +30,17 @@ class AordersController < ApplicationController
 
       @onlineauto=Onlineauto.new
       @onlineauto.odate_id=@odate.id
+
+    elsif session[:user] && is_not_tm2_user?
+      last_today_act = session[:user].actions.where("created_at>'#{DateTime.current.beginning_of_day.to_s(:db)}' and created_at<'#{DateTime.current.end_of_day.to_s(:db)}'").last
+      last_today_act.update_attributes!(
+        :kind=>"stay_in",
+        :updated_at => DateTime.current
+      )
+      render :nothing => true
     else
       logger.info("No user logged in!")
-      render :nothing => true
+      redirect_to root_url, :notice => "No user logged in!"
     end
 
   end

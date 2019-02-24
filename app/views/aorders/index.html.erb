@@ -92,9 +92,10 @@
 
 
 
+<% end %>  <!-- unless is_not_tm2_user? -->
 
     <div id="links">
-        <br />  <%= link_to 'Справочник всех автомобилей', aautos_path %>
+        <br />  <%= link_to 'Справочник всех автомобилей', aautos_path unless is_not_tm2_user? %>
         <br/>
         <br />  <%= link_to 'Список пользователей', users_path %>
         <br/>
@@ -102,12 +103,12 @@
         <br/>
         <br /> <%= link_to 'Список отделов', departments_path if is_admin? %>
         <br/>
-        <br /> <%= link_to 'Статистика по автомобилям', stat_path%>
+        <br /> <%= link_to 'Статистика по автомобилям', stat_path unless is_not_tm2_user?%>
         <br/>
         <br /> <!-- %= link_to 'Статистика по телефонам ЦИК ', calls_path % -->
 
     </div>
 
   </div>
-<% end %>
+
 

@@ -100,7 +100,7 @@ class ApplicationController < ActionController::Base
         redirect_to root_url
       end
       if is_not_tm2_user?
-        unless controller_name == 'aorders' && action_name == 'index'
+        unless controller_name == 'aorders' && (action_name == 'index' || action_name == "uporderstable")
           redirect_to root_url, :notice => "Действие не разрешено"
         end
       end
