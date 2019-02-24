@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20161122151954) do
+ActiveRecord::Schema.define(:version => 20190224210945) do
 
   create_table "aautos", :force => true do |t|
     t.string   "name"
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(:version => 20161122151954) do
     t.integer  "company_id"
     t.boolean  "is_ip_controlled", :default => false
     t.string   "ip_address"
+    t.datetime "deleted_at"
   end
 
 end
