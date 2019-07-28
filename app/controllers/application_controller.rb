@@ -20,12 +20,17 @@ class ApplicationController < ActionController::Base
     ::FREE_REGISTRATION = false
 #    ADMIN_ID=::ADMIN_ID
     ::NOT_TM2_USER_ID = 7 #userlevel_id for user who are not allowed to tm2
+    ::DIRECTOR_ID = 8 #userlevel_id
 
     helper_method :is_admin?, :is_superadmin?, :is_company_admin?,
      :is_current_user_or_admin?, :check_tabel_rights?, :is_current_user_driver?,
-     :is_not_tm2_user?
+     :is_not_tm2_user?, :is_director?
 
     class TraficError < StandardError
+    end
+
+    def is_director?
+      session[:user].userlevel_id == ::DIRECTOR_ID
     end
 
 
