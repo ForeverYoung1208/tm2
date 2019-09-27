@@ -20,9 +20,8 @@
     <th class="Водитель">Водитель</th>
     <th class="autonumber">Госномер авто</th>
     <th class="contact">Тел. водителя</th>
-    <th class="onduty">Приме чание</th>
-    <th class="todel"> </th>
-    <th class="toduty"> </th>
+    <th class="worktime">Время за день</th>
+    <th class="duty">Дежурный?</th>
 
     <%
       t=9.hours
@@ -39,6 +38,7 @@
         t+=10.minutes
         end
       %>
+    <th class="todel"> </th>      
 
   </tr>
 
@@ -49,9 +49,10 @@
     <td><%= onld.aauto.autodesc if onld.aauto %></td>
     <td><%= onld.aauto.autonumber if onld.aauto %></td>
     <td><%= onld.aauto.contact if onld.aauto %></td>
-    <td><%= 'Дежурный' if onld.onduty %></td>
-    <td><%= link_to 'Удалить', onld, :method => :delete if onld.id&&(is_admin?||is_company_admin?) %></td>
-    <td><%= link_to '(Не-) дежурить', setonduty_path(:id=>onld.id) if onld.id&&(is_admin?||is_company_admin?) %></td>
+    <td><%= onld.work_time %></td>
+    <td><%= onld.onduty ? 'Дежурный' : 'Нет' %>
+        <%= link_to 'Изменить', setonduty_path(:id=>onld.id) if onld.id&&(is_admin?||is_company_admin?) %>
+    </td>
 
     <%
       t=9.hours
@@ -79,6 +80,8 @@
       <%
       t+=10.minutes
       end%>
+    <td><%= link_to 'Удалить', onld, :method => :delete if onld.id&&(is_admin?||is_company_admin?) %></td>
+      
 
   </tr>
 <% end %>

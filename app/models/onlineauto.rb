@@ -9,6 +9,15 @@ class Onlineauto < ActiveRecord::Base
   	self.aauto.name_autodesc
   end
 
+  def work_time
+    total_duration = 0
+    aauto.aorders.where("odate_id = ?", odate.id).each do |order|
+      total_duration +=order.duration_seconds
+    end
+    Time.at(total_duration).utc.strftime("%H:%M")
+
+  end
+
   def self.find_all_by_odate_id_puls_empty(odate)
   	res = self.find_all_by_odate_id(odate)
   	emptyauto = Onlineauto.new(odate_id: odate, aauto_id: ::NOAUTO_ID)

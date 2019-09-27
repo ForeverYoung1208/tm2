@@ -21,6 +21,7 @@ Userlevel.where(id: 4).first_or_create( name: 'alltabeluser')
 Userlevel.where(id: 5).first_or_create( name: 'driver') 
 Userlevel.where(id: 6).first_or_create( name: 'сompany_admin')
 Userlevel.where(id: 7).first_or_create( name: 'only_login')
+Userlevel.where(id: 8).first_or_create( name: 'director')
 
 aauto=Aauto.where( id: 6).first_or_create (
   {name: 'no auto',

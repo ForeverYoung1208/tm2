@@ -35,6 +35,7 @@ class Aorder < ActiveRecord::Base
 # кстаи логика нормальная а имя свойства конченное. Но таки лень переделывать.
 # спустя еще 2 года: Таки логика - говно, но переделывать все еще лень.
 
+
   def replace_nil_with_zero
     self.odobegin = 0 if !self.odobegin
     self.odoend = 0 if !self.odoend
@@ -60,7 +61,8 @@ class Aorder < ActiveRecord::Base
           (ttmid.to_i==self.user_id) and 
           (self.aauto_id==nil or self.aauto_id==::NOAUTO_ID or is_updating_odometer)
         ) or 
-        (User.find_by_id(ttmid).userlevel_id==::DRIVERUSER_ID)
+        (User.find_by_id(ttmid).userlevel_id==::DRIVERUSER_ID)or 
+        (User.find_by_id(ttmid).userlevel_id==::DIRECTOR_ID)
       res=true
     else
       self.errors.add(:ttmid, "нет прав на изменеие, только для Администратора!")
@@ -79,6 +81,11 @@ class Aorder < ActiveRecord::Base
     end
     res
   end
+
+  def duration_seconds
+    self.totime.seconds_since_midnight - self.ftime.seconds_since_midnight
+  end
+  
 
   def is_d_busy(d_id, t)
     res=false
