@@ -82,6 +82,11 @@ class Aorder < ActiveRecord::Base
     res
   end
 
+  def duration_seconds
+    self.totime.seconds_since_midnight - self.ftime.seconds_since_midnight
+  end
+  
+
   def is_d_busy(d_id, t)
     res=false
     if not self.iscanceled
