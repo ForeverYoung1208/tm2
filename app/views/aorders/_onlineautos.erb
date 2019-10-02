@@ -24,10 +24,10 @@
     <th class="duty">Дежурный?</th>
 
     <%
-      t=9.hours
+      t=0.hours
       while t <= 23.hours do %>
         <%  if  t.gcd(1.hour.to_i)==1.hour%>
-          <% if t/3600>=18 or (t/3600>=13 and t/3600<14) %>
+          <% if t/3600<9 or (t/3600>=13 and t/3600<14) or t/3600>=18 %>
             <th colspan="6" class="notworkingtime"><%=t/3600%>-<%=t/3600+1%></th>
           <%else%>
             <th colspan="6" class="workingtime"><%=t/3600%>-<%=t/3600+1%></th>
@@ -55,7 +55,7 @@
     </td>
 
     <%
-      t=9.hours
+      t=0.hours
       while t < 24.hours do 
         busytime=0
         order_ids=''
@@ -88,12 +88,12 @@
 
 <% if is_admin?||is_company_admin? %>
   <tr class="ruler">
-    <td colspan="97"></td>
+    <td colspan="151"></td>
   </tr>
 
   <tr>
     
-        <td colspan="97">
+        <td colspan="151">
           <%= form_for(@onlineauto) do |f| %>
           <%= f.hidden_field :odate_id %>
           <%= f.collection_select(:aauto_id, Aauto.all, :id, :name_autodesc, :prompt => 'Не назначен', :size=>'5')  %>

@@ -67,7 +67,7 @@ class Odate < ActiveRecord::Base
   end
 
 
-  private
+  # private
 
   def day_errors
     test1_errors=[]
@@ -75,28 +75,36 @@ class Odate < ActiveRecord::Base
     # по каждому авто которые есть в заказах в данной (self) дате
     self.aorders.select(:aauto_id).uniq.map{|aorder| aorder.aauto_id }.each do |current_auto_id|
       last_odoend=0
-      prev_order_id=0
+      prev_order=nil
       total_distance=0
 
+      #будем чекать все заказы за текущий месяц
+      dates_ids = Odate.where("thedate >= ? AND thedate <=?",self.thedate.beginning_of_month.to_s, self.thedate.end_of_month.to_s).pluck(:id)
+
       # По каждому заказу в которых есть данное авто (отсортированы по спидометру)
-      self.aorders.where( "aauto_id = ?", current_auto_id ).order(:odobegin).order(:odoend).to_a.each do |current_order|
+      # self.aorders.where( "aauto_id = ?", current_auto_id ).order(:odobegin).order(:odoend).to_a.each do |current_order|
+      # переделаем на все заказы за месяц
+      Aorder.where( "aauto_id = ? AND odate_id IN (?)", current_auto_id, dates_ids ).order(:odobegin).order(:odoend).to_a.each do |current_order|
         if !current_order.iscanceled?
 
           # проверка на стыковку пробега на то что нет разырвов в показаниях спидометра
           if (current_order.odobegin != last_odoend) and last_odoend != 0 and current_auto_id!=::NOAUTO_ID then 
-            test1_errors << { auto_id: current_auto_id, order_id: current_order.id, message: "разрыв в показаниях спидометра заказов № #{prev_order_id} и #{current_order.id} : #{last_odoend} - #{current_order.odobegin}"}
+            test1_errors << { auto_id: current_auto_id, order_id: current_order.id, 
+              message: "разрыв в показаниях спидометра заказов № #{prev_order.id} от #{prev_order.odate.thedate} и #{current_order.id} от #{current_order.odate.thedate} : #{last_odoend} - #{current_order.odobegin}"}
           end
 
           # проверка на внесение пробега
           if current_order.distance == 0 and current_order.comment=='' and current_auto_id!=::NOAUTO_ID 
-            test1_errors << { order_id: current_order.id, message: "У заказа № #{current_order.id} нулевой пробег без указания примечания" } if current_auto_id
+            test1_errors << { order_id: current_order.id, message: "У заказа № #{current_order.id} от #{current_order.odate.thedate} нулевой пробег без указания примечания" } if current_auto_id
           end
 
           last_odoend=current_order.odoend
-          prev_order_id=current_order.id
+          prev_order=current_order
           total_distance=+current_order.distance
         end
       end
+
+
 
       # проверка на внесение пробега за день
       #if total_distance == 0 and current_auto_id!=::NOAUTO_ID

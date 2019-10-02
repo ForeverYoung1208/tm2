@@ -1,64 +1,72 @@
 <% 
 	total_alldays = 0
+	total_alldays_time = 0
 	total_alldays_outofcity = 0
 %>
 
 <% @days_of_orders.each do|odate, orders|  
 			total_all = 0
 			total_outofcity = 0
+			total_time = 0
 %>
-	<h2>Маршрутний лист по автівкам: 
-		<% @auto.each do |a|  %>
-			<%= a.name_autodesc+", " %>
-		<% end %>
-	</h2> 
+			<h2>Маршрутний лист по автівкам: 
+				<% @auto.each do |a|  %>
+					<%= a.name_autodesc+", " %>
+				<% end %>
+			</h2> 
 
 
-	<h3>Дата: <%= odate.thedate.strftime('%d.%m.%Y') %> 
-		<% if !odate.isclosed%>
-			<div class='field_with_errors'> - День не закрито !</div>
-		<% end %>
+			<h3>Дата: <%= odate.thedate.strftime('%d.%m.%Y') %> 
+				<% if !odate.isclosed%>
+					<div class='field_with_errors'> - День не закрито !</div>
+				<% end %>
 
-	</h3>
-	<table class="routelist">
-		<tr>
-			<th id='adestination'>Пункт(и) призначеня</th>
-			<th id='ftime'>Час початку руху</th>
-			<th id='totime'>Час закінченя руху</th>
-			<th id='odobegin'>Спідометр на початку</th>
-			<th id='odoend'>Спідометр в кінці</th>
-			<th id='distance'>Дистанція всього, км.</th>
-			<th id='outofcity'>Із них поза містом, км.</th>
-			<th id='onname'>ПІБ відповідальної особи</th>
-		</tr>
+			</h3>
+			<table class="routelist">
+				<tr>
+					<th id='adestination'>Пункт(и) призначеня</th>
+					<th id='ftime'>Час початку руху</th>
+					<th id='totime'>Час закінченя руху</th>
+					<th id='total_time'>Тривалість</th>
+					<th id='odobegin'>Спідометр на початку</th>
+					<th id='odoend'>Спідометр в кінці</th>
+					<th id='distance'>Дистанція всього, км.</th>
+					<th id='outofcity'>Із них поза містом, км.</th>
+					<th id='onname'>ПІБ відповідальної особи</th>
+				</tr>
 
-		<% orders.each do |order|
-			total_all += order.distance
-			total_alldays += order.distance
+				<% orders.each do |order|
+					total_all += order.distance
+					total_alldays += order.distance
+					total_time += order.duration_seconds
+					total_alldays_time += order.duration_seconds
 
-			total_outofcity += order.outofcity
-			total_alldays_outofcity += order.outofcity
-		%>
-			<tr>
-				<td><%= order.adestination %></td>
-				<td><%= order.ftime.strftime("%H:%M") %></td>
-				<td><%= order.totime.strftime("%H:%M") %></td>
-				<td><%= order.odobegin %></td>
-				<td><%= order.odoend %></td>
-				<td><%= order.distance %></td>
-				<td><%= order.outofcity %></td>
-				<td><%= order.onname %></td>		
-			</tr>
-		<% end %>
-  </table>
+					total_outofcity += order.outofcity
+					total_alldays_outofcity += order.outofcity
+				%>
+					<tr>
+						<td><%= order.adestination %></td>
+						<td><%= order.ftime.strftime("%H:%M") %></td>
+						<td><%= order.totime.strftime("%H:%M") %></td>
+						<td><%= Time.at(order.duration_seconds).utc.strftime("%H:%M")  %></td>
+						<td><%= order.odobegin %></td>
+						<td><%= order.odoend %></td>
+						<td><%= order.distance %></td>
+						<td><%= order.outofcity %></td>
+						<td><%= order.onname %></td>		
+					</tr>
+				<% end %>
+		  </table>
 
-  <h4>Всього за день, км: <%= total_all %></h4>
-  <h4>Із них по місту, км: <%= total_all-total_outofcity %></h4>
-  <h4>Із них поза містом, км:<%= total_outofcity %></h4>
-  <p class = 'break_page'> ---наступна сторінка-- </p>
+		  <h4>Загальна тривалість: <%= Time.at(total_time).utc.strftime("%H:%M")  %></h4>
+		  <h4>Всього за день, км: <%= total_all %></h4>
+		  <h4>Із них по місту, км: <%= total_all-total_outofcity %></h4>
+		  <h4>Із них поза містом, км:<%= total_outofcity %></h4>
+		  <p class = 'break_page'> ---наступна сторінка-- </p>
 
 <% end %>
 
+  <h4>Загальна тривалысть за всі дні: <%= Time.at(total_alldays_time).utc.strftime("%H:%M")  %> </h4>
   <h4>Всього пробіг за всі дні, км: <%= total_alldays %></h4>
   <h4>Із них по місту, км: <%= total_alldays - total_alldays_outofcity %></h4>
   <h4>Із них поза містом, км:<%= total_alldays_outofcity %></h4>
