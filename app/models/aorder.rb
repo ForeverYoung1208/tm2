@@ -83,7 +83,7 @@ class Aorder < ActiveRecord::Base
   end
 
   def duration_seconds
-    self.totime.seconds_since_midnight - self.ftime.seconds_since_midnight
+    distance >0 ? (self.totime.seconds_since_midnight - self.ftime.seconds_since_midnight) : 0
   end
   
 

@@ -7,6 +7,7 @@
     <td><%= aorder.adestination %></td>
     <td><%= aorder.ftime.strftime("%H:%M") %></td>
     <td><%= aorder.totime.strftime("%H:%M") %></td>
+    <td><%= hm(aorder.duration_seconds) %></td>
     <td><%= aorder.aauto.name_autodesc if aorder.aauto %></td>
     <td><%= aorder.comment %></td>
 
