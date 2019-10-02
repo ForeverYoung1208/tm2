@@ -25,4 +25,9 @@ module ApplicationHelper
     end
   end
 
+  def hm(seconds, decimals = 0)
+    int   = seconds.floor
+    [int / 3600, (int / 60) % 60].map { |t| t.to_s.rjust(2,'0') }.join(':')
+  end
+
 end

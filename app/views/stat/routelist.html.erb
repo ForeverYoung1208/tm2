@@ -48,7 +48,7 @@
 						<td><%= order.adestination %></td>
 						<td><%= order.ftime.strftime("%H:%M") %></td>
 						<td><%= order.totime.strftime("%H:%M") %></td>
-						<td><%= Time.at(order.duration_seconds).utc.strftime("%H:%M")  %></td>
+						<td><%= hm(order.duration_seconds) %></td>
 						<td><%= order.odobegin %></td>
 						<td><%= order.odoend %></td>
 						<td><%= order.distance %></td>
@@ -58,7 +58,7 @@
 				<% end %>
 		  </table>
 
-		  <h4>Загальна тривалість: <%= Time.at(total_time).utc.strftime("%H:%M")  %></h4>
+		  <h4>Загальна тривалість: <%= hm(total_time) %></h4>
 		  <h4>Всього за день, км: <%= total_all %></h4>
 		  <h4>Із них по місту, км: <%= total_all-total_outofcity %></h4>
 		  <h4>Із них поза містом, км:<%= total_outofcity %></h4>
@@ -66,7 +66,7 @@
 
 <% end %>
 
-  <h4>Загальна тривалысть за всі дні: <%= Time.at(total_alldays_time).utc.strftime("%H:%M")  %> </h4>
+  <h4>Загальна тривалість за всі дні : <%= "#{hm(total_alldays_time)} (годин:хвилин)"  %> </h4>
   <h4>Всього пробіг за всі дні, км: <%= total_alldays %></h4>
   <h4>Із них по місту, км: <%= total_alldays - total_alldays_outofcity %></h4>
   <h4>Із них поза містом, км:<%= total_alldays_outofcity %></h4>

@@ -1,4 +1,5 @@
 class StatController < ApplicationController
+	include ApplicationHelper
   before_filter :require_login  
 
 	def index
@@ -20,7 +21,7 @@ class StatController < ApplicationController
 							lambda{ |options, record| options[:builder].tag!('user_author', record.user.name) },
 							lambda{ |options, record| options[:builder].tag!('ftime_xml', record.ftime.strftime("%H:%M") ) },
 							lambda{ |options, record| options[:builder].tag!('totime_xml', record.totime.strftime("%H:%M") ) },
-							lambda{ |options, record| options[:builder].tag!('totaltime_xml', Time.at(record.duration_seconds).utc.strftime("%H:%M")  ) }
+							lambda{ |options, record| options[:builder].tag!('totaltime_seconds', record.duration_seconds ) }
 						],
 			:except =>  [:aauto_id, :department_id, :odate_id, :user_id, :ftime, :totime, :iscanceled, :ondepartment, :updated_at],
 			:skip_types => true
