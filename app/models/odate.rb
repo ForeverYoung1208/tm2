@@ -78,12 +78,13 @@ class Odate < ActiveRecord::Base
       prev_order=nil
       total_distance=0
 
-      #будем чекать все заказы за текущий месяц
-      dates_ids = Odate.where("thedate >= ? AND thedate <=?",self.thedate.beginning_of_month.to_s, self.thedate.end_of_month.to_s).pluck(:id)
 
       # По каждому заказу в которых есть данное авто (отсортированы по спидометру)
+
       # self.aorders.where( "aauto_id = ?", current_auto_id ).order(:odobegin).order(:odoend).to_a.each do |current_order|
       # переделаем на все заказы за месяц
+      # будем чекать все заказы с начала текущего месяца до даты чекания (self)
+      dates_ids = Odate.where("thedate >= ? AND thedate <=?",self.thedate.beginning_of_month.to_s, self.thedate).pluck(:id)
       Aorder.where( "aauto_id = ? AND odate_id IN (?)", current_auto_id, dates_ids ).order(:odobegin).order(:odoend).to_a.each do |current_order|
         if !current_order.iscanceled?
 
