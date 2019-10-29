@@ -80,7 +80,7 @@ class Odate < ActiveRecord::Base
 
       #introduce array of possible aauto ids in case if one car shares different drivers.  (synonims)
       #we will check the "autonumber" parameter to understand if this is the same car
-      current_autonuber = Aauto.find(current_auto_id).autonumber
+      current_auto_id ? current_autonuber = Aauto.find(current_auto_id).autonumber : current_autonuber = null
       possible_auto_ids = Aauto.where("autonumber LIKE ?", current_autonuber).pluck(:id)
 
       # По каждому заказу в которых есть данное авто (отсортированы по спидометру)
