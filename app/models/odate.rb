@@ -78,6 +78,10 @@ class Odate < ActiveRecord::Base
       prev_order=nil
       total_distance=0
 
+      #introduce array of possible aauto ids in case if one car shares different drivers.  (synonims)
+      #we will check the "autonumber" parameter to understand if this is the same car
+      current_autonuber = Aauto.find(current_auto_id).autonumber
+      possible_auto_ids = Aauto.where("autonumber LIKE ?", current_autonuber).pluck(:id)
 
       # По каждому заказу в которых есть данное авто (отсортированы по спидометру)
 
@@ -85,7 +89,8 @@ class Odate < ActiveRecord::Base
       # переделаем на все заказы за месяц
       # будем чекать все заказы с начала текущего месяца до даты чекания (self)
       dates_ids = Odate.where("thedate >= ? AND thedate <=?",self.thedate.beginning_of_month.to_s, self.thedate).pluck(:id)
-      Aorder.where( "aauto_id = ? AND odate_id IN (?)", current_auto_id, dates_ids ).order(:odobegin).order(:odoend).to_a.each do |current_order|
+      processing_orders = Aorder.where( "aauto_id IN (?) AND odate_id IN (?)", possible_auto_ids, dates_ids ).order(:odobegin).order(:odoend)
+      processing_orders.to_a.each do |current_order|
         if !current_order.iscanceled?
 
           # проверка на стыковку пробега на то что нет разырвов в показаниях спидометра
