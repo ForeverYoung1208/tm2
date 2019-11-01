@@ -339,3 +339,98 @@ Processing by AordersController#index as HTML
   Rendered aorders/_onlineautos.erb (1324.6ms)
   Rendered aorders/index.html.erb within layouts/application (1540.4ms)
 Completed 200 OK in 1545ms (Views: 1500.3ms | ActiveRecord: 42.4ms)
+Connecting to database specified by database.yml
+Started GET "/uporderstable?_=1572364893017" for 10.21.127.72 at 2019-10-29 18:11:32 +0200
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1572364893017"}
+  Rendered aorders/_head.erb (2.6ms)
+  Rendered aorders/_body.erb (55.6ms)
+  Rendered aorders/_olist.erb (59.7ms)
+  Rendered aorders/_onlineautos.erb (340.8ms)
+  Rendered aorders/uporderstable.js.erb (432.5ms)
+Completed 200 OK in 1374ms (Views: 133.3ms | ActiveRecord: 1125.5ms)
+Started GET "/" for 10.21.127.72 at 2019-10-29 18:11:36 +0200
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.8ms)
+Compiled jquery.ui.core.css  (1ms)  (pid 10753)
+Compiled jquery.ui.theme.css  (65ms)  (pid 10753)
+Compiled jquery.ui.datepicker.css  (120ms)  (pid 10753)
+Warning. Error encountered while saving cache /home/sia/ror/tm2/tmp/cache/sass/dfeadc279c4c5f6f951035ac75fa1e1a3dc0251c/callists.css.scssc: can't dump anonymous class #<Class:0x00000002b07d70>
+Compiled callists.css  (49ms)  (pid 10753)
+Warning. Error encountered while saving cache /home/sia/ror/tm2/tmp/cache/sass/dfeadc279c4c5f6f951035ac75fa1e1a3dc0251c/calls.css.scssc: can't dump anonymous class #<Class:0x00000002b07d70>
+Compiled calls.css  (4ms)  (pid 10753)
+Compiled departments.css  (0ms)  (pid 10753)
+Compiled orders.css  (0ms)  (pid 10753)
+Compiled scaffold.css  (0ms)  (pid 10753)
+Warning. Error encountered while saving cache /home/sia/ror/tm2/tmp/cache/sass/dfeadc279c4c5f6f951035ac75fa1e1a3dc0251c/scaffolds.css.scssc: can't dump anonymous class #<Class:0x00000002b07d70>
+Compiled scaffolds.css  (6ms)  (pid 10753)
+Warning. Error encountered while saving cache /home/sia/ror/tm2/tmp/cache/sass/dfeadc279c4c5f6f951035ac75fa1e1a3dc0251c/stat.scssc: can't dump anonymous class #<Class:0x00000002b07d70>
+Compiled stat.css  (8ms)  (pid 10753)
+Compiled application.css  (261ms)  (pid 10753)
+Compiled jquery.js  (1ms)  (pid 10753)
+Compiled jquery.ui.core.js  (0ms)  (pid 10753)
+Compiled jquery.ui.datepicker.js  (3ms)  (pid 10753)
+Compiled jquery_ujs.js  (0ms)  (pid 10753)
+Compiled aorders.js  (0ms)  (pid 10753)
+Compiled stat.js  (0ms)  (pid 10753)
+Compiled application.js  (53ms)  (pid 10753)
+Completed 200 OK in 395ms (Views: 353.6ms | ActiveRecord: 39.2ms)
+Started GET "/assets/application-f069d0fa4bea63aa560713cce4c535ff.css" for 10.21.127.72 at 2019-10-29 18:11:37 +0200
+Served asset /application-f069d0fa4bea63aa560713cce4c535ff.css - 200 OK (0ms)
+Started GET "/assets/application-dfc472d75d46d53f47ea8af40a076c3a.js" for 10.21.127.72 at 2019-10-29 18:11:37 +0200
+Served asset /application-dfc472d75d46d53f47ea8af40a076c3a.js - 200 OK (0ms)
+Started GET "/assets/favicon-21fa39fc5820656eeeea10d4e4e4089d.ico" for 10.21.127.72 at 2019-10-29 18:11:38 +0200
+Served asset /favicon-21fa39fc5820656eeeea10d4e4e4089d.ico - 200 OK (0ms)
+Started POST "/sessions" for 10.21.127.72 at 2019-10-29 18:11:42 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BhtCmuFrQlhk2OAdno5wqYHEXXLeQw69Z9OWhFQxCUc=", "name"=>"ForeverYoung", "password"=>"[FILTERED]", "commit"=>"Войти"}
+Redirected to http://192.168.99.51:3000/aorders
+Completed 302 Found in 360ms (ActiveRecord: 269.4ms)
+Started GET "/aorders" for 10.21.127.72 at 2019-10-29 18:11:43 +0200
+Processing by AordersController#index as HTML
+  Rendered aorders/_head.erb (2.4ms)
+  Rendered aorders/_body.erb (49.1ms)
+  Rendered aorders/_olist.erb (52.9ms)
+  Rendered aorders/_head.erb (1.7ms)
+  Rendered aorders/_form.html.erb (258.0ms)
+  Rendered aorders/_onlineautos.erb (161.3ms)
+  Rendered aorders/index.html.erb within layouts/application (588.0ms)
+Completed 200 OK in 636ms (Views: 87.1ms | ActiveRecord: 545.7ms)
+Started GET "/assets/pic2-a3b81cfa476e4579d83a1fbfa57be6aa.gif" for 10.21.127.72 at 2019-10-29 18:11:44 +0200
+Served asset /pic2-a3b81cfa476e4579d83a1fbfa57be6aa.gif - 200 OK (0ms)
+Started GET "/assets/jquery-ui/ui-bg_flat_75_ffffff_40x100-3037ea8408540f0c5354e0285d7038d9.png" for 10.21.127.72 at 2019-10-29 18:11:44 +0200
+Served asset /jquery-ui/ui-bg_flat_75_ffffff_40x100-3037ea8408540f0c5354e0285d7038d9.png - 200 OK (0ms)
+Started GET "/assets/jquery-ui/ui-icons_222222_256x240-4f8251bbe923ef5d36a0eafa0a09ebf4.png" for 10.21.127.72 at 2019-10-29 18:11:46 +0200
+Served asset /jquery-ui/ui-icons_222222_256x240-4f8251bbe923ef5d36a0eafa0a09ebf4.png - 200 OK (0ms)
+Started GET "/assets/jquery-ui/ui-bg_highlight-soft_75_cccccc_1x100-e90e94bfdd5616de89bc53958861acd2.png" for 10.21.127.72 at 2019-10-29 18:11:46 +0200
+Served asset /jquery-ui/ui-bg_highlight-soft_75_cccccc_1x100-e90e94bfdd5616de89bc53958861acd2.png - 200 OK (0ms)
+Started GET "/assets/jquery-ui/ui-bg_glass_75_e6e6e6_1x400-39259328459209cc33e179c1d8642fac.png" for 10.21.127.72 at 2019-10-29 18:11:46 +0200
+Served asset /jquery-ui/ui-bg_glass_75_e6e6e6_1x400-39259328459209cc33e179c1d8642fac.png - 200 OK (0ms)
+Started GET "/assets/jquery-ui/ui-bg_glass_55_fbf9ee_1x400-8573b24e439ce3bba1c093803fdc4e24.png" for 10.21.127.72 at 2019-10-29 18:11:46 +0200
+Served asset /jquery-ui/ui-bg_glass_55_fbf9ee_1x400-8573b24e439ce3bba1c093803fdc4e24.png - 200 OK (0ms)
+Started GET "/assets/jquery-ui/ui-bg_glass_75_dadada_1x400-1993f0acda3012a21ed56dff7e253d0f.png" for 10.21.127.72 at 2019-10-29 18:11:47 +0200
+Served asset /jquery-ui/ui-bg_glass_75_dadada_1x400-1993f0acda3012a21ed56dff7e253d0f.png - 200 OK (0ms)
+Started POST "/setdate" for 10.21.127.72 at 2019-10-29 18:11:48 +0200
+Processing by AordersController#setdate as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BhtCmuFrQlhk2OAdno5wqYHEXXLeQw69Z9OWhFQxCUc=", "tek_date"=>"2019-10-21", "commit"=>"установить (обновить инф.)"}
+Redirected to http://192.168.99.51:3000/aorders
+Completed 302 Found in 122ms (ActiveRecord: 119.0ms)
+Started GET "/aorders" for 10.21.127.72 at 2019-10-29 18:11:49 +0200
+Processing by AordersController#index as HTML
+  Rendered aorders/_head.erb (3.5ms)
+  Rendered aorders/_body.erb (154.3ms)
+  Rendered aorders/_olist.erb (159.1ms)
+  Rendered aorders/_head.erb (2.8ms)
+  Rendered aorders/_form.html.erb (367.7ms)
+  Rendered aorders/_onlineautos.erb (254.7ms)
+  Rendered aorders/index.html.erb within layouts/application (910.7ms)
+Completed 200 OK in 1036ms (Views: 53.7ms | ActiveRecord: 978.8ms)
+Started GET "/uporderstable?_=1572365511753" for 10.21.127.72 at 2019-10-29 18:12:51 +0200
+Processing by AordersController#uporderstable as JS
+  Parameters: {"_"=>"1572365511753"}
+  Rendered aorders/_head.erb (3.9ms)
+  Rendered aorders/_body.erb (57.6ms)
+  Rendered aorders/_olist.erb (62.2ms)
+  Rendered aorders/_onlineautos.erb (213.1ms)
+  Rendered aorders/uporderstable.js.erb (277.4ms)
+Completed 200 OK in 483ms (Views: 25.1ms | ActiveRecord: 450.8ms)

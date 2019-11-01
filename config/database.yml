@@ -5,6 +5,7 @@
 #
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+
 development:
   adapter: mysql2
   encoding: utf8
@@ -17,9 +18,22 @@ development:
   password: '120880'
 
 
-#  database: tm2t_production
-#  host: 192.168.20.33
-#  port: 3306
+
+# connect production database as development for real debugging)))
+
+# development:
+#   adapter: mysql2
+#   encoding: utf8
+#   reconnect: false
+#   database: tm2018_production
+#   host: tm2t.inv.local
+#   port: 3306
+
+#   pool: 5
+#   username: root_tm2
+#   password: '120880'
+ 
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

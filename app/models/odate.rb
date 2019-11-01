@@ -80,8 +80,8 @@ class Odate < ActiveRecord::Base
 
       #introduce array of possible aauto ids in case if one car shares different drivers.  (synonims)
       #we will check the "autonumber" parameter to understand if this is the same car
-      current_auto_id ? current_autonuber = Aauto.find(current_auto_id).autonumber : current_autonuber = null
-      possible_auto_ids = Aauto.where("autonumber LIKE ?", current_autonuber).pluck(:id)
+      current_auto_id ? current_autonuber = Aauto.find(current_auto_id).autonumber : current_autonuber = nil
+      possible_auto_ids = Aauto.where("autonumber LIKE ?", '%'+'current_autonuber'+'%').pluck(:id)
 
       # По каждому заказу в которых есть данное авто (отсортированы по спидометру)
 
@@ -95,6 +95,9 @@ class Odate < ActiveRecord::Base
 
           # проверка на стыковку пробега на то что нет разырвов в показаниях спидометра
           if (current_order.odobegin != last_odoend) and last_odoend != 0 and current_auto_id!=::NOAUTO_ID then 
+
+            debugger
+
             test1_errors << { auto_id: current_auto_id, order_id: current_order.id, 
               message: "разрыв в показаниях спидометра заказов № #{prev_order.id} от #{prev_order.odate.thedate} и #{current_order.id} от #{current_order.odate.thedate} : #{last_odoend} - #{current_order.odobegin}"}
           end
