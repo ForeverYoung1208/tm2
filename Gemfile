@@ -14,7 +14,8 @@ gem 'mysql2'
 gem 'jquery-rails', '>=3.1.2'
 gem 'jquery-ui-rails', '>=4.1.2'
 
-gem 'bcrypt-ruby', :require => 'bcrypt'
+# gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'bcrypt', :require => 'bcrypt'
 gem 'sass-rails'
 
 
