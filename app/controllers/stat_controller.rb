@@ -50,7 +50,8 @@ class StatController < ApplicationController
 		end
 
 
-		@auto = Aauto.find_all_by_id(params[:auto_id])
+		# @auto = Aauto.find_all_by(id: params[:auto_id])
+		@auto = Aauto.find(params[:auto_id])
 
 		respond_to do |format|
 		  format.html # routelist.html.erb

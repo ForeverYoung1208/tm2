@@ -25,10 +25,10 @@ class ActionsController < ApplicationController
 
     if is_admin?
       @company ? @users=@company.users.all : @users=User.all
-      @companies=Company.find(:all)
+      @companies=Company.all
     elsif is_alltabeluser?
       @company ? @users=@company.users.all : @users=User.all
-      @companies=Company.find(:all)
+      @companies=Company.all
     else
       @users=@company.users.all
       @companies=[session[:user].company]

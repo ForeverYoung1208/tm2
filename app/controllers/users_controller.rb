@@ -79,7 +79,7 @@ class UsersController < ApplicationController
 
   def index
     if is_admin?
-      @users=User.find(:all) 
+      @users=User.all
     elsif is_company_admin?
       @users=User.find_all_by_company_id(session[:user].company_id)
     elsif session[:user]
@@ -102,8 +102,8 @@ class UsersController < ApplicationController
 
   def get_companies_and_userlevels
     if session[:user] && is_admin?
-      @userlevels = Userlevel.find(:all)
-      @companies = Company.find(:all)
+      @userlevels = Userlevel.all
+      @companies = Company.all
     elsif session[:user] && is_company_admin?
       @userlevels = Userlevel.find_all_by_id([::COMPANY_ADMIN_ID, ::USER_ID])
       @companies = [session[:user].company]
@@ -112,7 +112,7 @@ class UsersController < ApplicationController
       @companies = [session[:user].company]
     elsif ::FREE_REGISTRATION
       @userlevels = [Userlevel.find_by_id(::USER_ID)]
-      @companies = Company.find(:all)
+      @companies = Company.all
     else
       flash[:notice]="Для добавления нового пользователя надо зарегистрироваться в системе."
       redirect_to root_url
@@ -127,6 +127,13 @@ class UsersController < ApplicationController
     end
     flash[:notice] = "Ok"
   end
+
+  def users_params
+    params.require(:user).permit!
+    # params.require(:user).permit(:id, :company, :userlevel, :ip_address, :is_ip_controlled)
+  end
+
+
 
 end
 

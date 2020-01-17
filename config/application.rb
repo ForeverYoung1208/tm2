@@ -56,6 +56,11 @@ config.time_zone = 'Kyiv'
 config.assets.paths << "vendor"
 
 #####
+
+
+#### relax strong params because it's too difficult to migreate from rails 3.* to 5.*
+#### and white-list all params in all controllers....
+    config.action_controller.permit_all_parameters = true
     
   end
 end

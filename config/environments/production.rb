@@ -51,6 +51,8 @@ Tm2::Application.configure do
   config.eager_load = true
   config.assets.js_compressor = :uglifier
 
+  config.log_level = :error
+
 
 
 end
