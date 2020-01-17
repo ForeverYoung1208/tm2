@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 class AordersController < ApplicationController
-  before_filter :require_login
-  before_filter :is_admin, :only => [:set_day_status]
-  before_filter :is_day_closed, :only => [:ocancel, :new, :create, :update, :destroy]
+  before_action :require_login
+  before_action :is_admin, :only => [:set_day_status]
+  before_action :is_day_closed, :only => [:ocancel, :new, :create, :update, :destroy]
 
   def uporderstable
     if session[:user] && !is_not_tm2_user?

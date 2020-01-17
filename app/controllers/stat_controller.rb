@@ -1,6 +1,6 @@
 class StatController < ApplicationController
 	include ApplicationHelper
-  before_filter :require_login  
+  before_action :require_login  
 
 	def index
 		@date_begin = params[:first_date] ? params[:first_date] : Time.now.to_date-1.day

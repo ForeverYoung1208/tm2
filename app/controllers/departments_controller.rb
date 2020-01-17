@@ -1,5 +1,5 @@
 class DepartmentsController < ApplicationController
-  before_filter :require_login  
+  before_action :require_login  
   # GET /departments
   # GET /departments.json
   def index
@@ -42,7 +42,7 @@ class DepartmentsController < ApplicationController
   # POST /departments
   # POST /departments.json
   def create
-    @department = Department.new(params[:department])
+    @department = Department.new(department_params)
 
     respond_to do |format|
       if @department.save
@@ -60,7 +60,7 @@ class DepartmentsController < ApplicationController
   def update
     @department = Department.find(params[:id])
     respond_to do |format|
-      if @department.update_attributes(params[:department])
+      if @department.update_attributes(department_params)
         format.html { redirect_to departments_path, notice: 'Department was successfully updated.' }
         format.json { head :no_content }
       else
@@ -81,4 +81,12 @@ class DepartmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def department_params
+    params.require(:department).permit(:id, :company_id, :name)
+  end
+
+
 end

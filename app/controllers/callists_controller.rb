@@ -1,5 +1,5 @@
 class CallistsController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
   # GET /callists
   # GET /callists.json
   def index

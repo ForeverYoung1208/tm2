@@ -3,17 +3,17 @@
 class UsersController < ApplicationController
 
   if ::FREE_REGISTRATION 
-    before_filter :require_login, except: [:new, :create] 
+    before_action :require_login, except: [:new, :create] 
   else 
-    before_filter :require_login, except: [:index, :edit, :update]
+    before_action :require_login, except: [:index, :edit, :update]
   end
 
-  before_filter :ip_change_allowed?, only: [:update]
+  before_action :ip_change_allowed?, only: [:update]
 
 
 #  
   
-#    before_filter :is_admin
+#    before_action :is_admin
  
   def new
     @user = User.new( ip_address: '0.0.0.0' )

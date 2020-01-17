@@ -1,5 +1,5 @@
 class CallsController < ApplicationController
-  before_filter :require_login    
+  before_action :require_login    
   # GET /calls
   # GET /calls.json
   def index

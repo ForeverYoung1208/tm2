@@ -2,8 +2,8 @@
 
 require 'date'
 class ActionsController < ApplicationController
-  before_filter :require_login
-  before_filter :check_tabel_rights
+  before_action :require_login
+  before_action :check_tabel_rights
 
 
 

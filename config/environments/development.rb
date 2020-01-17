@@ -26,6 +26,7 @@ Tm2::Application.configure do
   config.assets.debug = true
   config.assets.compile = true
 
-
+########
+  config.eager_load = false
 end
 

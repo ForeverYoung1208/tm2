@@ -1,8 +1,9 @@
 source 'http://rubygems.org'
 
 #gem 'rails', '3.0.5'
-gem 'rails', '3.2.13'
+#gem 'rails', '3.2.13'
 
+gem 'rails', '~> 5.2.1'
 gem 'mysql2'
 
 
@@ -11,12 +12,12 @@ gem 'mysql2'
 #? gem "fastthread"
 
 
-gem 'jquery-rails', '>=3.1.2'
-gem 'jquery-ui-rails', '>=4.1.2'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'sass-rails'
-
+gem 'activerecord-session_store'
 
 
 # Bundle edge Rails instead:
@@ -36,7 +37,7 @@ gem 'sass-rails'
 
 group :development, :test do
 	gem "rspec-rails"
-	gem 'debugger'
+###	gem 'debugger'
 end
 
 group :production do

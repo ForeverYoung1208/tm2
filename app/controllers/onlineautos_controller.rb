@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class OnlineautosController < ApplicationController
-  before_filter :require_login  
+  before_action :require_login  
  
   # POST /aorders
   # POST /aorders.xml

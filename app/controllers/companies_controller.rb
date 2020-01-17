@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class CompaniesController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
 
   
   # GET /companies

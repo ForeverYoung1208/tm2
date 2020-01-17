@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 class AautosController < ApplicationController
-  before_filter :require_login  
-  before_filter :is_admin, :except => [:index, :show]
+  before_action :require_login  
+  before_action :is_admin, :except => [:index, :show]
  
 
   # GET /aautos
