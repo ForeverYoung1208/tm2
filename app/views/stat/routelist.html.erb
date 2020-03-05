@@ -31,7 +31,7 @@
 					<th id='odobegin'>Спідометр на початку</th>
 					<th id='odoend'>Спідометр в кінці</th>
 					<th id='distance'>Дистанція всього, км.</th>
-					<th id='outofcity'>Із них поза містом, км.</th>
+					<th id='outofcity'>Із них ресурсні (поза містом), км.</th>
 					<th id='onname'>ПІБ відповідальної особи</th>
 				</tr>
 
@@ -60,13 +60,13 @@
 
 		  <h4>Загальна тривалість: <%= hm(total_time) %></h4>
 		  <h4>Всього за день, км: <%= total_all %></h4>
-		  <h4>Із них по місту, км: <%= total_all-total_outofcity %></h4>
-		  <h4>Із них поза містом, км:<%= total_outofcity %></h4>
+		  <h4>Із них бюджетні (по місту), км: <%= total_all-total_outofcity %></h4>
+		  <h4>Із них ресурсні (поза містом), км:<%= total_outofcity %></h4>
 		  <p class = 'break_page'> ---наступна сторінка-- </p>
 
 <% end %>
 
   <h4>Загальна тривалість за всі дні : <%= "#{hm(total_alldays_time)} (годин:хвилин)"  %> </h4>
   <h4>Всього пробіг за всі дні, км: <%= total_alldays %></h4>
-  <h4>Із них по місту, км: <%= total_alldays - total_alldays_outofcity %></h4>
-  <h4>Із них поза містом, км:<%= total_alldays_outofcity %></h4>
+  <h4>Із них бюджетні (по місту), км: <%= total_alldays - total_alldays_outofcity %></h4>
+  <h4>Із них ресурсні (поза містом), км:<%= total_alldays_outofcity %></h4>
