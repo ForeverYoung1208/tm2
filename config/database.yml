@@ -52,7 +52,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: tm2018_production
+  database: tm2t_production
   pool: 5
   username: root_tm2
   password: '120880'
