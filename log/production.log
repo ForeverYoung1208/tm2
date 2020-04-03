@@ -1,436 +1,53 @@
-Connecting to database specified by database.yml
-Started GET "/" for 127.0.0.1 at 2015-04-02 14:01:29 +0300
-Processing by SessionsController#new as HTML
-  Rendered sessions/new.html.erb within layouts/application (4.3ms)
-Compiled jquery.ui.core.css  (2ms)  (pid 14498)
-Compiled jquery.ui.theme.css  (46ms)  (pid 14498)
-Compiled jquery.ui.datepicker.css  (59ms)  (pid 14498)
-Compiled departments.css  (0ms)  (pid 14498)
-Compiled orders.css  (0ms)  (pid 14498)
-Compiled scaffold.css  (0ms)  (pid 14498)
-Warning. Error encountered while saving cache /home/fy/ror/tm2/tmp/cache/sass/5f27b731109c4d02573f63b417cc2a9bed59ec8a/stat.scssc: can't dump anonymous class #<Class:0x8ae6520>
-Compiled stat.css  (64ms)  (pid 14498)
-Compiled application.css  (140ms)  (pid 14498)
-Compiled jquery.js  (2ms)  (pid 14498)
-Compiled jquery.ui.core.js  (0ms)  (pid 14498)
-Compiled jquery.ui.datepicker.js  (32ms)  (pid 14498)
-Compiled jquery_ujs.js  (0ms)  (pid 14498)
-Compiled aorders.js  (0ms)  (pid 14498)
-Compiled stat.js  (0ms)  (pid 14498)
-Compiled application.js  (65ms)  (pid 14498)
-Completed 200 OK in 499ms (Views: 275.5ms | ActiveRecord: 12.4ms)
-Started GET "/assets/application-b7669e41b65a0877b8d5a888c5df6af3.css" for 127.0.0.1 at 2015-04-02 14:01:30 +0300
-Served asset /application-b7669e41b65a0877b8d5a888c5df6af3.css - 200 OK (0ms)
-Started GET "/assets/application-4e2d874c0d67ff87b49df4e7da047bcd.js" for 127.0.0.1 at 2015-04-02 14:01:30 +0300
-Served asset /application-4e2d874c0d67ff87b49df4e7da047bcd.js - 200 OK (0ms)
-Started GET "/assets/favicon-21fa39fc5820656eeeea10d4e4e4089d.ico" for 127.0.0.1 at 2015-04-02 14:01:30 +0300
-Served asset /favicon-21fa39fc5820656eeeea10d4e4e4089d.ico - 200 OK (0ms)
-Started POST "/sessions" for 127.0.0.1 at 2015-04-02 14:01:42 +0300
-Processing by SessionsController#create as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"B80watNQJWTi6RjkULQ/Au6tVv4HZPkXAldskp/M0Lw=", "name"=>"ForeverYoung", "password"=>"[FILTERED]", "commit"=>"Войти"}
-Redirected to http://127.0.0.1:3000/aorders
-Completed 302 Found in 182ms (ActiveRecord: 7.4ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 14:01:43 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (9.4ms)
-  Rendered aorders/_body.erb (358.7ms)
-  Rendered aorders/_olist.erb (370.3ms)
-  Rendered aorders/_head.erb (4.5ms)
-  Rendered aorders/_form.html.erb (46.1ms)
-  Rendered aorders/_onlineautos.erb (741.2ms)
-  Rendered aorders/index.html.erb within layouts/application (1213.3ms)
-Completed 200 OK in 1302ms (Views: 1009.4ms | ActiveRecord: 214.9ms)
-Started GET "/assets/pic2-a3b81cfa476e4579d83a1fbfa57be6aa.gif" for 127.0.0.1 at 2015-04-02 14:01:44 +0300
-Served asset /pic2-a3b81cfa476e4579d83a1fbfa57be6aa.gif - 200 OK (0ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 14:04:02 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (3.0ms)
-  Rendered aorders/_body.erb (125.9ms)
-  Rendered aorders/_olist.erb (133.8ms)
-  Rendered aorders/_head.erb (7.0ms)
-  Rendered aorders/_form.html.erb (101.9ms)
-  Rendered aorders/_onlineautos.erb (788.9ms)
-  Rendered aorders/index.html.erb within layouts/application (1036.1ms)
-Completed 200 OK in 1044ms (Views: 1004.6ms | ActiveRecord: 35.8ms)
-Started GET "/uporderstable?_=1427972643727" for 127.0.0.1 at 2015-04-02 14:09:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643727"}
-  Rendered aorders/_head.erb (4.8ms)
-  Rendered aorders/_body.erb (95.7ms)
-  Rendered aorders/_olist.erb (102.9ms)
-  Rendered aorders/_onlineautos.erb (501.3ms)
-  Rendered aorders/uporderstable.js.erb (616.4ms)
-Completed 200 OK in 675ms (Views: 608.6ms | ActiveRecord: 59.1ms)
-Started GET "/uporderstable?_=1427972643728" for 127.0.0.1 at 2015-04-02 14:14:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643728"}
-  Rendered aorders/_head.erb (3.6ms)
-  Rendered aorders/_body.erb (126.0ms)
-  Rendered aorders/_olist.erb (130.4ms)
-  Rendered aorders/_onlineautos.erb (500.7ms)
-  Rendered aorders/uporderstable.js.erb (642.9ms)
-Completed 200 OK in 703ms (Views: 605.6ms | ActiveRecord: 91.2ms)
-Started GET "/uporderstable?_=1427972643729" for 127.0.0.1 at 2015-04-02 14:19:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643729"}
-  Rendered aorders/_head.erb (4.9ms)
-  Rendered aorders/_body.erb (258.7ms)
-  Rendered aorders/_olist.erb (264.8ms)
-  Rendered aorders/_onlineautos.erb (625.4ms)
-  Rendered aorders/uporderstable.js.erb (905.1ms)
-Completed 200 OK in 970ms (Views: 751.4ms | ActiveRecord: 209.7ms)
-Started GET "/uporderstable?_=1427972643730" for 127.0.0.1 at 2015-04-02 14:24:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643730"}
-  Rendered aorders/_head.erb (3.4ms)
-  Rendered aorders/_body.erb (283.4ms)
-  Rendered aorders/_olist.erb (287.9ms)
-  Rendered aorders/_onlineautos.erb (805.8ms)
-  Rendered aorders/uporderstable.js.erb (1110.1ms)
-Completed 200 OK in 1166ms (Views: 939.3ms | ActiveRecord: 218.2ms)
-Started GET "/uporderstable?_=1427972643731" for 127.0.0.1 at 2015-04-02 14:29:04 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643731"}
-  Rendered aorders/_head.erb (4.7ms)
-  Rendered aorders/_body.erb (70.2ms)
-  Rendered aorders/_olist.erb (75.8ms)
-  Rendered aorders/_onlineautos.erb (551.6ms)
-  Rendered aorders/uporderstable.js.erb (636.7ms)
-Completed 200 OK in 677ms (Views: 625.2ms | ActiveRecord: 18.2ms)
-Started GET "/uporderstable?_=1427972643732" for 127.0.0.1 at 2015-04-02 14:34:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643732"}
-  Rendered aorders/_head.erb (6.5ms)
-  Rendered aorders/_body.erb (114.2ms)
-  Rendered aorders/_olist.erb (122.6ms)
-  Rendered aorders/_onlineautos.erb (602.8ms)
-  Rendered aorders/uporderstable.js.erb (762.7ms)
-Completed 200 OK in 832ms (Views: 738.7ms | ActiveRecord: 85.3ms)
-Started GET "/uporderstable?_=1427972643733" for 127.0.0.1 at 2015-04-02 14:39:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643733"}
-  Rendered aorders/_head.erb (3.7ms)
-  Rendered aorders/_body.erb (99.3ms)
-  Rendered aorders/_olist.erb (103.8ms)
-  Rendered aorders/_onlineautos.erb (491.7ms)
-  Rendered aorders/uporderstable.js.erb (605.5ms)
-Completed 200 OK in 669ms (Views: 566.2ms | ActiveRecord: 96.0ms)
-Started GET "/uporderstable?_=1427972643734" for 127.0.0.1 at 2015-04-02 14:44:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643734"}
-  Rendered aorders/_head.erb (3.7ms)
-  Rendered aorders/_body.erb (149.5ms)
-  Rendered aorders/_olist.erb (154.2ms)
-  Rendered aorders/_onlineautos.erb (491.6ms)
-  Rendered aorders/uporderstable.js.erb (656.6ms)
-Completed 200 OK in 720ms (Views: 569.5ms | ActiveRecord: 143.6ms)
-Started GET "/uporderstable?_=1427972643735" for 127.0.0.1 at 2015-04-02 14:49:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643735"}
-  Rendered aorders/_head.erb (3.6ms)
-  Rendered aorders/_body.erb (95.7ms)
-  Rendered aorders/_olist.erb (100.2ms)
-  Rendered aorders/_onlineautos.erb (569.5ms)
-  Rendered aorders/uporderstable.js.erb (685.8ms)
-Completed 200 OK in 740ms (Views: 651.4ms | ActiveRecord: 81.4ms)
-Started GET "/uporderstable?_=1427972643736" for 127.0.0.1 at 2015-04-02 14:54:04 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643736"}
-  Rendered aorders/_head.erb (4.0ms)
-  Rendered aorders/_body.erb (70.8ms)
-  Rendered aorders/_olist.erb (76.0ms)
-  Rendered aorders/_onlineautos.erb (513.7ms)
-  Rendered aorders/uporderstable.js.erb (599.6ms)
-Completed 200 OK in 610ms (Views: 587.0ms | ActiveRecord: 16.5ms)
-Started GET "/uporderstable?_=1427972643737" for 127.0.0.1 at 2015-04-02 14:59:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643737"}
-  Rendered aorders/_head.erb (3.8ms)
-  Rendered aorders/_body.erb (84.2ms)
-  Rendered aorders/_olist.erb (88.8ms)
-  Rendered aorders/_onlineautos.erb (491.0ms)
-  Rendered aorders/uporderstable.js.erb (590.6ms)
-Completed 200 OK in 660ms (Views: 566.8ms | ActiveRecord: 86.5ms)
-Started GET "/uporderstable?_=1427972643738" for 127.0.0.1 at 2015-04-02 15:04:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643738"}
-  Rendered aorders/_head.erb (3.5ms)
-  Rendered aorders/_body.erb (204.4ms)
-  Rendered aorders/_olist.erb (208.9ms)
-  Rendered aorders/_onlineautos.erb (523.9ms)
-  Rendered aorders/uporderstable.js.erb (743.6ms)
-Completed 200 OK in 803ms (Views: 600.8ms | ActiveRecord: 195.7ms)
-Started GET "/uporderstable?_=1427972643739" for 127.0.0.1 at 2015-04-02 15:09:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643739"}
-  Rendered aorders/_head.erb (3.3ms)
-  Rendered aorders/_body.erb (87.6ms)
-  Rendered aorders/_olist.erb (91.8ms)
-  Rendered aorders/_onlineautos.erb (486.7ms)
-  Rendered aorders/uporderstable.js.erb (588.0ms)
-Completed 200 OK in 656ms (Views: 561.8ms | ActiveRecord: 88.0ms)
-Started GET "/uporderstable?_=1427972643740" for 127.0.0.1 at 2015-04-02 15:14:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643740"}
-  Rendered aorders/_head.erb (4.3ms)
-  Rendered aorders/_body.erb (85.7ms)
-  Rendered aorders/_olist.erb (90.9ms)
-  Rendered aorders/_onlineautos.erb (576.4ms)
-  Rendered aorders/uporderstable.js.erb (677.2ms)
-Completed 200 OK in 738ms (Views: 650.0ms | ActiveRecord: 80.5ms)
-Started GET "/uporderstable?_=1427972643741" for 127.0.0.1 at 2015-04-02 15:19:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643741"}
-  Rendered aorders/_head.erb (3.4ms)
-  Rendered aorders/_body.erb (108.2ms)
-  Rendered aorders/_olist.erb (112.5ms)
-  Rendered aorders/_onlineautos.erb (695.7ms)
-  Rendered aorders/uporderstable.js.erb (820.0ms)
-Completed 200 OK in 881ms (Views: 780.9ms | ActiveRecord: 92.1ms)
-Started GET "/uporderstable?_=1427972643742" for 127.0.0.1 at 2015-04-02 15:24:03 +0300
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1427972643742"}
-  Rendered aorders/_head.erb (3.5ms)
-  Rendered aorders/_body.erb (88.5ms)
-  Rendered aorders/_olist.erb (92.8ms)
-  Rendered aorders/_onlineautos.erb (454.3ms)
-  Rendered aorders/uporderstable.js.erb (556.7ms)
-Completed 200 OK in 567ms (Views: 543.8ms | ActiveRecord: 17.4ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:27:20 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (3.0ms)
-  Rendered aorders/_body.erb (97.1ms)
-  Rendered aorders/_olist.erb (100.8ms)
-  Rendered aorders/_head.erb (3.0ms)
-  Rendered aorders/_form.html.erb (23.3ms)
-  Rendered aorders/_onlineautos.erb (594.9ms)
-  Rendered aorders/index.html.erb within layouts/application (728.7ms)
-Completed 200 OK in 734ms (Views: 709.2ms | ActiveRecord: 22.1ms)
-Started GET "/assets/jquery-ui/ui-bg_flat_75_ffffff_40x100-3037ea8408540f0c5354e0285d7038d9.png" for 127.0.0.1 at 2015-04-02 15:27:24 +0300
-Served asset /jquery-ui/ui-bg_flat_75_ffffff_40x100-3037ea8408540f0c5354e0285d7038d9.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-bg_highlight-soft_75_cccccc_1x100-e90e94bfdd5616de89bc53958861acd2.png" for 127.0.0.1 at 2015-04-02 15:27:24 +0300
-Served asset /jquery-ui/ui-bg_highlight-soft_75_cccccc_1x100-e90e94bfdd5616de89bc53958861acd2.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-icons_222222_256x240-4f8251bbe923ef5d36a0eafa0a09ebf4.png" for 127.0.0.1 at 2015-04-02 15:27:24 +0300
-Served asset /jquery-ui/ui-icons_222222_256x240-4f8251bbe923ef5d36a0eafa0a09ebf4.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-bg_glass_75_e6e6e6_1x400-39259328459209cc33e179c1d8642fac.png" for 127.0.0.1 at 2015-04-02 15:27:24 +0300
-Served asset /jquery-ui/ui-bg_glass_75_e6e6e6_1x400-39259328459209cc33e179c1d8642fac.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-bg_glass_55_fbf9ee_1x400-8573b24e439ce3bba1c093803fdc4e24.png" for 127.0.0.1 at 2015-04-02 15:27:29 +0300
-Served asset /jquery-ui/ui-bg_glass_55_fbf9ee_1x400-8573b24e439ce3bba1c093803fdc4e24.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-bg_glass_75_dadada_1x400-1993f0acda3012a21ed56dff7e253d0f.png" for 127.0.0.1 at 2015-04-02 15:27:34 +0300
-Served asset /jquery-ui/ui-bg_glass_75_dadada_1x400-1993f0acda3012a21ed56dff7e253d0f.png - 200 OK (0ms)
-Started POST "/setdate" for 127.0.0.1 at 2015-04-02 15:27:34 +0300
-Processing by AordersController#setdate as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"B80watNQJWTi6RjkULQ/Au6tVv4HZPkXAldskp/M0Lw=", "tek_date"=>"2015-04-01", "commit"=>"установить (обновить инф.)"}
-Redirected to http://127.0.0.1:3000/aorders
-Completed 302 Found in 6ms (ActiveRecord: 3.0ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:27:34 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (3.0ms)
-  Rendered aorders/_body.erb (130.6ms)
-  Rendered aorders/_olist.erb (178.1ms)
-  Rendered aorders/_head.erb (8.2ms)
-  Rendered aorders/_form.html.erb (34.7ms)
-  Rendered aorders/_onlineautos.erb (792.9ms)
-  Rendered aorders/index.html.erb within layouts/application (1019.8ms)
-Completed 200 OK in 1031ms (Views: 992.5ms | ActiveRecord: 31.2ms)
-Connecting to database specified by database.yml
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:28:08 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (3.8ms)
-  Rendered aorders/_body.erb (299.8ms)
-  Rendered aorders/_olist.erb (305.5ms)
-  Rendered aorders/_head.erb (3.8ms)
-  Rendered aorders/_form.html.erb (26.6ms)
-  Rendered aorders/_onlineautos.erb (799.2ms)
-  Rendered aorders/index.html.erb within layouts/application (1274.9ms)
-Completed 200 OK in 1531ms (Views: 1099.0ms | ActiveRecord: 342.5ms)
-Started POST "/sessions" for 127.0.0.1 at 2015-04-02 15:28:14 +0300
-Processing by SessionsController#create as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"B80watNQJWTi6RjkULQ/Au6tVv4HZPkXAldskp/M0Lw=", "name"=>"ForeverYoung", "password"=>"[FILTERED]", "commit"=>"Войти"}
-Redirected to http://127.0.0.1:3000/aorders
-Completed 302 Found in 166ms (ActiveRecord: 10.4ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:28:14 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (2.7ms)
-  Rendered aorders/_body.erb (105.2ms)
-  Rendered aorders/_olist.erb (108.5ms)
-  Rendered aorders/_head.erb (3.6ms)
-  Rendered aorders/_form.html.erb (23.6ms)
-  Rendered aorders/_onlineautos.erb (746.3ms)
-  Rendered aorders/index.html.erb within layouts/application (886.5ms)
-Completed 200 OK in 893ms (Views: 871.3ms | ActiveRecord: 19.2ms)
-Started POST "/setdate" for 127.0.0.1 at 2015-04-02 15:28:21 +0300
-Processing by AordersController#setdate as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"B80watNQJWTi6RjkULQ/Au6tVv4HZPkXAldskp/M0Lw=", "tek_date"=>"2015-04-01", "commit"=>"установить (обновить инф.)"}
-Redirected to http://127.0.0.1:3000/aorders
-Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:28:21 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (2.8ms)
-  Rendered aorders/_body.erb (126.0ms)
-  Rendered aorders/_olist.erb (129.4ms)
-  Rendered aorders/_head.erb (3.2ms)
-  Rendered aorders/_form.html.erb (51.8ms)
-  Rendered aorders/_onlineautos.erb (820.5ms)
-  Rendered aorders/index.html.erb within layouts/application (1013.2ms)
-Completed 200 OK in 1019ms (Views: 992.9ms | ActiveRecord: 23.9ms)
-Started POST "/set_day_status?day_action=day_close&id=14" for 127.0.0.1 at 2015-04-02 15:28:28 +0300
-Processing by AordersController#set_day_status as HTML
-  Parameters: {"authenticity_token"=>"B80watNQJWTi6RjkULQ/Au6tVv4HZPkXAldskp/M0Lw=", "day_action"=>"day_close", "id"=>"14"}
-Redirected to http://127.0.0.1:3000/aorders
-Completed 302 Found in 168ms (ActiveRecord: 86.7ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:28:28 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (4.4ms)
-  Rendered aorders/_body.erb (333.3ms)
-  Rendered aorders/_olist.erb (338.4ms)
-  Rendered aorders/_head.erb (4.7ms)
-  Rendered aorders/_form.html.erb (53.6ms)
-  Rendered aorders/_onlineautos.erb (892.7ms)
-  Rendered aorders/index.html.erb within layouts/application (1311.3ms)
-Completed 200 OK in 1318ms (Views: 1079.0ms | ActiveRecord: 237.2ms)
-Started POST "/set_day_status?day_action=day_close&id=14" for 127.0.0.1 at 2015-04-02 15:29:34 +0300
-Processing by AordersController#set_day_status as HTML
-  Parameters: {"authenticity_token"=>"B80watNQJWTi6RjkULQ/Au6tVv4HZPkXAldskp/M0Lw=", "day_action"=>"day_close", "id"=>"14"}
-Redirected to http://127.0.0.1:3000/aorders
-Completed 302 Found in 28ms (ActiveRecord: 7.8ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:29:34 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (2.9ms)
-  Rendered aorders/_body.erb (151.3ms)
-  Rendered aorders/_olist.erb (154.9ms)
-  Rendered aorders/_head.erb (4.0ms)
-  Rendered aorders/_form.html.erb (31.5ms)
-  Rendered aorders/_onlineautos.erb (989.2ms)
-  Rendered aorders/index.html.erb within layouts/application (1184.3ms)
-Completed 200 OK in 1189ms (Views: 1158.6ms | ActiveRecord: 28.1ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:29:47 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (2.9ms)
-  Rendered aorders/_body.erb (110.5ms)
-  Rendered aorders/_olist.erb (114.1ms)
-  Rendered aorders/_head.erb (2.9ms)
-  Rendered aorders/_form.html.erb (24.2ms)
-  Rendered aorders/_onlineautos.erb (897.6ms)
-  Rendered aorders/index.html.erb within layouts/application (1042.4ms)
-Completed 200 OK in 1049ms (Views: 1026.5ms | ActiveRecord: 20.0ms)
-Started POST "/set_day_status?day_action=day_close&id=14" for 127.0.0.1 at 2015-04-02 15:30:26 +0300
-Processing by AordersController#set_day_status as HTML
-  Parameters: {"authenticity_token"=>"B80watNQJWTi6RjkULQ/Au6tVv4HZPkXAldskp/M0Lw=", "day_action"=>"day_close", "id"=>"14"}
-Redirected to http://127.0.0.1:3000/aorders
-Completed 302 Found in 32ms (ActiveRecord: 12.3ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:30:26 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (3.3ms)
-  Rendered aorders/_body.erb (185.3ms)
-  Rendered aorders/_olist.erb (189.3ms)
-  Rendered aorders/_head.erb (7.2ms)
-  Rendered aorders/_form.html.erb (30.5ms)
-  Rendered aorders/_onlineautos.erb (901.6ms)
-  Rendered aorders/index.html.erb within layouts/application (1129.3ms)
-Completed 200 OK in 1134ms (Views: 1105.6ms | ActiveRecord: 26.1ms)
-Started GET "/aorders" for 127.0.0.1 at 2015-04-02 15:30:36 +0300
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (6.1ms)
-  Rendered aorders/_body.erb (127.4ms)
-  Rendered aorders/_olist.erb (135.0ms)
-  Rendered aorders/_head.erb (8.6ms)
-  Rendered aorders/_form.html.erb (67.2ms)
-  Rendered aorders/_onlineautos.erb (1324.6ms)
-  Rendered aorders/index.html.erb within layouts/application (1540.4ms)
-Completed 200 OK in 1545ms (Views: 1500.3ms | ActiveRecord: 42.4ms)
-Connecting to database specified by database.yml
-Started GET "/uporderstable?_=1572364893017" for 10.21.127.72 at 2019-10-29 18:11:32 +0200
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1572364893017"}
-  Rendered aorders/_head.erb (2.6ms)
-  Rendered aorders/_body.erb (55.6ms)
-  Rendered aorders/_olist.erb (59.7ms)
-  Rendered aorders/_onlineautos.erb (340.8ms)
-  Rendered aorders/uporderstable.js.erb (432.5ms)
-Completed 200 OK in 1374ms (Views: 133.3ms | ActiveRecord: 1125.5ms)
-Started GET "/" for 10.21.127.72 at 2019-10-29 18:11:36 +0200
-Processing by SessionsController#new as HTML
-  Rendered sessions/new.html.erb within layouts/application (1.8ms)
-Compiled jquery.ui.core.css  (1ms)  (pid 10753)
-Compiled jquery.ui.theme.css  (65ms)  (pid 10753)
-Compiled jquery.ui.datepicker.css  (120ms)  (pid 10753)
-Warning. Error encountered while saving cache /home/sia/ror/tm2/tmp/cache/sass/dfeadc279c4c5f6f951035ac75fa1e1a3dc0251c/callists.css.scssc: can't dump anonymous class #<Class:0x00000002b07d70>
-Compiled callists.css  (49ms)  (pid 10753)
-Warning. Error encountered while saving cache /home/sia/ror/tm2/tmp/cache/sass/dfeadc279c4c5f6f951035ac75fa1e1a3dc0251c/calls.css.scssc: can't dump anonymous class #<Class:0x00000002b07d70>
-Compiled calls.css  (4ms)  (pid 10753)
-Compiled departments.css  (0ms)  (pid 10753)
-Compiled orders.css  (0ms)  (pid 10753)
-Compiled scaffold.css  (0ms)  (pid 10753)
-Warning. Error encountered while saving cache /home/sia/ror/tm2/tmp/cache/sass/dfeadc279c4c5f6f951035ac75fa1e1a3dc0251c/scaffolds.css.scssc: can't dump anonymous class #<Class:0x00000002b07d70>
-Compiled scaffolds.css  (6ms)  (pid 10753)
-Warning. Error encountered while saving cache /home/sia/ror/tm2/tmp/cache/sass/dfeadc279c4c5f6f951035ac75fa1e1a3dc0251c/stat.scssc: can't dump anonymous class #<Class:0x00000002b07d70>
-Compiled stat.css  (8ms)  (pid 10753)
-Compiled application.css  (261ms)  (pid 10753)
-Compiled jquery.js  (1ms)  (pid 10753)
-Compiled jquery.ui.core.js  (0ms)  (pid 10753)
-Compiled jquery.ui.datepicker.js  (3ms)  (pid 10753)
-Compiled jquery_ujs.js  (0ms)  (pid 10753)
-Compiled aorders.js  (0ms)  (pid 10753)
-Compiled stat.js  (0ms)  (pid 10753)
-Compiled application.js  (53ms)  (pid 10753)
-Completed 200 OK in 395ms (Views: 353.6ms | ActiveRecord: 39.2ms)
-Started GET "/assets/application-f069d0fa4bea63aa560713cce4c535ff.css" for 10.21.127.72 at 2019-10-29 18:11:37 +0200
-Served asset /application-f069d0fa4bea63aa560713cce4c535ff.css - 200 OK (0ms)
-Started GET "/assets/application-dfc472d75d46d53f47ea8af40a076c3a.js" for 10.21.127.72 at 2019-10-29 18:11:37 +0200
-Served asset /application-dfc472d75d46d53f47ea8af40a076c3a.js - 200 OK (0ms)
-Started GET "/assets/favicon-21fa39fc5820656eeeea10d4e4e4089d.ico" for 10.21.127.72 at 2019-10-29 18:11:38 +0200
-Served asset /favicon-21fa39fc5820656eeeea10d4e4e4089d.ico - 200 OK (0ms)
-Started POST "/sessions" for 10.21.127.72 at 2019-10-29 18:11:42 +0200
-Processing by SessionsController#create as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BhtCmuFrQlhk2OAdno5wqYHEXXLeQw69Z9OWhFQxCUc=", "name"=>"ForeverYoung", "password"=>"[FILTERED]", "commit"=>"Войти"}
-Redirected to http://192.168.99.51:3000/aorders
-Completed 302 Found in 360ms (ActiveRecord: 269.4ms)
-Started GET "/aorders" for 10.21.127.72 at 2019-10-29 18:11:43 +0200
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (2.4ms)
-  Rendered aorders/_body.erb (49.1ms)
-  Rendered aorders/_olist.erb (52.9ms)
-  Rendered aorders/_head.erb (1.7ms)
-  Rendered aorders/_form.html.erb (258.0ms)
-  Rendered aorders/_onlineautos.erb (161.3ms)
-  Rendered aorders/index.html.erb within layouts/application (588.0ms)
-Completed 200 OK in 636ms (Views: 87.1ms | ActiveRecord: 545.7ms)
-Started GET "/assets/pic2-a3b81cfa476e4579d83a1fbfa57be6aa.gif" for 10.21.127.72 at 2019-10-29 18:11:44 +0200
-Served asset /pic2-a3b81cfa476e4579d83a1fbfa57be6aa.gif - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-bg_flat_75_ffffff_40x100-3037ea8408540f0c5354e0285d7038d9.png" for 10.21.127.72 at 2019-10-29 18:11:44 +0200
-Served asset /jquery-ui/ui-bg_flat_75_ffffff_40x100-3037ea8408540f0c5354e0285d7038d9.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-icons_222222_256x240-4f8251bbe923ef5d36a0eafa0a09ebf4.png" for 10.21.127.72 at 2019-10-29 18:11:46 +0200
-Served asset /jquery-ui/ui-icons_222222_256x240-4f8251bbe923ef5d36a0eafa0a09ebf4.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-bg_highlight-soft_75_cccccc_1x100-e90e94bfdd5616de89bc53958861acd2.png" for 10.21.127.72 at 2019-10-29 18:11:46 +0200
-Served asset /jquery-ui/ui-bg_highlight-soft_75_cccccc_1x100-e90e94bfdd5616de89bc53958861acd2.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-bg_glass_75_e6e6e6_1x400-39259328459209cc33e179c1d8642fac.png" for 10.21.127.72 at 2019-10-29 18:11:46 +0200
-Served asset /jquery-ui/ui-bg_glass_75_e6e6e6_1x400-39259328459209cc33e179c1d8642fac.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-bg_glass_55_fbf9ee_1x400-8573b24e439ce3bba1c093803fdc4e24.png" for 10.21.127.72 at 2019-10-29 18:11:46 +0200
-Served asset /jquery-ui/ui-bg_glass_55_fbf9ee_1x400-8573b24e439ce3bba1c093803fdc4e24.png - 200 OK (0ms)
-Started GET "/assets/jquery-ui/ui-bg_glass_75_dadada_1x400-1993f0acda3012a21ed56dff7e253d0f.png" for 10.21.127.72 at 2019-10-29 18:11:47 +0200
-Served asset /jquery-ui/ui-bg_glass_75_dadada_1x400-1993f0acda3012a21ed56dff7e253d0f.png - 200 OK (0ms)
-Started POST "/setdate" for 10.21.127.72 at 2019-10-29 18:11:48 +0200
-Processing by AordersController#setdate as HTML
-  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BhtCmuFrQlhk2OAdno5wqYHEXXLeQw69Z9OWhFQxCUc=", "tek_date"=>"2019-10-21", "commit"=>"установить (обновить инф.)"}
-Redirected to http://192.168.99.51:3000/aorders
-Completed 302 Found in 122ms (ActiveRecord: 119.0ms)
-Started GET "/aorders" for 10.21.127.72 at 2019-10-29 18:11:49 +0200
-Processing by AordersController#index as HTML
-  Rendered aorders/_head.erb (3.5ms)
-  Rendered aorders/_body.erb (154.3ms)
-  Rendered aorders/_olist.erb (159.1ms)
-  Rendered aorders/_head.erb (2.8ms)
-  Rendered aorders/_form.html.erb (367.7ms)
-  Rendered aorders/_onlineautos.erb (254.7ms)
-  Rendered aorders/index.html.erb within layouts/application (910.7ms)
-Completed 200 OK in 1036ms (Views: 53.7ms | ActiveRecord: 978.8ms)
-Started GET "/uporderstable?_=1572365511753" for 10.21.127.72 at 2019-10-29 18:12:51 +0200
-Processing by AordersController#uporderstable as JS
-  Parameters: {"_"=>"1572365511753"}
-  Rendered aorders/_head.erb (3.9ms)
-  Rendered aorders/_body.erb (57.6ms)
-  Rendered aorders/_olist.erb (62.2ms)
-  Rendered aorders/_onlineautos.erb (213.1ms)
-  Rendered aorders/uporderstable.js.erb (277.4ms)
-Completed 200 OK in 483ms (Views: 25.1ms | ActiveRecord: 450.8ms)
+  
+LoadError (cannot load such file -- uglifier):
+  
+activesupport (5.2.4.1) lib/active_support/dependencies.rb:291:in `require'
+activesupport (5.2.4.1) lib/active_support/dependencies.rb:291:in `block in require'
+activesupport (5.2.4.1) lib/active_support/dependencies.rb:257:in `load_dependency'
+activesupport (5.2.4.1) lib/active_support/dependencies.rb:291:in `require'
+sprockets (4.0.0) lib/sprockets/autoload/uglifier.rb:2:in `<top (required)>'
+activesupport (5.2.4.1) lib/active_support/dependencies.rb:291:in `require'
+activesupport (5.2.4.1) lib/active_support/dependencies.rb:291:in `block in require'
+activesupport (5.2.4.1) lib/active_support/dependencies.rb:257:in `load_dependency'
+activesupport (5.2.4.1) lib/active_support/dependencies.rb:291:in `require'
+sprockets (4.0.0) lib/sprockets/uglifier_compressor.rb:43:in `initialize'
+sprockets (4.0.0) lib/sprockets/uglifier_compressor.rb:26:in `new'
+sprockets (4.0.0) lib/sprockets/uglifier_compressor.rb:26:in `instance'
+sprockets (4.0.0) lib/sprockets/uglifier_compressor.rb:30:in `call'
+sprockets (4.0.0) lib/sprockets/processor_utils.rb:84:in `call_processor'
+sprockets (4.0.0) lib/sprockets/processor_utils.rb:66:in `block in call_processors'
+sprockets (4.0.0) lib/sprockets/processor_utils.rb:65:in `reverse_each'
+sprockets (4.0.0) lib/sprockets/processor_utils.rb:65:in `call_processors'
+sprockets (4.0.0) lib/sprockets/loader.rb:182:in `load_from_unloaded'
+sprockets (4.0.0) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.0.0) lib/sprockets/loader.rb:335:in `fetch_asset_from_dependency_cache'
+sprockets (4.0.0) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.0.0) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.0.0) lib/sprockets/bundle.rb:32:in `block in call'
+/home/fy/.rvm/rubies/ruby-2.5.1/lib/ruby/2.5.0/set.rb:338:in `each_key'
+/home/fy/.rvm/rubies/ruby-2.5.1/lib/ruby/2.5.0/set.rb:338:in `each'
+sprockets (4.0.0) lib/sprockets/bundle.rb:31:in `call'
+sprockets (4.0.0) lib/sprockets/processor_utils.rb:84:in `call_processor'
+sprockets (4.0.0) lib/sprockets/processor_utils.rb:66:in `block in call_processors'
+sprockets (4.0.0) lib/sprockets/processor_utils.rb:65:in `reverse_each'
+sprockets (4.0.0) lib/sprockets/processor_utils.rb:65:in `call_processors'
+sprockets (4.0.0) lib/sprockets/loader.rb:182:in `load_from_unloaded'
+sprockets (4.0.0) lib/sprockets/loader.rb:59:in `block in load'
+sprockets (4.0.0) lib/sprockets/loader.rb:335:in `fetch_asset_from_dependency_cache'
+sprockets (4.0.0) lib/sprockets/loader.rb:43:in `load'
+sprockets (4.0.0) lib/sprockets/cached_environment.rb:44:in `load'
+sprockets (4.0.0) lib/sprockets/base.rb:81:in `find_asset'
+sprockets (4.0.0) lib/sprockets/base.rb:88:in `find_all_linked_assets'
+sprockets (4.0.0) lib/sprockets/manifest.rb:125:in `block (2 levels) in find'
+concurrent-ruby (1.1.5) lib/concurrent/executor/safe_task_executor.rb:24:in `block in execute'
+concurrent-ruby (1.1.5) lib/concurrent/synchronization/mutex_lockable_object.rb:41:in `block in synchronize'
+concurrent-ruby (1.1.5) lib/concurrent/synchronization/mutex_lockable_object.rb:41:in `synchronize'
+concurrent-ruby (1.1.5) lib/concurrent/synchronization/mutex_lockable_object.rb:41:in `synchronize'
+concurrent-ruby (1.1.5) lib/concurrent/executor/safe_task_executor.rb:19:in `execute'
+concurrent-ruby (1.1.5) lib/concurrent/promise.rb:563:in `block in realize'
+concurrent-ruby (1.1.5) lib/concurrent/executor/ruby_thread_pool_executor.rb:348:in `run_task'
+concurrent-ruby (1.1.5) lib/concurrent/executor/ruby_thread_pool_executor.rb:337:in `block (3 levels) in create_worker'
+concurrent-ruby (1.1.5) lib/concurrent/executor/ruby_thread_pool_executor.rb:320:in `loop'
+concurrent-ruby (1.1.5) lib/concurrent/executor/ruby_thread_pool_executor.rb:320:in `block (2 levels) in create_worker'
+concurrent-ruby (1.1.5) lib/concurrent/executor/ruby_thread_pool_executor.rb:319:in `catch'
+concurrent-ruby (1.1.5) lib/concurrent/executor/ruby_thread_pool_executor.rb:319:in `block in create_worker'

@@ -1,4 +1,4 @@
-class AddOnlinedirverOnduty < ActiveRecord::Migration
+class AddOnlinedirverOnduty < ActiveRecord::Migration[5.2]
   def self.up
     change_table :onlineautos do |t|
       t.boolean :onduty

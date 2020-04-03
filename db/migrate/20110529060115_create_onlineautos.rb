@@ -1,4 +1,4 @@
-class CreateOnlineautos < ActiveRecord::Migration
+class CreateOnlineautos < ActiveRecord::Migration[5.2]
   def self.up
     create_table :onlineautos do |t|
       t.references :aauto

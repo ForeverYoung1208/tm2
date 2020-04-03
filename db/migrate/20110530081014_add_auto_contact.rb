@@ -1,4 +1,4 @@
-class AddAutoContact < ActiveRecord::Migration
+class AddAutoContact < ActiveRecord::Migration[5.2]
   def self.up
     change_table :aautos do |t|
       t.string :contact

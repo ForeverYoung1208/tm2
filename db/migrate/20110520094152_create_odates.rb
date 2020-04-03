@@ -1,4 +1,4 @@
-class CreateOdates < ActiveRecord::Migration
+class CreateOdates < ActiveRecord::Migration[5.2]
   def self.up
     create_table :odates do |t|
       t.date :thedate

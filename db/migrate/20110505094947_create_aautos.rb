@@ -1,4 +1,4 @@
-class CreateAautos < ActiveRecord::Migration
+class CreateAautos < ActiveRecord::Migration[5.2]
   def self.up
     create_table :aautos do |t|
       t.string :name

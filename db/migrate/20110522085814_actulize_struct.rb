@@ -1,4 +1,4 @@
-class ActulizeStruct < ActiveRecord::Migration
+class ActulizeStruct < ActiveRecord::Migration[5.2]
   def self.up
 
     #убираем лишнее

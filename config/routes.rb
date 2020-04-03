@@ -1,9 +1,7 @@
 Tm2::Application.routes.draw do
 
-  resources :callists
-
-
-  resources :calls
+  # resources :callists
+  # resources :calls
 
 
   resources :departments

@@ -1,4 +1,4 @@
-class CreateAorders < ActiveRecord::Migration
+class CreateAorders < ActiveRecord::Migration[5.2]
   def self.up
     create_table :aorders do |t|
       t.date :ondate

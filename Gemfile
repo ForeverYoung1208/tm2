@@ -25,6 +25,7 @@ end
 
 group :production do
 	# only for passenger stand-alone deployment
+	gem 'uglifier'
 	gem 'passenger'
 	
 end

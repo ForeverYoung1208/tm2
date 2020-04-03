@@ -1,4 +1,4 @@
-class CreateActions < ActiveRecord::Migration
+class CreateActions < ActiveRecord::Migration[5.2]
   def self.up
     create_table :actions do |t|
       t.string :kind

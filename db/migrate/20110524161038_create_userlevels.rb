@@ -1,4 +1,4 @@
-class CreateUserlevels < ActiveRecord::Migration
+class CreateUserlevels < ActiveRecord::Migration[5.2]
   def self.up
     create_table :userlevels do |t|
       t.string :name
